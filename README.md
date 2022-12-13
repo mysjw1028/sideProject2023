@@ -79,6 +79,15 @@ RestController - 2차 변환 후 Flutter 연결
 ```sql
 USE blogdb;
 
+create table user(
+    users_id int primary KEY auto_increment,
+    username VARCHAR(20) NOT NULL UNIQUE,
+	password varchar(20) NOT NULL,
+    nick_name varchar(20) NOT NULL,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    created_at TIMESTAMP NOT NULL DEFAULT current_timestamp
+);
+
 
 ```
 .
