@@ -22,6 +22,10 @@ public class User {
         this.password = password;
         this.email = email;
         this.nickName = nickName;
-    }
+    }// 회원가입용
 
+    public User(Integer userId, String password) {
+        this.userId = userId;
+        this.password = password;
+    }
 }

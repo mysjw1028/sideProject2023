@@ -14,6 +14,7 @@ import site.metacoding.firstapp.service.UserService;
 import site.metacoding.firstapp.web.dto.CMRespDto;
 import site.metacoding.firstapp.web.dto.user.JoinDto;
 import site.metacoding.firstapp.web.dto.user.LoginDto;
+import site.metacoding.firstapp.web.dto.user.PasswordCheckDto;
 
 @RequiredArgsConstructor
 @Controller
@@ -41,13 +42,9 @@ public class UserController {
     @PostMapping("/user/login")
     public @ResponseBody CMRespDto<?> login(@RequestBody LoginDto loginDto) {
         User usersPS = userService.로그인(loginDto);
-        System.out.println("디버그 : ");
-        System.out.println("디버그  1: " + loginDto.getUserName());
         if (usersPS == null) {
-            System.out.println("디버그 2: " + loginDto.getUserName());
             return new CMRespDto<>(-1, "로그인실패", null);
         }
-        System.out.println("디버그  3: " + loginDto.getUserName());
         session.setAttribute("principal", usersPS);
         return new CMRespDto<>(1, "로그인성공", null);
     }
@@ -63,4 +60,26 @@ public class UserController {
         return "mainForm";
     }
 
+    @GetMapping("/user/passwordCheckForm")
+    public String 비밀번호체크() {
+        return "user/passwordCheckForm";
+    }
+
+    @PostMapping("/user/passwordCheck")
+    public String passeordCheck(PasswordCheckDto passwordCheckDto) {
+
+        System.out.println("디버그  컨트롤러: " + passwordCheckDto.getPassword());
+        
+        User usersPS = userService.비밀번호확인(passwordCheckDto);
+        System.out.println("디버그 컨트롤러: " + passwordCheckDto.getUserId());
+        if (usersPS == null) {
+        }
+        session.setAttribute("principal", usersPS);
+        return "user/update";
+    }
+
+    @GetMapping("/user/update")
+    public String 업데이트() {
+        return "user/update";
+    }
 }

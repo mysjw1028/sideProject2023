@@ -8,6 +8,7 @@ import site.metacoding.firstapp.domain.user.User;
 import site.metacoding.firstapp.domain.user.UserDao;
 import site.metacoding.firstapp.web.dto.user.JoinDto;
 import site.metacoding.firstapp.web.dto.user.LoginDto;
+import site.metacoding.firstapp.web.dto.user.PasswordCheckDto;
 
 @RequiredArgsConstructor
 @Service
@@ -36,6 +37,21 @@ public class UserService {
         }
         if (usersPS.getPassword().equals(loginDto.getPassword())) {
             return usersPS;
+        } else {
+            return null;
+        }
+    }
+
+    public User 비밀번호확인(PasswordCheckDto passwordCheckFormDto) {
+        User userPS = userDao.passwordCheckForm(passwordCheckFormDto);
+
+        System.out.println("디버그 서비스: " + passwordCheckFormDto.getPassword());
+
+        if (userPS == null) {
+            return null;
+        }
+        if (userPS.getPassword().equals(passwordCheckFormDto.getPassword())) {
+            return userPS;
         } else {
             return null;
         }
