@@ -5,11 +5,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.domain.user.User;
-import site.metacoding.firstapp.domain.user.UserDao;
 import site.metacoding.firstapp.service.UserService;
+import site.metacoding.firstapp.web.dto.CMRespDto;
 import site.metacoding.firstapp.web.dto.user.JoinDto;
 import site.metacoding.firstapp.web.dto.user.LoginDto;
 
@@ -26,9 +28,9 @@ public class UserController {
     }
 
     @PostMapping("/user/join")
-    public String join(JoinDto joinDto) {
+    public @ResponseBody CMRespDto<?> join(@RequestBody JoinDto joinDto) {
         userService.회원가입(joinDto);
-        return "redirect:/";
+        return new CMRespDto<>(1, "회원가입성공", null);
     }
 
     @GetMapping("/user/loginForm")
@@ -47,7 +49,12 @@ public class UserController {
         }
         session.setAttribute("principal", principal);
         return "redirect:/";
+    }
 
+    @GetMapping("/user/join/userNameCheck")
+    public @ResponseBody CMRespDto<Boolean> usersNameSameCheck(String userName) {
+        boolean isSame = userService.아이디중복체크(userName);
+        return new CMRespDto<>(1, "성공", isSame);
     }
 
     @GetMapping("user/logout")

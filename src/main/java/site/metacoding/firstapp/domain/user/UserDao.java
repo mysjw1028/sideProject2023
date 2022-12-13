@@ -16,4 +16,7 @@ public interface UserDao {
 
     public User login(@Param("password") String password, @Param("userName") String userName);
 
+    public User findByIdUserName(String username);
+    // 아이디 중복체크
+
 }
