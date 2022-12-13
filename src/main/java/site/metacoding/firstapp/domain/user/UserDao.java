@@ -1,6 +1,6 @@
 package site.metacoding.firstapp.domain.user;
 
-import org.apache.ibatis.annotations.Param;
+import site.metacoding.firstapp.web.dto.user.LoginDto;
 
 public interface UserDao {
 
@@ -14,7 +14,7 @@ public interface UserDao {
 
     public void deleteById(User user);
 
-    public User login(@Param("password") String password, @Param("userName") String userName);
+    public User login(LoginDto loginDto);
 
     public User findByIdUserName(String username);
     // 아이디 중복체크

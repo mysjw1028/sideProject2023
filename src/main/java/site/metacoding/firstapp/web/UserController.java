@@ -39,22 +39,17 @@ public class UserController {
     }
 
     @PostMapping("/user/login")
-    public String loging(LoginDto loginDto) {
-        System.out.println("디버그 :  로그인 페이지 시작!!");
-        User principal = userService.로그인(loginDto);
-        System.out.println("디버그 : " + loginDto.getUserName());
-        if (principal == null) {
-            System.out.println("디버그 : " + loginDto.getPassword());
-            return "/user/loginForm";
+    public @ResponseBody CMRespDto<?> login(@RequestBody LoginDto loginDto) {
+        User usersPS = userService.로그인(loginDto);
+        System.out.println("디버그 : ");
+        System.out.println("디버그  1: " + loginDto.getUserName());
+        if (usersPS == null) {
+            System.out.println("디버그 2: " + loginDto.getUserName());
+            return new CMRespDto<>(-1, "로그인실패", null);
         }
-        session.setAttribute("principal", principal);
-        return "redirect:/";
-    }
-
-    @GetMapping("/user/join/userNameCheck")
-    public @ResponseBody CMRespDto<Boolean> usersNameSameCheck(String userName) {
-        boolean isSame = userService.아이디중복체크(userName);
-        return new CMRespDto<>(1, "성공", isSame);
+        System.out.println("디버그  3: " + loginDto.getUserName());
+        session.setAttribute("principal", usersPS);
+        return new CMRespDto<>(1, "로그인성공", null);
     }
 
     @GetMapping("user/logout")
