@@ -39,6 +39,7 @@ pageEncoding="UTF-8"%>
                     </div>
                     <input id="passwordSame" type="password" oninput="validPasswordSame();"
                         class="my_auth_form_box_input" placeholder="숫자, 영문, 특수문자 조합 최소 8자." maxlength="30" />
+
                     <!--<i class="fa fa-eye fa-lg"></i>-->
                 </div>
 

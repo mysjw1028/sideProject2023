@@ -43,11 +43,11 @@ function insert() {
     }
 
     if (passwordCheck() == false) {
-        alert("패스워드를  다시 적어주세요");
+        alert("비밀번호를  다시 적어주세요");
         return;
     }
-    if (emailCheck() == false) {
-        alert("이메일을  다시 적어주세요");
+    if (passwordsameCheck() == false) {
+        alert("비밀번호가 틀렸습니다. 다시 적어주세요");
         return;
     }
     if (nickNameCheck() == false) {
@@ -55,16 +55,19 @@ function insert() {
         return;
     }
 
-    if (passwordsameCheck() == false) {
-        alert("패스워드를  다시 적어주세요");
+    if (emailCheck() == false) {
+        alert("이메일을  다시 적어주세요");
         return;
     }
+
+
 
     let data = {
         userName: $("#userName").val(),
         password: $("#password").val(),
-        email: $("#email").val(),
         nickName: $("#nickName").val(),
+        email: $("#email").val()
+
     };
 
     $.ajax("/user/join", {
@@ -109,7 +112,7 @@ function emailCheck() {
 
 function nickNameCheck() {
     let price = $("#nickName").val();
-    let priceRule = /^[a-zA-Z0-9]*$/;
+    let priceRule = /^[가-힣a-zA-Z]+$/;
     if (priceRule.test(price)) {
         return true;
     } else {
@@ -117,15 +120,24 @@ function nickNameCheck() {
     }
 }
 /*한번 더 체크 */
-function passwordsameCheck() {
+function passwordCheck() {
     let password = $("#password").val();
-
     if (password.length > 0) {
         return true;
     } else {
         return false;
     }
 }
+function passwordsameCheck() {
+    let passwordSame = $("#passwordSame").val();
+    let password = $("#password").val();
+    if (passwordSame == password) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function emailsameCheck() {
     let email = $("#email").val();
 
