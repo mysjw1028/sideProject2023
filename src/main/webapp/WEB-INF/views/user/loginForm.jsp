@@ -5,22 +5,9 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
         <div class="my_auth_form_box">
             <div class="my_auth_form_box_title">JStory</div>
             <form action="/user/login" method="POST">
-                <input
-                    class="my_auth_form_box_input"
-                    type="text"
-                    name="username"
-                    placeholder="아이디"
-                />
-                <input
-                    class="my_auth_form_box_input"
-                    type="password"
-                    name="password"
-                    placeholder="비밀번호"
-                />
-                <button
-                    type="submit"
-                    class="my_secondary_btn"
-                >
+                <input class="my_auth_form_box_input" type="text" name="userName" placeholder="아이디" />
+                <input class="my_auth_form_box_input" type="password" name="password" placeholder="비밀번호" />
+                <button type="submit" class="my_secondary_btn">
                     로그인
                 </button>
             </form>
