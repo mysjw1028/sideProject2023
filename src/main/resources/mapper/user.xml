@@ -10,6 +10,7 @@
     <select id="login" resultType="site.metacoding.firstapp.domain.user.User">
 		SELECT * FROM user WHERE username =#{userName} AND password=#{password}
 	</select>
+
     <select id="findByIdUserName"
         resultType="site.metacoding.firstapp.domain.user.User">
 		SELECT * FROM user WHERE username = #{userName}

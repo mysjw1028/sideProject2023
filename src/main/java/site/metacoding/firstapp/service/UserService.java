@@ -30,12 +30,12 @@ public class UserService {
     }
 
     public User 로그인(LoginDto loginDto) {
-        User userPS = userDao.login(loginDto.getPassword(), loginDto.getUserName());// param으로 user/ password값을 받게 변경함
-        if (userPS == null && userPS.equals(" ")) {
+        User usersPS = userDao.login(loginDto);
+        if (usersPS == null) {
             return null;
         }
-        if (userPS.getPassword().equals(loginDto.getPassword())) {
-            return userPS;
+        if (usersPS.getPassword().equals(loginDto.getPassword())) {
+            return usersPS;
         } else {
             return null;
         }
