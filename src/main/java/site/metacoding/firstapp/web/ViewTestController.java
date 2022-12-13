@@ -6,20 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ViewTestController {
 
-    @GetMapping("/user/loginForm") // 화면 출력되는지 확인 완료
-    public String 로그인페이지() {
-        return "user/loginForm";
-    }
 
-    @GetMapping("/user/joinForm") // 화면 출력되는지 확인 완료
-    public String 회원가입페이지() {
-        return "user/joinForm";
-    }
 
-    @GetMapping("/mainForm") // 화면 출력되는지 확인 완료
-    public String 메인페이지() {
-        return "mainForm";
-    }
+
 
     @GetMapping("/categorylistForm") // 화면 출력되는지 확인 완료
     public String 카테고리리스트() {
