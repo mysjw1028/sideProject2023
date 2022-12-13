@@ -1,0 +1,38 @@
+.header_mini_left {
+    display: flex;
+}
+
+.header_mini_text_box {
+    display: flex;
+    margin-left: 15px;
+    margin-top: 5px;
+
+}
+
+
+.header_mini_text_box .header_mini_text>a {
+    font-weight: bold;
+    padding-left: 17px;
+    font-size: 16px;
+    color: #333;
+}
+
+.header_mini_text_box a:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+.my_navbar_title {
+    text-align: center;
+    margin-right: 120px;
+}
+
+.drawer-brand>a {
+    color: #444;
+
+}
+
+.drawer-brand a:hover {
+    color: #444;
+    text-decoration: none;
+}

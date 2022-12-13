@@ -1,0 +1,68 @@
+.footer_container {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    border-top: 1px solid rgb(185, 185, 185);
+    font-family: Noto Sans Medium;
+}
+
+
+
+.my_footer_right_menu {
+    display: flex;
+    justify-content: space-around;
+    margin-right: 50px;
+}
+
+.footer_right_textbox {
+    margin-left: 30px;
+}
+
+.text_menu_texttitle {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+
+}
+
+.footer_menu_text {
+    font-size: 13px;
+    color: #777;
+}
+
+.footer_menu_text>a {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.footer_menu_text a:hover {
+    color: #555;
+}
+
+.fotter_menu_text_mini {
+    color: #909090;
+    font-size: 12px;
+}
+
+/* 마우스 올리면 변함*/
+
+.footer_menu_texts>a {
+    font-size: 13px;
+    color: #444;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.footer_menu_texts a:hover {
+    color: #444;
+}
+
+
+/*강조해야하는 부분*/
+
+
+
+.footer_menu_text {
+    margin-bottom: 5px;
+}
