@@ -1,6 +1,6 @@
 package site.metacoding.firstapp.domain.user;
 
-import site.metacoding.firstapp.web.dto.user.LoginDto;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserDao {
 
@@ -14,6 +14,6 @@ public interface UserDao {
 
     public void deleteById(User user);
 
-    public User login(LoginDto loginDto);
+    public User login(@Param("password") String password, @Param("userName") String userName);
 
 }

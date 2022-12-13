@@ -16,4 +16,12 @@ public class User {
     private String nickName;
     private String email;
     private Timestamp createdAt;
+
+    public User(String userName, String password, String email, String nickName) {
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.nickName = nickName;
+    }
+
 }

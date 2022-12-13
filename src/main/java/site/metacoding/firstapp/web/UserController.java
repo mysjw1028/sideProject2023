@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.domain.user.User;
 import site.metacoding.firstapp.domain.user.UserDao;
+import site.metacoding.firstapp.service.UserService;
+import site.metacoding.firstapp.web.dto.user.JoinDto;
 import site.metacoding.firstapp.web.dto.user.LoginDto;
 
 @RequiredArgsConstructor
@@ -16,7 +18,7 @@ import site.metacoding.firstapp.web.dto.user.LoginDto;
 public class UserController {
 
     private final HttpSession session; // 스프링이 서버시작시에 IOC 컨테이너에 보관함.
-    private final UserDao userDao;
+    private final UserService userService;
 
     @GetMapping("/user/joinForm") // 회원가입
     public String 회원가입페이지() {
@@ -24,10 +26,8 @@ public class UserController {
     }
 
     @PostMapping("/user/join")
-    public String join(User user) {
-        System.out.println("디버그" + user.getUserName());
-        userDao.insert(user);
-        System.out.println("디버그" + user.getUserName());
+    public String join(JoinDto joinDto) {
+        userService.회원가입(joinDto);
         return "redirect:/";
     }
 
@@ -38,18 +38,16 @@ public class UserController {
 
     @PostMapping("/user/login")
     public String loging(LoginDto loginDto) {
+        System.out.println("디버그 :  로그인 페이지 시작!!");
+        User principal = userService.로그인(loginDto);
         System.out.println("디버그 : " + loginDto.getUserName());
-        User userPS = userDao.login(loginDto);
-        System.out.println("디버그 : " + loginDto.getUserName());
-        if (userPS != null) {
-            System.out.println("디버그 : if직후");
-            System.out.println("디버그 : " + loginDto.getUserName());
-            session.setAttribute("principal", userPS);
-            System.out.println("디버그 : return 직전");
-            return "redirect:/";
-        } else {// 인증안됨
-            return "redirect:/user/loginForm";
+        if (principal == null) {
+            System.out.println("디버그 : " + loginDto.getPassword());
+            return "/user/loginForm";
         }
+        session.setAttribute("principal", principal);
+        return "redirect:/";
+
     }
 
     @GetMapping("user/logout")
