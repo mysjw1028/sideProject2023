@@ -80,10 +80,10 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                         </div>
 
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/s/api/subscribe/listForm">구독관리</a>
+                            <a class="dropdown-item" href="/subscribe/listForm">구독관리</a>
                             <a class="dropdown-item" href="/post/listForm/${principal.userId}">내블로그</a>
-                            <a class="dropdown-item" href="/s/api/user/passwordCheckForm">계정관리</a>
-                            <a class="dropdown-item" href="/s/api/category/writeForm">카테고리등록</a>
+                            <a class="dropdown-item" href="user/passwordCheckForm">계정관리</a>
+                            <a class="dropdown-item" href="/category/writeForm">카테고리등록</a>
 
                             <a class="dropdown-item" href="/user/logout">로그아웃</a>
                         </div>
@@ -98,10 +98,10 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                         </div>
 
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/s/api/subscribe/listForm">구독관리</a>
+                            <a class="dropdown-item" href="/subscribe/listForm">구독관리</a>
                             <a class="dropdown-item" href="/post/listForm/${principal.userId}">내블로그</a>
-                            <a class="dropdown-item" href="/s/api/user/passwordCheckForm">계정관리</a>
-                            <a class="dropdown-item" href="/s/api/category/writeForm">카테고리등록</a>
+                            <a class="dropdown-item" href="/user/passwordCheckForm">계정관리</a>
+                            <a class="dropdown-item" href="/category/writeForm">카테고리등록</a>
 
                             <a class="dropdown-item" href="/user/logout">로그아웃</a>
                         </div>
