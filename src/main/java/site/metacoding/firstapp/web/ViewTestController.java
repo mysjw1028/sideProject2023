@@ -6,20 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ViewTestController {
 
-    @GetMapping("/categorylistForm")
-    public String 카테고리리스트() {
-        return "category/listForm";
-    }
 
-    @GetMapping("/category/updateForm")
-    public String 카테고리업데이트() {
-        return "category/updateForm";
-    }
-
-    @GetMapping("/category/writeForm")
-    public String 카테고리글쓰기() {
-        return "category/writeForm";
-    }
 
     @GetMapping("/subscribe/listForm")
     public String 구독관리() {
@@ -47,5 +34,4 @@ public class ViewTestController {
     }
     // post -> 블로그??
 
- 
 }
