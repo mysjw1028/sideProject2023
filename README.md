@@ -16,7 +16,6 @@
 메인 하단 footer </br>
 카테고리 관리페이지 writeForm </br>
 카테고리별 게시글 목록페이지 listForm 
-
 .
 </br>
 </br>
@@ -73,6 +72,9 @@ AWS 배포
 RestController - 2차 변환 후 Flutter 연결
 </br>
 </br>
+### 메모
+로그인 하고 들어가면 당연히 principal 값이 있으니까 굳이 Integer userId는 적지 말것
+
 .
 ## 4. 테이블 생성
 
