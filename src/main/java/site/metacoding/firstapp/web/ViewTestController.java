@@ -36,11 +36,12 @@ public class ViewTestController {
         return "user/leaveCheckForm";
     }
 
-    // post -> 블로그??
-    @GetMapping("post/listForm")
-    public String 내블로그() {
-        return "post/listForm";
+    @GetMapping("user/emailCheckForm")
+    public String 이메일관리() {
+        return "user/emailCheckForm";
     }
+
+    // post -> 블로그??
 
     @GetMapping("post/detailForm")
     public String 블로그상세보기() {
