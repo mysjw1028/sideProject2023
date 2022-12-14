@@ -1,6 +1,7 @@
 package site.metacoding.firstapp.domain.user;
 
 import site.metacoding.firstapp.web.dto.user.LoginDto;
+import site.metacoding.firstapp.web.dto.user.PasswordCheckDto;
 
 public interface UserDao {
 
@@ -8,7 +9,7 @@ public interface UserDao {
 
     public void findAll(User user);
 
-    public void findById(User user);
+    public void findById(Integer userId);
 
     public void update(User user);
 
@@ -18,5 +19,8 @@ public interface UserDao {
 
     public User findByIdUserName(String username);
     // 아이디 중복체크
+
+    public User passwordCheckForm(PasswordCheckDto passwordCheckDto);
+    // 비밀번호 체크 -> 계정관리 전 체크함
 
 }

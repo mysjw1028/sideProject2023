@@ -8,13 +8,18 @@
     </insert>
 
     <select id="login" resultType="site.metacoding.firstapp.domain.user.User">
-		SELECT * FROM user WHERE username =#{userName} AND password=#{password}
+		SELECT * FROM user WHERE  username =#{userName} AND password=#{password}
 	</select>
 
     <select id="findByIdUserName"
         resultType="site.metacoding.firstapp.domain.user.User">
 		SELECT * FROM user WHERE username = #{userName}
 	</select>
+
+    <select id="passwordCheckForm"
+        resultType="site.metacoding.firstapp.domain.user.User">
+    SELECT * FROM user WHERE user_id =#{userId} AND password=#{password}
+    </select>
 
 </mapper>
     

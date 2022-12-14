@@ -26,11 +26,6 @@ public class ViewTestController {
         return "subscribe/listForm";
     }
 
-    @GetMapping("user/updateForm")
-    public String 사용자업데이트() {
-        return "user/updateForm";
-    }
-
     @GetMapping("user/profileUpdateForm")
     public String 사진업로드() {
         return "user/profileUpdateForm";

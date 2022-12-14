@@ -14,11 +14,11 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
             <div class="d-flex justify-content-center">
                 <div id="imageContainer"></div>
             </div>
-            
+
             <input type="file" id="file" accept="image/*" onchange="setThumbnail(event)
                 " />
             <br /><br />
-            
+
             <div style="text-align: right">
                 <button id="imgSaveBtn" type="submit" class="btn btn-outline-primary" onclick="profileUpdate()">
                     이미지 변경
@@ -27,7 +27,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
 
             <!-- 계정정보 -->
             <div>
-                <input type="hidden" name="userId" value="${user.userId}" />
+                <input type="hidden" name="userId" value="${principal.userId}" />
 
                 <div style="display: flex">
                     <div class="my_auth_form_box_info_detail">변경전</div>
