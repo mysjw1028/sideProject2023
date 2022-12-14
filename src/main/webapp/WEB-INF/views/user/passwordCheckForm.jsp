@@ -11,7 +11,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
 
             <form action="/user/passwordCheck" method="POST">
 
-                <input type="hidden" value="${principal.userId}" id="userId">
+                <input type="hidden" name="userId" value="${principal.userId}" id="userId">
 
                 <input id="password" name="password" class="my_auth_form_box_input" type="password"
                     placeholder="비밀번호" />

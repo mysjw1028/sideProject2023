@@ -43,10 +43,11 @@ public class UserService {
     }
 
     public User 비밀번호확인(PasswordCheckDto passwordCheckFormDto) {
-        User userPS = userDao.passwordCheckForm(passwordCheckFormDto);
-
         System.out.println("디버그 서비스: " + passwordCheckFormDto.getPassword());
-
+        System.out.println("디버그 서비스: " + passwordCheckFormDto.getUserId());
+        User userPS = userDao.passwordCheckForm(passwordCheckFormDto);
+        System.out.println("디버그 서비스: " + passwordCheckFormDto.getPassword());
+        System.out.println("디버그 서비스: " + passwordCheckFormDto.getUserId());
         if (userPS == null) {
             return null;
         }

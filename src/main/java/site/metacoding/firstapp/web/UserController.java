@@ -34,6 +34,12 @@ public class UserController {
         return new CMRespDto<>(1, "회원가입성공", null);
     }
 
+    @GetMapping("/user/join/userNameCheck")
+    public @ResponseBody CMRespDto<Boolean> usersNameSameCheck(String userName) {
+        boolean isSame = userService.아이디중복체크(userName);
+        return new CMRespDto<>(1, "성공", isSame);
+    }
+
     @GetMapping("/user/loginForm")
     public String 로그인페이지() {
         return "user/loginForm";
@@ -67,11 +73,15 @@ public class UserController {
 
     @PostMapping("/user/passwordCheck")
     public String passeordCheck(PasswordCheckDto passwordCheckDto) {
+        System.out.println("디버그 컨트롤러11111111: " + passwordCheckDto.getUserId());
+        System.out.println("디버그 컨트롤러 1111111111111: " + passwordCheckDto.toString());
+        System.out.println("디버그  컨트롤러111111111: " + passwordCheckDto.getPassword());
 
-        System.out.println("디버그  컨트롤러: " + passwordCheckDto.getPassword());
-        
         User usersPS = userService.비밀번호확인(passwordCheckDto);
-        System.out.println("디버그 컨트롤러: " + passwordCheckDto.getUserId());
+        System.out.println("디버그 컨트롤러====================================");
+        System.out.println("디버그 컨트롤러22222222: " + passwordCheckDto.getUserId());
+        System.out.println("디버그 컨트롤러22222222222: " + passwordCheckDto.toString());
+        System.out.println("디버그 컨트롤러22222222: " + passwordCheckDto.getPassword());
         if (usersPS == null) {
         }
         session.setAttribute("principal", usersPS);
