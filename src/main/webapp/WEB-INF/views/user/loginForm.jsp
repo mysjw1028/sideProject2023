@@ -7,6 +7,7 @@ pageEncoding="UTF-8"%>
         <div class="my_auth_form_box">
             <div class="my_auth_form_box_title">JStory</div>
 
+
             <input class="my_auth_form_box_input" type="text" name="userName" id="userName" placeholder="아이디" />
 
             <input class="my_auth_form_box_input" type="password" name="password" id="password" placeholder="비밀번호" />

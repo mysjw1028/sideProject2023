@@ -9,7 +9,7 @@ public interface UserDao {
 
     public void findAll(User user);
 
-    public void findById(Integer integer);
+    public void findById(Integer userId);
 
     public void update(User user);
 

@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
                 <div>비밀번호를 다시 입력하세요</div>
             </div>
 
-            <form action="/user/passwordCheck" method="POST">
+            <form action="/user/passwordCheck/${sessionScope.principal.userId}" method="POST">
 
                 <input type="hidden" name="userId" value="${principal.userId}" id="userId">
 

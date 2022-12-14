@@ -81,13 +81,14 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="/subscribe/listForm">구독관리</a>
                             <a class="dropdown-item" href="/post/listForm/${principal.userId}">내블로그</a>
-                            <a class="dropdown-item" href="/user/passwordCheckForm">계정관리</a>
+                            <a class="dropdown-item" href="/user/passwordCheckForm/${principal.userId}">계정관리</a>
                             <a class="dropdown-item" href="/category/writeForm">카테고리등록</a>
 
                             <a class="dropdown-item" href="/user/logout">로그아웃</a>
                         </div>
                     </div>
                 </c:when>
+
                 <c:otherwise>
                     <!-- 페이지 이동 -->
                     <div class="dropdown dropleft">
@@ -99,7 +100,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="/subscribe/listForm">구독관리</a>
                             <a class="dropdown-item" href="/post/listForm/${principal.userId}">내블로그</a>
-                            <a class="dropdown-item" href="/user/passwordCheckForm">계정관리</a>
+                            <a class="dropdown-item" href="/user/passwordCheckForm/${principal.userId}">계정관리</a>
                             <a class="dropdown-item" href="/category/writeForm">카테고리등록</a>
 
                             <a class="dropdown-item" href="/user/logout">로그아웃</a>

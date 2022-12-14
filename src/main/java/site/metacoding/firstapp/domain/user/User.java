@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import site.metacoding.firstapp.web.dto.user.LoginDto;
 
 @NoArgsConstructor
 @Getter
@@ -28,4 +29,11 @@ public class User {
         this.userId = userId;
         this.password = password;
     }
+
+    public User(LoginDto loginDto) {
+        this.userId = loginDto.getUserId();
+        this.userName = loginDto.getUserName();
+        this.password = loginDto.getPassword();
+    }
+
 }
