@@ -49,7 +49,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             <!-- Links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <div class="my_icon_btn drawer-toggle" style="border: none">
+                    <div class="dropdown-menu" style="border: none">
                         <i class="fa-solid fa-bars fa-2x"></i>
                     </div>
                 </li>

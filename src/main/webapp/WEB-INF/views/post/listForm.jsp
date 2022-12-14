@@ -3,13 +3,13 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
 <div class="container">
 
-
     <div style="display: inline-flex;">
         <div style="width: 100px;">
             <h5 style="line-height: 50px;">전체글(${postCount.postCount})</h5>
         </div>
 
         <!-- 검색바 -->
+
         <div class="form-group row justify-content-left" style="padding-left: 15px">
             <div class="d-flex justify-content-end">
                 <div>
@@ -21,20 +21,26 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
                     </form>
                 </div>
             </div>
+            <div class="form-group row justify-content-left" style="padding-left: 15px">
+            </div>
         </div>
 
-        <!-- 구독 -->
-        <!--        <c:if test="${ principal.userId !=user.userId}">
+        <button id="postingCheckBox" class="postingCheckBox" type="button">
+            <a href="/post/writeForm/${principal.userId}">포스팅하러 하기</a>
+        </button>
+    </div>
+    <!-- 구독 -->
+    <!--        <c:if test="${ principal.userId !=user.userId}">
         <div  style="width: 80px; margin-left: 30px;">
             <button id="subscribeBtn" class="${subscribeId !=null ?'blackBtn' : 'greyBtn'}">
                                             ${subscribeId !=null ? '구독중': '구독'}
                                         </button>
         </div></c:if>-->
 
-        <!-- 게시글 작성 -->
+    <!-- 게시글 작성 -->
 
 
-    </div>
+
 
     <div class="my_post_list">
         <c:forEach var="post" items="${postList}">

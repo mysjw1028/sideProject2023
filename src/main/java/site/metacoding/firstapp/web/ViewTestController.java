@@ -41,10 +41,11 @@ public class ViewTestController {
         return "user/emailCheckForm";
     }
 
+    @GetMapping("user/passwordUpdateForm")
+    public String 패스워드관리() {
+        return "user/passwordUpdateForm";
+    }
     // post -> 블로그??
 
-    @GetMapping("post/detailForm")
-    public String 블로그상세보기() {
-        return "post/detailForm";
-    }
+ 
 }

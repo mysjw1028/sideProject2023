@@ -8,16 +8,20 @@ pageEncoding="UTF-8"%>
         <div class="my_auth_form_box" style="width: 700px">
             <div class="my_auth_form_box_title">JStory</div>
             <div class="my_error_box my_hidden"></div>
+
             <div style="display: flex">
+                
                 <div class="my_auth_form_box_info_security_detail">
                     아이디
                 </div>
                 <input oninput="checkUsername();validUsername();" id="userName" name="userName"
                     class="my_auth_form_box_input" type="text" placeholder="영문, 숫자 5~11자" maxlength="11"
                     minlength="5" />
+
                 <button id="btnuserNameSameCheck" class="userNameSameCheck" type="button">
                     <a href=" javascript:void(0);">중복 체크 버튼</a>
                 </button>
+
             </div>
 
 
