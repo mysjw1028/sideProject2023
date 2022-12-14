@@ -73,23 +73,15 @@ public class UserController {
 
     @PostMapping("/user/passwordCheck")
     public String passeordCheck(PasswordCheckDto passwordCheckDto) {
-        System.out.println("디버그 컨트롤러11111111: " + passwordCheckDto.getUserId());
-        System.out.println("디버그 컨트롤러 1111111111111: " + passwordCheckDto.toString());
-        System.out.println("디버그  컨트롤러111111111: " + passwordCheckDto.getPassword());
-
         User usersPS = userService.비밀번호확인(passwordCheckDto);
-        System.out.println("디버그 컨트롤러====================================");
-        System.out.println("디버그 컨트롤러22222222: " + passwordCheckDto.getUserId());
-        System.out.println("디버그 컨트롤러22222222222: " + passwordCheckDto.toString());
-        System.out.println("디버그 컨트롤러22222222: " + passwordCheckDto.getPassword());
         if (usersPS == null) {
         }
         session.setAttribute("principal", usersPS);
-        return "user/update";
+        return "user/updateForm";
     }
 
-    @GetMapping("/user/update")
+    @GetMapping("/user/updateForm")
     public String 업데이트() {
-        return "user/update";
+        return "user/updateForm";
     }
 }
