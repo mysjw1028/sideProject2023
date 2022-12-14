@@ -49,17 +49,17 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                 </a> <!-- T모양 -->
 
                 <div class="header_mini_text_box">
-                    <div class="header_mini_text"><a href="#">피드</a></div>
-                    <div class="header_mini_text"><a href="#">스토리</a>
+                    <div class="header_mini_text"><a href="/">피드</a></div>
+                    <div class="header_mini_text"><a href="/">스토리</a>
                     </div>
-                    <div class="header_mini_text"><a href="#">스킨</a></div>
-                    <div class="header_mini_text"><a href="#">포럼</a></div>
+                    <div class="header_mini_text"><a href="/">스킨</a></div>
+                    <div class="header_mini_text"><a href="/">포럼</a></div>
                 </div><!--header_mini-
                     text-->
 
             </div><!--header_mini_left-->
             <div class="my_navbar_title">
-                <div class="drawer-brand"><a href="#">제이스토리 </a></div>
+                <div class="drawer-brand"><a href="/">제이스토리 </a></div>
             </div>
             <c:choose>
                 <c:when test="${principal == null}">
