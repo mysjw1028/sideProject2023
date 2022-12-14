@@ -7,6 +7,11 @@
         VALUES(#{categoryTitle},#{userId},NOW())
     </insert>
 
+    <update id="update">
+		UPDATE category SET category_title = #{categoryTitle}
+		WHERE
+		category_id = #{categoryId}
+	</update>
 
 </mapper>
     

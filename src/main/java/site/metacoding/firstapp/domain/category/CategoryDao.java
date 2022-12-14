@@ -6,9 +6,9 @@ public interface CategoryDao {
 
     public void findAll(Category category);
 
-    public void findById(Category category);
+    public Category findById(Integer categoryId);
 
-    public void update(Category category);
+    public int update(Category category);
 
     public void deleteById(Category category);
 

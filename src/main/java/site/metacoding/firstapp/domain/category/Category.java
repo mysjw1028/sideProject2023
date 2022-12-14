@@ -12,4 +12,6 @@ public class Category {
     private String categoryTitle;
     private Integer userId;
     private Timestamp createdAt;
+    public void update(Category category2) {
+    }
 }

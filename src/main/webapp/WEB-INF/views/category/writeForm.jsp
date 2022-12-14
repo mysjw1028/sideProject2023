@@ -22,6 +22,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
                 <button class="my_secondary_btn" type="submit" id="saveBtn">등록</button>
             </div>
         </div>
+
         <br />
     </form>
 </div>

@@ -14,24 +14,27 @@ import site.metacoding.firstapp.domain.category.CategoryDao;
 public class CategoryController {
     private final CategoryDao categoryDao;
 
-    @GetMapping("/categorylistForm/{userId}")
-    public String 카테고리리스트(Integer userId) {
-        return "category/listForm";
-    }
-
-    @GetMapping("/updateForm/{userId}")
-    public String 카테고리업데이트(Integer userId) {
+    @GetMapping("/category/updateForm/{userId}")
+    public String 카테고리업데이트() {
         return "category/updateForm";
     }
 
+    @PostMapping("/category/updateForm/{userId}")
+    public String categoryupdate(@PathVariable Integer categoryId, Category category) {
+        Category categoryPS = categoryDao.findById(categoryId);
+        categoryPS.update(category);
+        categoryDao.update(categoryPS);
+        return "redirect:/";
+    }
+
     @GetMapping("/category/writeForm/{userId}")
-    public String 카테고리글쓰기(Integer userId) {
+    public String 카테고리글쓰기() {
         return "category/writeForm";
     }
 
     @PostMapping("/category/writeForm/{userId}")
     public String categoryinsert(Category category) {
         categoryDao.insert(category);
-        return "redirect:/";// 해당사용자의 키값만 그 사람만 영역만
+        return "redirect:/";
     }
 }
