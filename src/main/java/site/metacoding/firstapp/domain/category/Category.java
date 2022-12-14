@@ -8,7 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Category {
-
     private Integer category;
     private String categoryTitle;
     private Integer userId;

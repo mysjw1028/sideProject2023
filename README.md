@@ -83,11 +83,20 @@ USE blogdb;
 create table user(
     user_id int primary KEY auto_increment,
     username VARCHAR(20) NOT NULL UNIQUE,
-	 password varchar(20) NOT NULL,
+	password varchar(20) NOT NULL,
     nick_name varchar(20) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
     created_at TIMESTAMP NOT NULL DEFAULT current_timestamp
 );
+
+create table category(
+	category_id INT primary KEY auto_increment,
+    category_title VARCHAR(50) NOT NULL, 
+	user_id INT NOT null,
+    created_at TIMESTAMP NOT NULL DEFAULT current_timestamp
+);
+
+
 
 
 ```
@@ -100,6 +109,19 @@ create table user(
 ```sql
 INSERT INTO user(username, password,email,nick_name,created_at) 
 VALUES('ssar','1234','ssar@nate.com','ssar',NOW());
+INSERT INTO user(username, password,email,nick_name,created_at) 
+VALUES('cos','1234','cos@nate.com','cos',NOW());
+INSERT INTO user(username, password,email,nick_name,created_at) 
+VALUES('hong','1234','hong@nate.com','hong',NOW());
+
+INSERT INTO category(category_title, user_id, created_at) 
+VALUES('1번 타이틀 더미 데이터',1,NOW());
+INSERT INTO category(category_title, user_id, created_at) 
+VALUES('2번 타이틀 더미 데이터',1,NOW());
+INSERT INTO category(category_title, user_id, created_at) 
+VALUES('3번 타이틀 더미 데이터',1,NOW());
+
+
 ```
 .
 </br>
