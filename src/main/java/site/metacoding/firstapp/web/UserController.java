@@ -87,8 +87,5 @@ public class UserController {
         return "user/updateForm";
     }
 
-    @GetMapping("/post/listForm/{userId}")
-    public String 내블로그(Integer userId) {
-        return "post/listForm";
-    }
+
 }
