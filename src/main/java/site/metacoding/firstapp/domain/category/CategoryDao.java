@@ -2,14 +2,14 @@ package site.metacoding.firstapp.domain.category;
 
 public interface CategoryDao {
 
-    public void insert();
+    public void insert(Category category);
 
-    public void findAll();
+    public void findAll(Category category);
 
-    public void findById();
+    public Category findById(Integer categoryId);
 
-    public void update();
+    public int update(Category category);
 
-    public void deleteById();
+    public void deleteById(Category category);
 
 }
