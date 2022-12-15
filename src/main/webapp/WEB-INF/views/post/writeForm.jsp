@@ -7,14 +7,21 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
     }
 </style>
 <div class="container">
+    <div style="background-color: grey">
+
+        <h3>userId : ${principal.userId}</h3>
+    </div>
+
     <!-- 카테고리 목록 -->
     <div class="form-group">
-        <select class="form-control" id="categoryId">
-            <c:forEach var="category" items="${titleList}">
+        <select class="form-control" id="categoryId" value="${category.categoryId}">
+
+            <c:forEach var="category" items="${postList}">
                 <option value="${category.categoryId}">
                     ${category.categoryTitle}
                 </option>
             </c:forEach>
+
         </select>
 
         <input type="hidden" id="userId" value="${principal.userId}" />
@@ -22,7 +29,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
 
     <input type="text" placeholder="제목을 입력하세요" id="postTitle" class="form-control" />
     <div class="mb-3">
-        <textarea class="form-control" rows="8" id="postContent"></textarea>
+        <textarea class="form-control" rows="8" id="postContent" style="resize: none;"></textarea>
     </div>
     <div class="form-control d-flex justify-content-left">
         <div>
