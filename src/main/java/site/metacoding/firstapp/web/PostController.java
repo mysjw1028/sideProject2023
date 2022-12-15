@@ -27,10 +27,7 @@ public class PostController {
 
     @GetMapping("/post/writeForm/{userId}")
     public String 블로그글쓰기(Model model) {
-        User principal = (User) session.getAttribute("principal");
-        if (principal == null) {
-            return "redirect:/login";
-        }
+        
         List<Post> postList = postDao.readOnly();
         model.addAttribute("post", postList);
         return "post/writeForm";
