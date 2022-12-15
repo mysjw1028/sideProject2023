@@ -22,7 +22,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
 
     <input type="text" placeholder="제목을 입력하세요" id="postTitle" class="form-control" />
     <div class="mb-3">
-        <textarea class="form-control" rows="8" id="postContent"></textarea>
+        <textarea class="form-control" rows="8" id="postContent" style="resize: none;"></textarea>
     </div>
     <div class="form-control d-flex justify-content-left">
         <div>
