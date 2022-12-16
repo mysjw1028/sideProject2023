@@ -7,7 +7,7 @@
     </select>
 
     <insert id="insert">
-        INSERT INTO post(post_title, post_content,post_thumnail,category_id,user_id,created_at) 
+        INSERT INTO post(post_title,post_content,post_thumnail,category_id,user_id,created_at) 
         VALUES(#{postTitle},#{postContent},#{postThumnail},#{categoryId},#{userId},NOW())
     </insert>
 
