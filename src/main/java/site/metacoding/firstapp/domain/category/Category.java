@@ -8,10 +8,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Category {
-    private Integer category;
+    private Integer categoryId;
     private String categoryTitle;
     private Integer userId;
     private Timestamp createdAt;
-    public void update(Category category2) {
+    public void update(Category category) {
     }
+
 }

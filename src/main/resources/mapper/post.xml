@@ -2,20 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.metacoding.firstapp.domain.post.PostDao">
 
-    <select id="readOnly" resultType="site.metacoding.firstapp.domain.post.Post">
-        SELECT p.* 
-        ,c.category_id
-        ,c.category_title
-        FROM post AS p
-        INNER JOIN category AS c
-        ON p.category_id = #{categoryId}
+    <select id="readOnly" resultType="site.metacoding.firstapp.web.dto.post.PostReadDto">
+        SELECT * FROM category
     </select>
 
     <insert id="insert">
-        INSERT INTO post(post_title, post_content,post_thumnail,category_id,user_id,created_at) 
+        INSERT INTO post(post_title,post_content,post_thumnail,category_id,user_id,created_at) 
         VALUES(#{postTitle},#{postContent},#{postThumnail},#{categoryId},#{userId},NOW())
     </insert>
 
 
 </mapper>
-    

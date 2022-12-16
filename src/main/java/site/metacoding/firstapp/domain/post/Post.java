@@ -11,6 +11,7 @@ public class Post {
     private Integer postId;
     private String postTitle;
     private String postContent;
+    private String postThumnail;
     private Integer categoryId;
     private Integer userId;
     private Timestamp createdAt;
