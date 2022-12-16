@@ -2,15 +2,11 @@
 pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
 <div class="container">
-    <div style="background-color: grey">
-        <h3>userId : ${principal.userId}</h3>
-        <h3>postTitle : ${post.postTitle}</h3>
-        <h3>postThumnail : ${psot.postThumnail}</h3>
-    </div>
+
     <div style="display: inline-flex;">
-        <!--  <div style="width: 100px;">
+        <div style="width: 100px;">
             <h5 style="line-height: 50px;">전체글(${postCount.postCount})</h5>
-        </div>-->
+        </div>
 
         <!-- 검색바 -->
 
