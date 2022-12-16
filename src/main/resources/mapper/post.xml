@@ -11,5 +11,9 @@
         VALUES(#{postTitle},#{postContent},#{postThumnail},#{categoryId},#{userId},NOW())
     </insert>
 
+    <select id="findAll" resultType="site.metacoding.firstapp.domain.post.Post">
+        SELECT post_title,post_content,post_thumnail FROM post
+    </select>
+
 
 </mapper>

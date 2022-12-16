@@ -2,18 +2,22 @@
 pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
 <div class="container">
-
+    <div style="background-color: grey">
+        <h3>userId : ${principal.userId}</h3>
+        <h3>postTitle : ${post.postTitle}</h3>
+        <h3>postThumnail : ${psot.postThumnail}</h3>
+    </div>
     <div style="display: inline-flex;">
-        <div style="width: 100px;">
+        <!--  <div style="width: 100px;">
             <h5 style="line-height: 50px;">전체글(${postCount.postCount})</h5>
-        </div>
+        </div>-->
 
         <!-- 검색바 -->
 
         <div class="form-group row justify-content-left" style="padding-left: 15px">
             <div class="d-flex justify-content-end">
                 <div>
-                    <form style="display: inline-flex" method="get" action="/post/listForm/${user.userId}">
+                    <form style="display: inline-flex" method="get" action="/post/listForm/${principal.userId}">
                         <input style="width: 150px" class="my_auth_form_box_input" type="text" name="keyword" />
                         <button class="btn btn-sm btn-light" type="submit">
                             <i class="fa fa-search -retro fa-2x"></i>
@@ -43,6 +47,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
 
     <div class="my_post_list">
+
         <c:forEach var="post" items="${postList}">
             <input id="usersId" type="hidden" value="${post.userId}">
             <div class="my_post_list_item">
@@ -50,7 +55,10 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
                     <img id="profileImg" src="/img/${post.postThumnail}" style="width: 100%;height:100%;">
                     <!-- 사진 사이즈 조절 -->
                 </div>
+
                 <div class="my_post_list_item_right my_ellipsis">
+
+                    <input id="postTitle" type="hidden" value="${post.postTitle}" name="${post.postTitle}">
                     <div class="my_text_title my_ellipsis">
                         ${post.postTitle}
                     </div>
@@ -62,6 +70,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
                                 20px;>더보기</button></a>
                     </div>
                 </div>
+
             </div>
         </c:forEach>
 
