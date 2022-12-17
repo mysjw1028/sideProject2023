@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.domain.post.Post;
 import site.metacoding.firstapp.domain.post.PostDao;
-import site.metacoding.firstapp.web.dto.post.PostDatailDto;
 import site.metacoding.firstapp.web.dto.post.PostReadDto;
+import site.metacoding.firstapp.web.dto.post.PostUpdateRespDto;
 
 @RequiredArgsConstructor
 @Controller
@@ -52,6 +52,13 @@ public class PostController {
         System.out.println("디버그          +  " + postId);
         model.addAttribute("post", postDao.findById(postId));
         return "post/detailForm";
+    }
+
+    @GetMapping("/post/updateForm/{categoryId}/{userId}")
+    public String 블로그수정(Model model) {
+        List<PostUpdateRespDto> postList = postDao.update();
+        model.addAttribute("postList", postList);
+        return "post/updateForm";
     }
 
 }

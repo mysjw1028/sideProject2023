@@ -5,6 +5,10 @@
     <select id="readOnly" resultType="site.metacoding.firstapp.web.dto.post.PostReadDto"> SELECT *
         FROM category </select>
 
+    <select id="update" resultType="site.metacoding.firstapp.web.dto.post.PostReadDto"> SELECT *
+        FROM category </select>
+
+
     <insert id="insert"> INSERT INTO
         post(post_title,post_content,post_thumnail,category_id,user_id,created_at)
         VALUES(#{postTitle},#{postContent},#{postThumnail},#{categoryId},#{userId},NOW()) </insert>
@@ -12,9 +16,8 @@
     <select id="findAll" resultType="site.metacoding.firstapp.domain.post.Post"> SELECT
         post_title,post_content,post_thumnail,post_id FROM post </select>
 
-    <select id="findById" resultType="site.metacoding.firstapp.domain.post.Post"> 
-        SELECT * FROM
-        post WHERE post_id = #{postId} </select>
+    <select id="findById" resultType="site.metacoding.firstapp.domain.post.Post"> SELECT * FROM post
+        WHERE post_id = #{postId} </select>
 
 
 </mapper>
