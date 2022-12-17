@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.domain.post.Post;
 import site.metacoding.firstapp.domain.post.PostDao;
+import site.metacoding.firstapp.web.dto.post.PostDatailDto;
 import site.metacoding.firstapp.web.dto.post.PostReadDto;
 
 @RequiredArgsConstructor
@@ -44,8 +46,12 @@ public class PostController {
         return "redirect:/";
     }
 
-    @GetMapping("/post/detailForm/{userId}")
-    public String 블로그상세보기() {
+    @GetMapping("/post/detailForm/{postId}/{userId}")
+    public String 블로그상세보기(@PathVariable Integer postId, Model model) {
+        System.out.println("디버그          +  " + postDao.findById(postId));
+        System.out.println("디버그          +  " + postId);
+        model.addAttribute("post", postDao.findById(postId));
         return "post/detailForm";
     }
+
 }

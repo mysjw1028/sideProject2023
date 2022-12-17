@@ -2,6 +2,13 @@
 pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
 <div class="container">
+    <div style="background-color: grey">
+        <h3>userId : ${principal.userId}</h3>
+        <h3>postId : ${post.postId}</h3>
+    </div>
+
+
+
 
     <div style="display: inline-flex;">
         <div style="width: 100px;">
@@ -61,9 +68,12 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
                     <div>${post.createdAt}</div>
                     <div class="my_mt_md_1" style="padding-top: 30px;">
 
-                        <a href="/post/detailForm/${post.postId}/${post.userId}"> <button type="button"
-                                class="btn btn-light" style="border:2px solid black" ;line-height:
-                                20px;>더보기</button></a>
+                        <a href="/post/detailForm/${post.postId}/${principal.userId}">
+
+                            <h3>postId : ${post.postId}</h3>
+                            <button type="button" class="btn btn-light" style="border:2px solid black" ;line-height:
+                                20px;>더보기</button>
+                        </a>
                     </div>
                 </div>
 

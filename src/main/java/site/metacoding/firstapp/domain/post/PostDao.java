@@ -9,6 +9,8 @@ public interface PostDao {
 
     public List<Post> findAll();
 
+    public Post findByDetail(Integer postId);
+
     public Post findById(Integer postId);
 
     public int update(Post post);
