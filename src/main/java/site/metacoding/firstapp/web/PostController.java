@@ -55,12 +55,24 @@ public class PostController {
     }
 
     @GetMapping("/post/updateForm/{postId}/{userId}")
-    public String 블로그수정(Model model) {
+    public String 블로그수정(@PathVariable Integer postId, Model model) {
+        Post postPS = postDao.findById(postId);
+        System.out.println("ㄴ 제목              " + postPS.getPostTitle());
+        System.out.println("ㄴ카테고리아이디              " + postPS.getCategoryId());
+        System.out.println("ㄴ 포스트아이디               " + postPS.getPostId());
+        System.out.println("ㄴ 콘텐츠               " + postPS.getPostContent());
+        System.out.println("ㄴ 사진               " + postPS.getPostThumnail());
         List<PostUpdateRespDto> postList = postDao.updateView();
-        System.out.println("디버그    수정+  " + postDao.updateView());
-
         model.addAttribute("categoryList", postList);
+
+        model.addAttribute("postTitle", postPS);
+        model.addAttribute("postContent", postPS);
+
         return "post/updateForm";
     }
 
 }
+
+// model.addAttribute("postTitle", postPS);
+// model.addAttribute("categoryList", postPS);
+// model.addAttribute("postContent", postPS);
