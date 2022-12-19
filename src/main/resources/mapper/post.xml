@@ -5,8 +5,8 @@
     <select id="readOnly" resultType="site.metacoding.firstapp.web.dto.post.PostReadDto"> SELECT *
         FROM category </select>
 
-    <select id="update" resultType="site.metacoding.firstapp.web.dto.post.PostReadDto"> SELECT *
-        FROM category </select>
+    <select id="updateView" resultType="site.metacoding.firstapp.web.dto.post.PostUpdateRespDto">SELECT
+        * FROM category</select>
 
 
     <insert id="insert"> INSERT INTO

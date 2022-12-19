@@ -14,8 +14,8 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
     <!-- 카테고리 목록 -->
     <div class="form-group">
         <select class="form-control" id="categoryId">
-            <option value="${post.categoryId}">${post.categoryTitle}</option>
-            <c:forEach var="category" items="${titleList}">
+            <option value="${post.categoryId}"> 선택해주세요 ${post.categoryId}</option>
+            <c:forEach var="category" items="${categoryList}">
                 <option value="${category.categoryId}">
                     ${category.categoryTitle}
                 </option>
@@ -26,9 +26,10 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
         <input type="hidden" id="postId" value="${post.postId}" />
     </div>
 
-    <input type="text" value="${post.postTitle}" id="postTitle" class="form-control" />
+    <input type="text" value="${post.postTitle}" id="postTitle" class="form-control" placeholder="제목을 적어주세요">
     <div class="mb-3">
-        <textarea id="postContent" type="text" class="form-control" rows="8" style="resize: none;">
+        <textarea id="postContent" type="text" class="form-control" rows="8" style="resize: none;"
+            placeholder="내용을 적어주세요">
 ${post.postContent}</textarea>
     </div>
     <div class="form-control d-flex justify-content-end">

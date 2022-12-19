@@ -54,10 +54,12 @@ public class PostController {
         return "post/detailForm";
     }
 
-    @GetMapping("/post/updateForm/{categoryId}/{userId}")
+    @GetMapping("/post/updateForm/{postId}/{userId}")
     public String 블로그수정(Model model) {
-        List<PostUpdateRespDto> postList = postDao.update();
-        model.addAttribute("postList", postList);
+        List<PostUpdateRespDto> postList = postDao.updateView();
+        System.out.println("디버그    수정+  " + postDao.updateView());
+
+        model.addAttribute("categoryList", postList);
         return "post/updateForm";
     }
 

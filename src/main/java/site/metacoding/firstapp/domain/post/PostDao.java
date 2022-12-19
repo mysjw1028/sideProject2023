@@ -18,5 +18,6 @@ public interface PostDao {
 
     public List<PostReadDto> readOnly();
 
-    public List<PostUpdateRespDto> update();
+    public List<PostUpdateRespDto> updateView();
+    public void update(Post post);
 }
