@@ -12,22 +12,20 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
         <div class="form-group">
             <select class="form-control" id="categoryId">
                 <option value="${post.categoryId}"> 선택해주세요 ${post.categoryId}</option>
-                <c:forEach var="category" items="${categoryList}">
+                <c:forEach var="category" items="${post.categoryList}">
                     <option value="${category.categoryId}">
                         ${postPS.categoryTitle}
                     </option>
                 </c:forEach>
             </select>
-
             <input type="hidden" id="userId" value="${principal.userId}" />
             <input type="hidden" id="postId" value="${post.postId}" />
         </div>
 
-        <input type="text" value="${post.postTitle}" placeholder="제목 적어주세요" id="postTitle"
-            class="form-control">${postPS.postTitle}
+        <input type="text" value="${postTitle.postTitle}" placeholder="제목 적어주세요" id="postTitle" class="form-control">
         <div class="mb-3">
             <textarea id="postContent" placeholder="내용 적어주세요" type="text" value="${post.postContent}"
-                class="form-control" rows="8" style="resize: none;">${postPS.postContent}</textarea>
+                class="form-control" rows="8" style="resize: none;">${postContent.postContent}</textarea>
         </div>
         <div class="form-control d-flex justify-content-end">
             <div>

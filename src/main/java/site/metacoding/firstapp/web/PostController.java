@@ -59,12 +59,15 @@ public class PostController {
         Post postPS = postDao.findById(postId);
         System.out.println("ㄴ 제목              " + postPS.getPostTitle());
         System.out.println("ㄴ카테고리아이디              " + postPS.getCategoryId());
+        System.out.println("ㄴ카테고리아이디              " + postPS.getCategoryId());
         System.out.println("ㄴ 포스트아이디               " + postPS.getPostId());
         System.out.println("ㄴ 콘텐츠               " + postPS.getPostContent());
         System.out.println("ㄴ 사진               " + postPS.getPostThumnail());
+
         List<PostUpdateRespDto> postList = postDao.updateView();
         model.addAttribute("categoryList", postList);
-
+        
+        model.addAttribute("categoryId", postPS);// postps 내가 정한 위치 들고오는데
         model.addAttribute("postTitle", postPS);
         model.addAttribute("postContent", postPS);
 
@@ -72,7 +75,3 @@ public class PostController {
     }
 
 }
-
-// model.addAttribute("postTitle", postPS);
-// model.addAttribute("categoryList", postPS);
-// model.addAttribute("postContent", postPS);
