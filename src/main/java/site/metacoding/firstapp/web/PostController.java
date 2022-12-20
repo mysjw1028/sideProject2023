@@ -48,8 +48,8 @@ public class PostController {
 
     @GetMapping("/post/detailForm/{postId}/{userId}")
     public String 블로그상세보기(@PathVariable Integer postId, Model model) {
-        System.out.println("디버그          +  " + postDao.findById(postId));
-        System.out.println("디버그          +  " + postId);
+        System.out.println("디버그    " + postDao.findById(postId));
+        System.out.println("디버그  " + postId);
         model.addAttribute("post", postDao.findById(postId));
         return "post/detailForm";
     }
@@ -57,7 +57,7 @@ public class PostController {
     @GetMapping("/post/updateForm/{postId}/{userId}")
     public String 블로그수정(@PathVariable Integer postId, Model model) {
         Post postPS = postDao.findById(postId);
-        System.out.println("디버그 !!!!!!!!!!!!!!!!!!!!!!!!  postPS getPostId" + postPS.getPostId());
+        System.out.println("디버그postPS getPostContent : " + postPS.getPostContent());
 
         List<PostUpdateRespDto> postList = postDao.updateView(postId);
         model.addAttribute("categoryList", postList);
@@ -65,10 +65,6 @@ public class PostController {
         model.addAttribute("post", postPS);
         // postps -> DB에 있는거 들고옴
 
-        System.out.println("디버그  포스트아이디    수정: " + postId);
-        System.out.println("디버그 포스트 제목     수정 : " + postPS.getPostTitle());
-        System.out.println("디버그  포스트내용     수정: " + postPS.getPostContent());
-        System.out.println("디버그 카테고리아이디  수정: " + postPS.getCategoryId());
         return "post/updateForm";
     }
 
@@ -79,11 +75,11 @@ public class PostController {
         postPS.update(post);
         postDao.update(postPS);
 
-        System.out.println("디버그  포스트아이디    수정테스트 : " + postId);
-        System.out.println("디버그 포스트 제목     수정테스트 : " + post.getPostTitle());
-        System.out.println("디버그  포스트내용    수정테스트: " + post.getPostContent());
-        System.out.println("디버그 카테고리아이디  수정테스트  : " + post.getCategoryId());
-        System.out.println("디버그 getUserId  수정테스트    : " + post.getUserId());// 이거는 어차피 의미가 없지 않나
+        System.out.println("디버그 postId : " + postId);
+        System.out.println("디버그 getPostTitle : " + post.getPostTitle());
+        System.out.println("디버그 getPostContent : " + post.getPostContent());
+        System.out.println("디버그 getCategoryId  : " + post.getCategoryId());
+        System.out.println("디버그 getUserId : " + post.getUserId());// 이거는 어차피 의미가 없지 않나
 
         return "redirect:/";
     }

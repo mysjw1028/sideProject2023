@@ -11,22 +11,23 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
 .postId}/${principal.userId}" method="post">
         <!-- 카테고리 목록 -->
         <div class="form-group">
-            <select class="form-control" id="categoryId">
+            <select class="form-control">
                 <option value="${post.categoryId}">${post.categoryTitle}</option><!--디비에 타이틀 값 넣기-->
                 <c:forEach var="category" items="${categoryList}">
-                    <option value="${category.categoryId}">
+                    <option value="${post.categoryId}" name=categoryId>
                         ${category.categoryTitle}
                     </option>
                 </c:forEach>
             </select>
+            <input type="hidden" id="categoryId" value="${category.categoryId}" />
             <input type="hidden" id="userId" value="${principal.userId}" />
             <input type="hidden" id="postId" value="${post.postId}" />
         </div>
 
         <input type="text" name="postTitle" value="${post.postTitle}" class="form-control">
         <div class="mb-3">
-            <textarea name="postContent" value="${post.postContent}" type="text" class="form-control" rows="8"
-                style="resize: none;"></textarea>
+            <textarea name="postContent " value="${post.postContent}" type="text" class="form-control" rows="8"
+                style="resize: none;">${post.postContent}</textarea>
         </div>
         <div class="form-control d-flex justify-content-end">
             <div>
@@ -35,7 +36,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
             </div>
         </div>
         <div style="display: flex;justify-content: right;">
-            <button type="submit" class="my_active_btn" id="updateBtn">수정완료</button>
+            <button type="submit" class="my_active_btn">수정완료</button>
         </div>
         <br />
     </form>
