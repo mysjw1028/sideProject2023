@@ -3,10 +3,8 @@ package site.metacoding.firstapp.domain.post;
 import java.sql.Timestamp;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @Getter
 @Setter
 public class Post {
@@ -22,5 +20,15 @@ public class Post {
     // db에 없는값
     private Integer loveCount;
     private Integer loveId;
+    private String categoryTitle;
+
+    public void update(Post post) {
+        this.postId = post.getPostId();
+        this.categoryId = post.getCategoryId();
+        this.postTitle = post.getPostTitle();
+        this.postContent = post.getPostContent();
+        this.postThumnail = post.getPostThumnail();
+
+    }
 
 }

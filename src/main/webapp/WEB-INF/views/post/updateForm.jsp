@@ -7,11 +7,12 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
     }
 </style>
 <div class="container">
-    <form action="" method="post">
+    <form action="/post/update/${post
+.postId}/${principal.userId}" method="post">
         <!-- 카테고리 목록 -->
         <div class="form-group">
             <select class="form-control" id="categoryId">
-                <option value="${post.categoryId}"> ${categoryId.categoryId}</option>
+                <option value="${post.categoryId}">${post.categoryTitle}</option><!--디비에 타이틀 값 넣기-->
                 <c:forEach var="category" items="${categoryList}">
                     <option value="${category.categoryId}">
                         ${category.categoryTitle}
@@ -22,15 +23,15 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
             <input type="hidden" id="postId" value="${post.postId}" />
         </div>
 
-        <input type="text" value="${postTitle.postTitle}" placeholder="제목 적어주세요" id="postTitle" class="form-control">
+        <input type="text" name="postTitle" value="${post.postTitle}" class="form-control">
         <div class="mb-3">
-            <textarea id="postContent" placeholder="내용 적어주세요" type="text" value="${post.postContent}"
-                class="form-control" rows="8" style="resize: none;">${postContent.postContent}</textarea>
+            <textarea name="postContent" value="${post.postContent}" type="text" class="form-control" rows="8"
+                style="resize: none;"></textarea>
         </div>
         <div class="form-control d-flex justify-content-end">
             <div>
                 섬네일 사진 등록 :
-                <input type="file" id="file" />
+                <input type="file" id="file" name="postThumnail" />
             </div>
         </div>
         <div style="display: flex;justify-content: right;">

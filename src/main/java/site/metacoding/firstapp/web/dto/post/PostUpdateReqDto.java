@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Getter
-public class PostUpdateRespDto {
+public class PostUpdateReqDto {
     private Integer userId;
     private Integer postId;
     private Integer categoryId;

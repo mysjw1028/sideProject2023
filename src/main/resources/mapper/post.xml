@@ -8,10 +8,10 @@
     <select id="updateView" resultType="site.metacoding.firstapp.web.dto.post.PostUpdateRespDto">SELECT
         * FROM category</select>
 
+    <insert id="insert"> 
+        INSERT INTO post(post_title, post_content, post_thumnail, category_id, user_id, created_at)
+        VALUES(#{postTitle}, #{postContent}, #{postThumnail}, #{categoryId}, #{userId},NOW()) </insert>
 
-    <insert id="insert"> INSERT INTO
-        post(post_title,post_content,post_thumnail,category_id,user_id,created_at)
-        VALUES(#{postTitle},#{postContent},#{postThumnail},#{categoryId},#{userId},NOW()) </insert>
 
     <select id="findAll" resultType="site.metacoding.firstapp.domain.post.Post"> SELECT
         post_title,post_content,post_thumnail,post_id FROM post </select>
@@ -20,4 +20,12 @@
         WHERE post_id = #{postId} </select>
 
 
+    <update id="update"> UPDATE post SET category_id = #{categoryId}, post_title = #{postTitle},
+        post_content = #{postContent}, post_thumnail= #{postThumnail} WHERE post_id = #{postId} </update>
+
+
 </mapper>
+
+
+
+ 

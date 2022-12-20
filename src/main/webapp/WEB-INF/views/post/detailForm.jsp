@@ -10,7 +10,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
         <div style="display: inline-flex;">
 
             <c:if test="${principal.userId==post.userId}">
-                <a class="btn btn-outline-warning" href="/post/updateForm/${post.categoryId}/${post.postId}"
+                <a class="btn btn-outline-warning" href="/post/updateForm/${post.postId}/${principal.userId}"
                     style="height:38px;width: 58px;">수정</a>&nbsp;&nbsp;
                 <form>
                     <button id="btnDelete" onclick="removeCheck()" class="btn btn-outline-danger">
