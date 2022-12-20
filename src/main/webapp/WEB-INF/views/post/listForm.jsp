@@ -2,6 +2,13 @@
 pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
 <div class="container">
+    <div style="background-color: grey">
+        <h3>userId : ${principal.userId}</h3>
+        <h3>postId : ${post.postId}</h3>
+    </div>
+
+
+
 
     <div style="display: inline-flex;">
         <div style="width: 100px;">
@@ -13,7 +20,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
         <div class="form-group row justify-content-left" style="padding-left: 15px">
             <div class="d-flex justify-content-end">
                 <div>
-                    <form style="display: inline-flex" method="get" action="/post/listForm/${user.userId}">
+                    <form style="display: inline-flex" method="get" action="/post/listForm/${principal.userId}">
                         <input style="width: 150px" class="my_auth_form_box_input" type="text" name="keyword" />
                         <button class="btn btn-sm btn-light" type="submit">
                             <i class="fa fa-search -retro fa-2x"></i>
@@ -43,6 +50,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
 
     <div class="my_post_list">
+
         <c:forEach var="post" items="${postList}">
             <input id="usersId" type="hidden" value="${post.userId}">
             <div class="my_post_list_item">
@@ -50,18 +58,25 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
                     <img id="profileImg" src="/img/${post.postThumnail}" style="width: 100%;height:100%;">
                     <!-- 사진 사이즈 조절 -->
                 </div>
+
                 <div class="my_post_list_item_right my_ellipsis">
+
+                    <input id="postTitle" type="hidden" value="${post.postTitle}" name="${post.postTitle}">
                     <div class="my_text_title my_ellipsis">
                         ${post.postTitle}
                     </div>
                     <div>${post.createdAt}</div>
                     <div class="my_mt_md_1" style="padding-top: 30px;">
 
-                        <a href="/post/detailForm/${post.postId}/${post.userId}"> <button type="button"
-                                class="btn btn-light" style="border:2px solid black" ;line-height:
-                                20px;>더보기</button></a>
+                        <a href="/post/detailForm/${post.postId}/${principal.userId}">
+
+                            <h3>postId : ${post.postId}</h3>
+                            <button type="button" class="btn btn-light" style="border:2px solid black" ;line-height:
+                                20px;>더보기</button>
+                        </a>
                     </div>
                 </div>
+
             </div>
         </c:forEach>
 
