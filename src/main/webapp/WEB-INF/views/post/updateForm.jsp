@@ -11,10 +11,10 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
         <!-- 카테고리 목록 -->
         <div class="form-group">
             <select class="form-control" id="categoryId">
-                <option value="${post.categoryId}"> 선택해주세요 ${post.categoryId}</option>
-                <c:forEach var="category" items="${post.categoryList}">
+                <option value="${post.categoryId}"> ${categoryId.categoryId}</option>
+                <c:forEach var="category" items="${categoryList}">
                     <option value="${category.categoryId}">
-                        ${postPS.categoryTitle}
+                        ${category.categoryTitle}
                     </option>
                 </c:forEach>
             </select>

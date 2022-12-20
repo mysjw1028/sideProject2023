@@ -66,7 +66,6 @@ public class PostController {
 
         List<PostUpdateRespDto> postList = postDao.updateView();
         model.addAttribute("categoryList", postList);
-        
         model.addAttribute("categoryId", postPS);// postps 내가 정한 위치 들고오는데
         model.addAttribute("postTitle", postPS);
         model.addAttribute("postContent", postPS);
