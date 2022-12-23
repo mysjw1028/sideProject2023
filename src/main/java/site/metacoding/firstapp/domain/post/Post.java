@@ -28,7 +28,6 @@ public class Post {
         this.postTitle = post.getPostTitle();
         this.postContent = post.getPostContent();
         this.postThumnail = post.getPostThumnail();
-
     }
 
 }

@@ -11,23 +11,27 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
 .postId}/${principal.userId}" method="post">
         <!-- 카테고리 목록 -->
         <div class="form-group">
+
             <select class="form-control">
                 <option value="${post.categoryId}">${post.categoryTitle}</option><!--디비에 타이틀 값 넣기-->
+
                 <c:forEach var="category" items="${categoryList}">
                     <option value="${post.categoryId}" name=categoryId>
                         ${category.categoryTitle}
                     </option>
                 </c:forEach>
+
             </select>
-            <input type="hidden" id="categoryId" value="${category.categoryId}" />
-            <input type="hidden" id="userId" value="${principal.userId}" />
-            <input type="hidden" id="postId" value="${post.postId}" />
+
+            <input type="text" id="categoryId" value="${post.categoryId}" name="categoryId" />
+            <input type="text" id="userId" value="${principal.userId}" name="userId" />
+            <input type="text" id="postId" value="${post.postId}" name="postId" />
         </div>
 
         <input type="text" name="postTitle" value="${post.postTitle}" class="form-control">
         <div class="mb-3">
-            <textarea name="postContent " value="${post.postContent}" type="text" class="form-control" rows="8"
-                style="resize: none;">${post.postContent}</textarea>
+            <textarea name="postContent" if="postContent" value="${post.postContent}" type="text" class="form-control"
+                rows="8" style="resize: none;">${post.postContent}</textarea>
         </div>
         <div class="form-control d-flex justify-content-end">
             <div>

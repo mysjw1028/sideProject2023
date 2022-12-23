@@ -79,7 +79,7 @@ public class PostController {
         System.out.println("디버그 getPostTitle : " + post.getPostTitle());
         System.out.println("디버그 getPostContent : " + post.getPostContent());
         System.out.println("디버그 getCategoryId  : " + post.getCategoryId());
-        System.out.println("디버그 getUserId : " + post.getUserId());// 이거는 어차피 의미가 없지 않나
+        System.out.println("디버그 getUserId : " + post.getUserId());
 
         return "redirect:/";
     }
