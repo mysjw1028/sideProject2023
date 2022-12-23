@@ -6,6 +6,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
         min-height: 40vh;
     }
 </style>
+
 <div class="container">
     <form action="/post/update/${post
 .postId}/${principal.userId}" method="post">
@@ -13,10 +14,9 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
         <div class="form-group">
 
             <select class="form-control">
-                <option value="${category.categoryTitle}"> ${post.postTitle}</option><!--디비에 타이틀 값 넣기-->
 
                 <c:forEach var="category" items="${categoryList}">
-                    <option value="${post.categoryId}" name=categoryId>
+                    <option value="${post.categoryId}" name=categoryId id="categoryId">
                         ${category.categoryTitle}
                     </option>
                 </c:forEach>

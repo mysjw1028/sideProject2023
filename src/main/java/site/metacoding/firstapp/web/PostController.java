@@ -73,11 +73,7 @@ public class PostController {
         postPS.update(post);
         postDao.update(postPS);
 
-        System.out.println("디버그 postId : " + postId);
-        System.out.println("디버그 getPostTitle : " + post.getPostTitle());
-        System.out.println("디버그 getPostContent : " + post.getPostContent());
         System.out.println("디버그 getCategoryId  : " + post.getCategoryId());
-        System.out.println("디버그 getUserId : " + post.getUserId());
 
         return "redirect:/";
     }

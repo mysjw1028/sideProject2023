@@ -16,7 +16,7 @@
     <select id="findAll" resultType="site.metacoding.firstapp.domain.post.Post">SELECT
         c.category_id, c.category_title, p.post_id, p.post_title, p.post_content, p.post_thumnail,
         p.user_id, p.category_id, p.created_at FROM category c INNER JOIN post p ON p.category_id =
-        C.category_id</select>
+        c.category_id</select>
 
     <select id="findById" resultType="site.metacoding.firstapp.domain.post.Post"> SELECT * FROM post
         WHERE post_id = #{postId} </select>
