@@ -13,7 +13,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
         <div class="form-group">
 
             <select class="form-control">
-                <option value="${post.categoryId}">${post.categoryTitle}</option><!--디비에 타이틀 값 넣기-->
+                <option value="${category.categoryTitle}"> ${post.postTitle}</option><!--디비에 타이틀 값 넣기-->
 
                 <c:forEach var="category" items="${categoryList}">
                     <option value="${post.categoryId}" name=categoryId>
@@ -23,9 +23,9 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
 
             </select>
 
-            <input type="text" id="categoryId" value="${post.categoryId}" name="categoryId" />
-            <input type="text" id="userId" value="${principal.userId}" name="userId" />
-            <input type="text" id="postId" value="${post.postId}" name="postId" />
+            <input type="hidden" id="categoryId" value="${post.categoryId}" name="categoryId" />
+            <input type="hidden" id="userId" value="${principal.userId}" name="userId" />
+            <input type="hidden" id="postId" value="${post.postId}" name="postId" />
         </div>
 
         <input type="text" name="postTitle" value="${post.postTitle}" class="form-control">

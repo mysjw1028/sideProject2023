@@ -23,13 +23,11 @@ public class PostController {
     @GetMapping("/post/listForm/{userId}")
     public String 내블로그(Model model) {
         List<Post> postList = postDao.findAll();
-        System.out.println("디버그  1111111111:" + postDao.findAll());
         for (Post post : postList) {
             String s = post.getPostTitle();
             System.out.println("디버그    " + s);
         }
         model.addAttribute("postList", postList);
-        System.out.println("디버그  22222222222222:" + postDao.findAll());
         return "post/listForm";
     }
 
