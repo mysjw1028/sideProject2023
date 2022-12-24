@@ -57,8 +57,9 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 
             <div class="my_navbar_title">
                 <a href="/post/listForm/${categoryList[0].userId}" style="color: black " style>
-                    ${user.nickName} 의 블로그</a>
+                    ${principal.nickName} 의 블로그</a>
             </div>
+            <input type="hidden" id="userId" value="${principal.nickName}" name="userId" />
 
             <c:choose>
                 <c:when test="${principal == null}">

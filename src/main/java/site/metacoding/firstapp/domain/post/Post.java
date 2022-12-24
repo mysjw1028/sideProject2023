@@ -10,6 +10,7 @@ import lombok.Setter;
 public class Post {
     private Integer postId;
     private String postTitle;
+    private String nickName;
     private String postContent;
     private String postThumnail;
     private Integer categoryId;
