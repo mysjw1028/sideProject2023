@@ -13,17 +13,16 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
         <!-- 카테고리 목록 -->
         <div class="form-group">
 
-            <select class="form-control">
-
+            <select class="form-control" name="categoryId">
+                <option placeholder="카테고리타이틀">---선택해주세요---</option>
                 <c:forEach var="category" items="${categoryList}">
-                    <option value="${post.categoryId}" name=categoryId id="categoryId">
+                    <option value="${category.categoryId}" name=categoryId class="categoryId">
                         ${category.categoryTitle}
                     </option>
                 </c:forEach>
-
             </select>
 
-            <input type="hidden" id="categoryId" value="${post.categoryId}" name="categoryId" />
+
             <input type="hidden" id="userId" value="${principal.userId}" name="userId" />
             <input type="hidden" id="postId" value="${post.postId}" name="postId" />
         </div>

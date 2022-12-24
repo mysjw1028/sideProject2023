@@ -69,11 +69,11 @@ public class PostController {
     @PostMapping("/post/update/{postId}/{userId}")
     public String blogupdate(@PathVariable Integer postId, @PathVariable Integer userId, Post post) {
 
+        System.out.println("디버그 getCategoryId  : " + post.getCategoryId());
+
         Post postPS = postDao.findById(postId);
         postPS.update(post);
         postDao.update(postPS);
-
-        System.out.println("디버그 getCategoryId  : " + post.getCategoryId());
 
         return "redirect:/";
     }

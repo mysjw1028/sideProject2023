@@ -22,6 +22,7 @@
         WHERE post_id = #{postId} </select>
 
 
+        
     <update id="update"> UPDATE post SET category_id = #{categoryId}, post_title = #{postTitle},
         post_content = #{postContent}, post_thumnail= #{postThumnail} WHERE post_id = #{postId} </update>
 
