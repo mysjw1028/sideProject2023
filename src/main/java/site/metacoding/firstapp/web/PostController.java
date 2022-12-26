@@ -27,7 +27,6 @@ import site.metacoding.firstapp.web.dto.post.PostUpdateRespDto;
 public class PostController {
 
     private final PostDao postDao;
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping("/post/listForm/{userId}")
     public String 내블로그(Model model) {
@@ -97,7 +96,7 @@ public class PostController {
         String fileName = file.getOriginalFilename();
         System.out.println("fileName : " + fileName);
         // 사진을 받았는데, file을 받았는데 (DB에 넣을지, 서버 하드디스크에 기록할 지!!)
-        String filePath = "c:\\upload\\" + fileName;
+        String filePath = "C:\\Users\\mysjw\\OneDrive\\사진\\upload\\" + fileName;
         System.out.println("filePath : " + filePath);
 
         File dest = new File(filePath);
@@ -108,4 +107,5 @@ public class PostController {
         }
         return "ok";
     }
+
 }

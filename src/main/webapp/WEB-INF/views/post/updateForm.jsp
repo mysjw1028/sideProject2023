@@ -35,7 +35,9 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
         <div class="form-control d-flex justify-content-end">
             <div>
                 섬네일 사진 등록 :
-                <input type="file" id="file" name="postThumnail" />
+                <form method="post" action="/upload" enctype="multipart/form-data">
+                    <input type="file" name="postThumnail" />
+                </form>
             </div>
         </div>
         <div style="display: flex;justify-content: right;">

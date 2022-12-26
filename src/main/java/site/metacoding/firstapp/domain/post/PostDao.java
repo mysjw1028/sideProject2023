@@ -21,4 +21,5 @@ public interface PostDao {
     public List<PostUpdateRespDto> updateView(Integer postId);
 
     public void update(Post post);
+
 }

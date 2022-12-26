@@ -32,10 +32,11 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
         <textarea class="form-control" rows="8" id="postContent" name="postContent" style="resize: none;"></textarea>
     </div>
     <div class="form-control d-flex justify-content-left">
-
         <div>
-            섬네일 사진 등록 :
-            <input type="file" id="file" name="postThumnail" accept="image/*" />
+
+            <c:if test="${infoIntroduce.a_mainImg != null }"> 섬네일 사진 등록 :
+                <img src="${root }upload/${infoIntroduce.a_mainImg}" />
+            </c:if>
         </div>
     </div>
     <div style="display: flex;justify-content: right;">
