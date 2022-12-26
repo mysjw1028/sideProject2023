@@ -75,7 +75,8 @@ public class PostController {
     }
 
     @PostMapping("/post/update/{postId}/{userId}")
-    public String blogupdate(@PathVariable Integer postId, @PathVariable Integer userId, Post post) {
+    public String blogupdate(@PathVariable Integer postId, @PathVariable Integer userId, Post post,
+            @PathVariable MultipartFile file) {
 
         System.out.println("디버그 getCategoryId  : " + post.getCategoryId());
 
@@ -83,16 +84,6 @@ public class PostController {
         postPS.update(post);
         postDao.update(postPS);
 
-        return "redirect:/";
-    }
-
-    @GetMapping("/uploadhome")
-    public String index() {
-        return "test";
-    }
-
-    @PostMapping("/upload")
-    public @ResponseBody String create(@RequestPart MultipartFile file) {
         String fileName = file.getOriginalFilename();
         System.out.println("fileName : " + fileName);
         // 사진을 받았는데, file을 받았는데 (DB에 넣을지, 서버 하드디스크에 기록할 지!!)
@@ -105,7 +96,29 @@ public class PostController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "ok";
+        return "redirect:/";
     }
+
+    // @GetMapping("/uploadhome")
+    // public String index() {
+    // return "test";
+    // }
+
+    // @PostMapping("/upload")
+    // public @ResponseBody String create(@RequestPart MultipartFile file) {
+    // String fileName = file.getOriginalFilename();
+    // System.out.println("fileName : " + fileName);
+    // // 사진을 받았는데, file을 받았는데 (DB에 넣을지, 서버 하드디스크에 기록할 지!!)
+    // String filePath = "C:\\Users\\mysjw\\OneDrive\\사진\\upload\\" + fileName;
+    // System.out.println("filePath : " + filePath);
+
+    // File dest = new File(filePath);
+    // try {
+    // Files.copy(file.getInputStream(), dest.toPath());
+    // } catch (IOException e) {
+    // e.printStackTrace();
+    // }
+    // return "ok";
+    // }
 
 }
