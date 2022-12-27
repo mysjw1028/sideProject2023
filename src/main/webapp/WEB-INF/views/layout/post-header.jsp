@@ -56,7 +56,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             </ul>
 
             <div class="my_navbar_title">
-                <a href="/post/listForm/${categoryList[0].userId}" style="color: black " style>
+                <a href="/" style="color: black " style>
                     ${principal.nickName} 의 블로그</a>
             </div>
             <input type="hidden" id="userId" value="${principal.nickName}" name="userId" />

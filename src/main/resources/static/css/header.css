@@ -24,7 +24,11 @@
 
 .my_navbar_title {
     text-align: center;
-    margin-right: 120px;
+}
+
+
+.drawer-brand {
+    margin-right: 260px;
 }
 
 .drawer-brand>a {
