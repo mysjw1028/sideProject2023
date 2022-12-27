@@ -8,7 +8,8 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
 </style>
 
 <div class="container">
-    <form action="/post/update/${post.postId}/${principal.userId}" method="post" enctype="multipart/form-data">
+    <form action="/post/update/${post
+.postId}/${principal.userId}" method="post" enctype="multipart/form-data">
         <!-- 카테고리 목록 -->
         <div class="form-group">
 
