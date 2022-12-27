@@ -14,7 +14,7 @@ public interface PostDao {
 
     public Post findById(Integer postId);
 
-    public void deleteById(Post post);
+    public void deleteById(Integer postId);
 
     public List<PostReadDto> readOnly();
 

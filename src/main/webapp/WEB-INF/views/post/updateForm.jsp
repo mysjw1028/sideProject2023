@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
 
 <div class="container">
     <form action="/post/update/${post
-.postId}/${principal.userId}" method="post" enctype="multipart/form-data">
+.postId}/${principal.userId}" method="post">
         <!-- 카테고리 목록 -->
         <div class="form-group">
 
@@ -35,16 +35,14 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
         <div class="form-control d-flex justify-content-end">
             <div>
                 섬네일 사진 등록 :
-
-                <input type="file" name="file" />
+                <input type="file" id="file" name="postThumnail" />
+            </div>
+        </div>
+        <div style="display: flex;justify-content: right;">
+            <button type="submit" class="my_active_btn">수정완료</button>
+        </div>
+        <br />
     </form>
-</div>
-</div>
-<div style="display: flex;justify-content: right;">
-    <button type="submit" class="my_active_btn">수정완료</button>
-</div>
-<br />
-</form>
 </div>
 
 
