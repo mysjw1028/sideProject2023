@@ -2,17 +2,23 @@ package site.metacoding.firstapp.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.firstapp.domain.love.Love;
 import site.metacoding.firstapp.domain.post.Post;
 import site.metacoding.firstapp.domain.post.PostDao;
+import site.metacoding.firstapp.domain.user.User;
+import site.metacoding.firstapp.service.PostService;
+import site.metacoding.firstapp.web.dto.CMRespDto;
 import site.metacoding.firstapp.web.dto.post.PostReadDto;
 import site.metacoding.firstapp.web.dto.post.PostUpdateRespDto;
 
@@ -20,7 +26,9 @@ import site.metacoding.firstapp.web.dto.post.PostUpdateRespDto;
 @Controller
 public class PostController {
 
+    private final HttpSession session;
     private final PostDao postDao;
+    private final PostService postService;
 
     @GetMapping("/post/listForm/{userId}")
     public String 내블로그(Model model) {
@@ -87,4 +95,20 @@ public class PostController {
         return "redirect:/";
     }
 
+    
+    // 좋아요 부분
+    @PostMapping("/post/{userId}/loves")
+    public @ResponseBody CMRespDto<?> insertLoves(@PathVariable Integer userId) {
+        User principal = (User) session.getAttribute("principal");
+        Love love = new Love(principal.getUserId(), userId);
+        postService.좋아요(love);// 이제 프라이머리 키가있어서 응답
+        return new CMRespDto<>(1, "좋아요 성공", love);
+    }
+
+    // 인증필요 ->세션에 값이 있는지 이사람의 정보가 있는지
+    @DeleteMapping("/post/{userId}/loves/{loveId}") // 충돌나서 lovesId
+    public @ResponseBody CMRespDto<?> deleteLoves(@PathVariable Integer userId, @PathVariable Integer loveId) {
+        postService.좋아요취소(loveId);
+        return new CMRespDto<>(1, "좋아요 취소 성공", null);
+    }
 }

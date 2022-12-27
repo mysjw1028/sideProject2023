@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.metacoding.firstapp.domain.love.LoveDao">
+
+    <select id="findAll"
+    resultType="site.metacoding.firstapp.domain.love.Love">
+    SELECT * FROM love
+</select>
+
+<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+  INSERT INTO love(userId, boardId, createdAt)
+  VALUES(#{userId}, #{boardId}, now())
+</insert>
+
+<select id="findById"
+    resultType="site.metacoding.firstapp.domain.love.Love">
+    SELECT * FROM love WHERE id=#{id}
+</select>
+
+
+<delete id="deleteById">
+    DELETE FROM love WHERE id = #{id}
+</delete>
+</mapper>
+
+
+
+ 
