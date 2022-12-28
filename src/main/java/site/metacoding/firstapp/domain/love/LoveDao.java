@@ -7,9 +7,9 @@ public interface LoveDao {
 
     public void findByDetail(Love love);
 
-    public void findById(Love love);
+    public void findById(Integer loveId);
 
     public void update(Love love);
 
-    public void deleteById(Integer lovesId);
+    public void deleteById(Integer loveId);
 }

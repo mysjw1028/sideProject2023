@@ -95,7 +95,6 @@ public class PostController {
         return "redirect:/";
     }
 
-    
     // 좋아요 부분
     @PostMapping("/post/{userId}/loves")
     public @ResponseBody CMRespDto<?> insertLoves(@PathVariable Integer userId) {
@@ -105,7 +104,6 @@ public class PostController {
         return new CMRespDto<>(1, "좋아요 성공", love);
     }
 
-    // 인증필요 ->세션에 값이 있는지 이사람의 정보가 있는지
     @DeleteMapping("/post/{userId}/loves/{loveId}") // 충돌나서 lovesId
     public @ResponseBody CMRespDto<?> deleteLoves(@PathVariable Integer userId, @PathVariable Integer loveId) {
         postService.좋아요취소(loveId);
