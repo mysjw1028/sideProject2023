@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.firstapp.domain.category.Category;
 import site.metacoding.firstapp.domain.love.Love;
 import site.metacoding.firstapp.domain.post.Post;
 import site.metacoding.firstapp.domain.post.PostDao;
@@ -32,6 +33,7 @@ public class PostController {
 
     @GetMapping("/post/listForm/{userId}")
     public String 내블로그(@PathVariable Integer userId, Model model) {
+        List<Category> categoryList = postDao.findAllcategory(userId);
         List<Post> postList = postDao.findAll(userId);
         for (Post post : postList) {
             String s = post.getPostTitle();
@@ -42,8 +44,8 @@ public class PostController {
     }
 
     @GetMapping("/post/writeForm/{userId}")
-    public String 블로그글쓰기(Model model) {
-        List<PostReadDto> postList = postDao.readOnly();
+    public String 블로그글쓰기(@PathVariable Integer userId, Model model) {
+        List<PostReadDto> postList = postDao.readOnly(userId);
         model.addAttribute("postList", postList);
         return "post/writeForm";
     }
@@ -63,11 +65,11 @@ public class PostController {
     }
 
     @GetMapping("/post/updateForm/{postId}/{userId}")
-    public String 블로그수정(@PathVariable Integer postId, Model model) {
+    public String 블로그수정(@PathVariable Integer postId, @PathVariable Integer userId, Model model) {
         Post postPS = postDao.findById(postId);
         System.out.println("디버그postPS getPostContent : " + postPS.getPostContent());
 
-        List<PostUpdateRespDto> postList = postDao.updateView(postId);
+        List<PostUpdateRespDto> postList = postDao.updateView(postId, userId);
         model.addAttribute("categoryList", postList);
         model.addAttribute("categoryId", postList);
         model.addAttribute("post", postPS);

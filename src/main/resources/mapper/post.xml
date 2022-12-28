@@ -3,10 +3,10 @@
 <mapper namespace="site.metacoding.firstapp.domain.post.PostDao">
 
     <select id="readOnly" resultType="site.metacoding.firstapp.web.dto.post.PostReadDto"> SELECT *
-        FROM category </select>
+        FROM category WHERE user_id =#{userId} </select>
 
     <select id="updateView" resultType="site.metacoding.firstapp.web.dto.post.PostUpdateRespDto">SELECT
-        * FROM category</select>
+        * FROM category WHERE user_id =#{userId}</select>
 
     <insert id="insert"> INSERT INTO post(post_title, post_content, post_thumnail, category_id,
         user_id, created_at) VALUES(#{postTitle}, #{postContent}, #{postThumnail}, #{categoryId},
@@ -16,10 +16,13 @@
     <select id="findAll" resultType="site.metacoding.firstapp.domain.post.Post">SELECT * FROM post
         WHERE user_id = #{userId}</select>
 
-    <select id="findById" resultType="site.metacoding.firstapp.domain.post.Post"> SELECT
-        c.category_id, c.category_title, p.post_id, p.post_title, p.post_content, p.post_thumnail,
-        p.user_id, p.category_id, p.created_at FROM category c INNER JOIN post p ON p.user_id =
-        c.user_id </select>
+    <select id="findAllcategory" resultType="site.metacoding.firstapp.domain.post.Post"> SELECT
+        c.category_id, c.category_title, p.post_id,p.user_id, p.category_id FROM category c INNER
+        JOIN post p ON p.user_id = c.category_id</select>
+
+
+    <select id="findById" resultType="site.metacoding.firstapp.domain.post.Post"> SELECT * FROM post
+        WHERE post_id = #{postId} </select>
 
     <update id="update"> UPDATE post SET category_id = #{categoryId}, post_title = #{postTitle},
         post_content = #{postContent}, post_thumnail= #{postThumnail} WHERE post_id = #{postId} </update>
