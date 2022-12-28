@@ -1,9 +1,11 @@
 package site.metacoding.firstapp.domain.love;
 
+import java.util.List;
+
 public interface LoveDao {
     public void insert(Love love);
 
-    public void findAll(Love love);
+    public List<Love> findAll();
 
     public void findByDetail(Love love);
 

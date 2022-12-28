@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class LoveDto {
+    private Integer loveId;
     private Integer userId;
     private Integer postId;
 }

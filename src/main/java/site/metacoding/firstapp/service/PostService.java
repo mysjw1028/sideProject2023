@@ -12,8 +12,8 @@ public class PostService {
 
     private final LoveDao loveDao;
 
-    public void 좋아요취소(Integer lovesId) {// 트래잭션 발동 -> 같은게 묶이게 할려고
-        loveDao.deleteById(lovesId);
+    public void 좋아요취소(Integer loveId) {// 트래잭션 발동 -> 같은게 묶이게 할려고
+        loveDao.deleteById(loveId);
     }
 
     public Love 좋아요(Love love) {

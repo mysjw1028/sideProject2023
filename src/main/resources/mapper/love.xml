@@ -5,8 +5,8 @@
     <select id="findAll"
         resultType="site.metacoding.firstapp.domain.love.Love"> SELECT * FROM love </select>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id"> INSERT INTO love(post_id, user_id,
-        createdAt) VALUES(#{postId}, #{userId}, now()) </insert>
+    <insert id="insert" useGeneratedKeys="false" keyProperty="id"> INSERT INTO love(post_id,
+        user_id) VALUES(#{postId}, #{userId}) </insert>
 
     <select id="findById"
         resultType="site.metacoding.firstapp.domain.love.Love"> SELECT * FROM love WHERE
