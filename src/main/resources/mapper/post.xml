@@ -27,6 +27,12 @@
 
     <delete id="deleteById"> DELETE FROM post WHERE post_id = #{postId} </delete>
 
+
+    <select id="findByDetail" resultType="site.metacoding.firstapp.web.dto.post.PostDatailDto">
+        SELECT po.*, lo.love_id love_id, if(lo.love_id IS NULL, 0, 1) isLoved, (SELECT COUNT(*) FROM
+        love WHERE post_id = #{postId}) loveCount FROM post po LEFT OUTER JOIN (SELECT * FROM love
+        WHERE user_id = #{userId}) lo ON po.post_id = lo.post_id WHERE po.post_id = #{postId} </select>
+
 </mapper>
 
 

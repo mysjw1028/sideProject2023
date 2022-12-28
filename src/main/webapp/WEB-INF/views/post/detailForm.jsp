@@ -68,17 +68,15 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
                     <span id="countLove">${PostDatailDto.loveCount}</span>
                 </div>--%>
 
-                <div class="d-flex justify-content-between">
-                    <h3>${PostDatailDto.postTitle}</h3>
 
 
 
-                    <div>
-                        좋아요수 : <span id="countLove">${PostDatailDto.loveCount}</span> <i id="iconLove"
-                            class='${PostDatailDto.loved ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
-                    </div>
-
+                <div>
+                    좋아요수 : <span id="countLove">${PostDatailDto.loveCount}</span> <i id="iconLove"
+                        class='${PostDatailDto.loved ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
                 </div>
+
+
 
 
             </div>

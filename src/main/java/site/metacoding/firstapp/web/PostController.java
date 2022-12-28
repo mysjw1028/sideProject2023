@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.domain.love.Love;
+import site.metacoding.firstapp.domain.love.LoveDao;
 import site.metacoding.firstapp.domain.post.Post;
 import site.metacoding.firstapp.domain.post.PostDao;
 import site.metacoding.firstapp.domain.user.User;
@@ -54,9 +55,18 @@ public class PostController {
         return "redirect:/";
     }
 
+    // @GetMapping("/post/detailForm/{postId}/{userId}")
+    // public String 블로그상세보기(@PathVariable Integer postId, Model model) {
+    // model.addAttribute("post", postDao.findById(postId));
+
+    // return "post/detailForm";
+    // }
+
     @GetMapping("/post/detailForm/{postId}/{userId}")
-    public String 블로그상세보기(@PathVariable Integer postId, Model model) {
+    public String getBoardDetail(@PathVariable Integer postId, @PathVariable Integer userId, Model model) {
+        model.addAttribute("PostDatailDto", postService.게시글상세보기(postId, userId));
         model.addAttribute("post", postDao.findById(postId));
+        model.addAttribute("love", postDao.findByDetail(postId, userId));
         return "post/detailForm";
     }
 
@@ -93,7 +103,6 @@ public class PostController {
         return "redirect:/";
     }
 
-    
     // 좋아요 부분
     @PostMapping("/post/{postId}/loves")
     public @ResponseBody CMRespDto<?> insertLoves(@PathVariable Integer postId, Model model) {
