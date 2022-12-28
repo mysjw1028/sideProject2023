@@ -39,4 +39,9 @@ public class User {
         this.password = loginDto.getPassword();
     }
 
+    public User(Integer userId) {
+        this.userId = userId;
+
+    }
+
 }

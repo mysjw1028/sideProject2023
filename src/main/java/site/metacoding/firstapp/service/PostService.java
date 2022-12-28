@@ -16,7 +16,7 @@ public class PostService {
     private final PostDao postDao;
     private final LoveDao loveDao;
 
-    public void 좋아요취소(Integer loveId) {// 트래잭션 발동 -> 같은게 묶이게 할려고
+    public void 좋아요취소(Integer loveId) {
         loveDao.deleteById(loveId);
     }
 
@@ -26,7 +26,6 @@ public class PostService {
     }
 
     public PostDatailDto 게시글상세보기(@PathVariable Integer postId, @PathVariable Integer userId) {
-
         return postDao.findByDetail(postId, userId);
     }
 

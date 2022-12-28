@@ -11,7 +11,7 @@ import site.metacoding.firstapp.web.dto.post.PostUpdateRespDto;
 public interface PostDao {
     public void insert(Post post);
 
-    public List<Post> findAll();
+    public List<Post> findAll(Integer userId);
 
     public Post findById(Integer postId);
 

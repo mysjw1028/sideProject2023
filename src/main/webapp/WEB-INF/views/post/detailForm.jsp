@@ -43,7 +43,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
         </div>
         <hr><br>
 
-        <div style="background-color: grey">
+        <%--<div style="background-color: grey">
             <h3>userId : ${principal.userId}</h3>
             <h3>userId : ${love.userId}</h3>
             <h3>loveId :${love.loveCount}</h3>

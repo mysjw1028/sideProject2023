@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.domain.love.Love;
-import site.metacoding.firstapp.domain.love.LoveDao;
 import site.metacoding.firstapp.domain.post.Post;
 import site.metacoding.firstapp.domain.post.PostDao;
 import site.metacoding.firstapp.domain.user.User;
@@ -32,8 +31,8 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping("/post/listForm/{userId}")
-    public String 내블로그(Model model) {
-        List<Post> postList = postDao.findAll();
+    public String 내블로그(@PathVariable Integer userId, Model model) {
+        List<Post> postList = postDao.findAll(userId);
         for (Post post : postList) {
             String s = post.getPostTitle();
             System.out.println("디버그    " + s);
@@ -54,13 +53,6 @@ public class PostController {
         postDao.insert(post);
         return "redirect:/";
     }
-
-    // @GetMapping("/post/detailForm/{postId}/{userId}")
-    // public String 블로그상세보기(@PathVariable Integer postId, Model model) {
-    // model.addAttribute("post", postDao.findById(postId));
-
-    // return "post/detailForm";
-    // }
 
     @GetMapping("/post/detailForm/{postId}/{userId}")
     public String getBoardDetail(@PathVariable Integer postId, @PathVariable Integer userId, Model model) {
@@ -113,9 +105,8 @@ public class PostController {
         return new CMRespDto<>(1, "좋아요 성공", love);
     }
 
-    // 인증필요 ->세션에 값이 있는지 이사람의 정보가 있는지
-    @DeleteMapping("/post/{postId}/loves/{loveId}")
-    // 충돌나서 lovesId
+    // 인증필요 ->세션에 값이 있는지 이사람의 정보가 있는지-> principal 활용
+    @DeleteMapping("/post/{postId}/loves/{loveId}") // 충돌나서 lovesId
     public @ResponseBody CMRespDto<?> deleteLoves(@PathVariable Integer postId, @PathVariable Integer loveId) {
         postService.좋아요취소(loveId);
         return new CMRespDto<>(1, "좋아요 취소 성공", null);
