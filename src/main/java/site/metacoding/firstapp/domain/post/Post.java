@@ -9,11 +9,11 @@ import lombok.Setter;
 @Setter
 public class Post {
     private Integer postId;
+    private Integer categoryId;
     private String postTitle;
     private String nickName;
     private String postContent;
     private String postThumnail;
-    private Integer categoryId;
     private Integer userId;
     private Timestamp updatedAt;
     private Timestamp createdAt;

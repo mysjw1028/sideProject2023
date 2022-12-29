@@ -4,6 +4,11 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 <div class="container">
     <form action="/update/${postId}/delete" method="post">
         <div class="my_post_detail_title">
+            <div style="background-color: grey; width: 150px; height: 30px;">
+                <c:forEach var="categoryTitle" items=" ${category.categoryTitle}">
+                    ${categoryId.categoryTitle}
+                </c:forEach>
+            </div>
             <h2>${post.postTitle}</h2>
         </div>
         <div style="display: flex;">
@@ -43,10 +48,11 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
         </div>
         <hr><br>
 
-        <%--<div style="background-color: grey">
+        <div style="background-color: grey">
             <h3>userId : ${principal.userId}</h3>
             <h3>userId : ${love.userId}</h3>
             <h3>loveId :${love.loveCount}</h3>
+            <h3>categoryId :${category.categoryId}</h3>
         </div>
 
         <div class="my_post_detail_content">${post.postContent}</div>
@@ -55,21 +61,12 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
             <input id="postId" type="hidden" value="${post.postId}" />
             <input id="userId" type="hidden" value="${post.userId}" />
-            <input id="user_userId" type="hidden" value="${user.userId}" />
+            <input id="categoryId" type="hidden" value="${category.categoryId}" />
 
             <input id="loveId" type="hidden" value="${love.loveId}" />
             <input id="loveuserId" type="hidden" value="${love.userId}" />
 
             <div class="d-flex justify-content-between">
-
-                <%-- <div>
-                    좋아요 <i id="iconLove"
-                        class='${post.loveId ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
-                    <span id="countLove">${PostDatailDto.loveCount}</span>
-                </div>--%>
-
-
-
 
                 <div>
                     좋아요수 : <span id="countLove">${PostDatailDto.loveCount}</span> <i id="iconLove"

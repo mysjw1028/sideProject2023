@@ -20,6 +20,7 @@ import site.metacoding.firstapp.domain.post.PostDao;
 import site.metacoding.firstapp.domain.user.User;
 import site.metacoding.firstapp.service.PostService;
 import site.metacoding.firstapp.web.dto.CMRespDto;
+import site.metacoding.firstapp.web.dto.post.PostDatailDto;
 import site.metacoding.firstapp.web.dto.post.PostReadDto;
 import site.metacoding.firstapp.web.dto.post.PostUpdateRespDto;
 
@@ -33,13 +34,15 @@ public class PostController {
 
     @GetMapping("/post/listForm/{userId}")
     public String 내블로그(@PathVariable Integer userId, Model model) {
-        List<Category> categoryList = postDao.findAllcategory(userId);
+        List<Category> categoryTitle = postDao.findAllcategory(userId);
         List<Post> postList = postDao.findAll(userId);
         for (Post post : postList) {
             String s = post.getPostTitle();
             System.out.println("디버그    " + s);
         }
         model.addAttribute("postList", postList);
+        model.addAttribute("categoryTitle", categoryTitle);
+
         return "post/listForm";
     }
 
@@ -57,10 +60,19 @@ public class PostController {
     }
 
     @GetMapping("/post/detailForm/{postId}/{userId}")
-    public String getBoardDetail(@PathVariable Integer postId, @PathVariable Integer userId, Model model) {
+    public String 블로그상세보기(@PathVariable Integer postId, @PathVariable Integer userId, Model model) {
         model.addAttribute("PostDatailDto", postService.게시글상세보기(postId, userId));
+
+        List<PostReadDto> categoryTitle = postDao.readOnly(postId);
+
+        model.addAttribute("categoryTitle", postId);
         model.addAttribute("post", postDao.findById(postId));
         model.addAttribute("love", postDao.findByDetail(postId, userId));
+        System.out.println("디버그 ~~~~~~~~ : " + postDao.findAllcategory(userId));
+        for (PostReadDto postReadDto : categoryTitle) {
+            String s = postReadDto.getCategoryTitle();
+            System.out.println("디버그   카테고리 타이틀 " + s);
+        }
         return "post/detailForm";
     }
 
