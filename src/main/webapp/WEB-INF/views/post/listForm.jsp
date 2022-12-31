@@ -47,9 +47,6 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
     <!-- 게시글 작성 -->
 
-    <input id="usersId" type="text" value="${principal.userId}">
-
-
     <div class="my_post_list">
         <c:forEach var="post" items="${postList}">
             <div class="my_post_list_item">
@@ -59,6 +56,9 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
                 </div>
 
                 <div class="my_post_list_item_right my_ellipsis">
+                    <div style="color: gray; font-size: 18;">
+                        ${categoryTitle.post}
+                    </div>
 
                     <input id="postTitle" type="hidden" value="${category.categoryId}" name="categoryTitle">
                     ${post.categoryTitle}

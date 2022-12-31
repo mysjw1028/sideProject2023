@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
-import site.metacoding.firstapp.domain.category.Category;
 import site.metacoding.firstapp.domain.love.Love;
 import site.metacoding.firstapp.domain.post.Post;
 import site.metacoding.firstapp.domain.post.PostDao;
@@ -34,22 +33,21 @@ public class PostController {
 
     @GetMapping("/post/listForm/{userId}")
     public String 내블로그(@PathVariable Integer userId, Model model) {
-        List<Category> categoryTitle = postDao.findAllcategory(userId);
         List<Post> postList = postDao.findAll(userId);
         for (Post post : postList) {
             String s = post.getPostTitle();
             System.out.println("디버그    " + s);
         }
         model.addAttribute("postList", postList);
-        model.addAttribute("categoryTitle", categoryTitle);
-
         return "post/listForm";
     }
 
     @GetMapping("/post/writeForm/{userId}")
     public String 블로그글쓰기(@PathVariable Integer userId, Model model) {
         List<PostReadDto> postList = postDao.readOnly(userId);
+
         model.addAttribute("postList", postList);
+
         return "post/writeForm";
     }
 
@@ -61,18 +59,14 @@ public class PostController {
 
     @GetMapping("/post/detailForm/{postId}/{userId}")
     public String 블로그상세보기(@PathVariable Integer postId, @PathVariable Integer userId, Model model) {
+        PostDatailDto postDatailDtos = postDao.detailOnly(postId);// 얘를 올려서
+
         model.addAttribute("PostDatailDto", postService.게시글상세보기(postId, userId));
 
-        List<PostReadDto> categoryTitle = postDao.readOnly(postId);
-
-        model.addAttribute("categoryTitle", postId);
+        model.addAttribute("categoryTitle", postDatailDtos);// 모델에 띄우는거
         model.addAttribute("post", postDao.findById(postId));
         model.addAttribute("love", postDao.findByDetail(postId, userId));
-        System.out.println("디버그 ~~~~~~~~ : " + postDao.findAllcategory(userId));
-        for (PostReadDto postReadDto : categoryTitle) {
-            String s = postReadDto.getCategoryTitle();
-            System.out.println("디버그   카테고리 타이틀 " + s);
-        }
+        System.out.println("디버그 ~~~~~~~~ : " + postDao.detailOnly(userId));
         return "post/detailForm";
     }
 

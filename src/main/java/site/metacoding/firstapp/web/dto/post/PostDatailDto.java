@@ -16,6 +16,8 @@ public class PostDatailDto {
     private Integer postId;
     private Integer userId;
     private String postTitle;
+    private String categoryTitle;
+    private Integer categoryId;
     private String postContent;
     private String postThumnail;
     private String nickName;

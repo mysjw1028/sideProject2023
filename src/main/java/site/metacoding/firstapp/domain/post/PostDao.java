@@ -20,6 +20,8 @@ public interface PostDao {
 
     public void deleteById(Integer postId);
 
+    public PostDatailDto detailOnly(Integer postId);
+
     public List<PostReadDto> readOnly(Integer userId);
 
     public List<PostUpdateRespDto> updateView(@Param("postId") Integer postId, @Param("userId") Integer userId);

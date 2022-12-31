@@ -2,10 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.metacoding.firstapp.domain.post.PostDao">
 
-    <select id="readOnly" resultType="site.metacoding.firstapp.web.dto.post.PostReadDto">SELECT
-        c.category_id, c.category_title, p.post_id, p.post_title, p.post_content, p.post_thumnail,
-        p.user_id, p.category_id, p.created_at FROM category c INNER JOIN post p ON p.category_id =
-        c.category_id </select>
+    <select id="readOnly" resultType="site.metacoding.firstapp.web.dto.post.PostReadDto">SELECT *
+        FROM category WHERE user_id = #{userId}</select>
 
     <select id="updateView" resultType="site.metacoding.firstapp.web.dto.post.PostUpdateRespDto">SELECT
         * FROM category WHERE user_id =#{userId}</select>
@@ -15,8 +13,8 @@
         #{userId},NOW()) </insert>
 
 
-    <select id="findAll" resultType="site.metacoding.firstapp.domain.post.Post">SELECT * FROM post
-        WHERE user_id = #{userId}</select>
+    <select id="findAll" resultType="site.metacoding.firstapp.domain.post.Post">SELECT p.*, c.* FROM
+        category c JOIN post p ON p.category_id =c.category_id WHERE p.user_id =#{userId}</select>
 
     <select id="findAllcategory" resultType="site.metacoding.firstapp.domain.post.Post"> SELECT
         c.category_id, c.category_title, p.post_id,p.user_id, p.category_id FROM category c INNER
@@ -37,6 +35,10 @@
         SELECT po.*, lo.love_id love_id, if(lo.love_id IS NULL, 0, 1) isLoved, (SELECT COUNT(*) FROM
         love WHERE post_id = #{postId}) loveCount FROM post po LEFT OUTER JOIN (SELECT * FROM love
         WHERE user_id = #{userId}) lo ON po.post_id = lo.post_id WHERE po.post_id = #{postId} </select>
+
+    <select id="detailOnly" resultType="site.metacoding.firstapp.web.dto.post.PostDatailDto"> SELECT
+        p.*, c.* FROM post p INNER JOIN category c ON c.category_id = p.category_id WHERE post_id =
+        #{postId} </select>
 
 </mapper>
 

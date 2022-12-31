@@ -4,10 +4,8 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 <div class="container">
     <form action="/update/${postId}/delete" method="post">
         <div class="my_post_detail_title">
-            <div style="background-color: grey; width: 150px; height: 30px;">
-                <c:forEach var="categoryTitle" items=" ${category.categoryTitle}">
-                    ${categoryId.categoryTitle}
-                </c:forEach>
+            <div style="color: gray; font-size: 18;">
+                ${categoryTitle.categoryTitle}
             </div>
             <h2>${post.postTitle}</h2>
         </div>
@@ -47,13 +45,6 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
         </div>
         <hr><br>
-
-        <div style="background-color: grey">
-            <h3>userId : ${principal.userId}</h3>
-            <h3>userId : ${love.userId}</h3>
-            <h3>loveId :${love.loveCount}</h3>
-            <h3>categoryId :${category.categoryId}</h3>
-        </div>
 
         <div class="my_post_detail_content">${post.postContent}</div>
 
