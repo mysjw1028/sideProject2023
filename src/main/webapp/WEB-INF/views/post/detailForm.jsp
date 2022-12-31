@@ -80,9 +80,9 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
         $("#iconLove").click(() => {
             let isLovedState = $("#iconLove").hasClass("fa-solid");
             if (isLovedState) {
-                deleteLove();
+                deleteLove(isLovedState);
             } else {
-                insertLove();
+                insertLove(isLovedState);
             }
         });
 
@@ -110,7 +110,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
         // DB에 delete 요청하기
         function deleteLove() {//delete는 바디 데이터가 없다
             let postId = $("#postId").val();
-            let lovesId = $("#loveId").val();
+            let loveId = $("#loveId").val();
 
             $.ajax("/post/" + postId + "/loves/" + loveId, {
                 type: "DELETE",
@@ -136,6 +136,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
             $("#iconLove").removeClass("fa-solid");
             $("#iconLove").addClass("fa-regular");
         }
+
 
     </script>
 </div>

@@ -2,14 +2,6 @@
 pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
 <div class="container">
-    <div style="background-color: grey">
-        <h3>principal : ${principal.userId}</h3>
-        <h3>user : ${user.userId}</h3>
-        <h3>postId : ${post.postId}</h3>
-    </div>
-
-
-
 
     <div style="display: inline-flex;">
         <div style="width: 100px;">

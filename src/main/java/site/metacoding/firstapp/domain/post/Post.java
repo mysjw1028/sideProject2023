@@ -20,6 +20,7 @@ public class Post {
 
     // db에 없는값
     private Integer loveCount;
+    private String postCount;
     private Integer loveId;
     private String categoryTitle;
 
