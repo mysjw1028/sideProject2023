@@ -18,6 +18,9 @@ public class User {
     private String email;
     private Timestamp createdAt;
 
+    // 디비에 없는값
+    private Integer postId;
+
     public User(String userName, String password, String email, String nickName) {
         this.userName = userName;
         this.password = password;
@@ -34,6 +37,11 @@ public class User {
         this.userId = loginDto.getUserId();
         this.userName = loginDto.getUserName();
         this.password = loginDto.getPassword();
+    }
+
+    public User(Integer userId) {
+        this.userId = userId;
+
     }
 
 }

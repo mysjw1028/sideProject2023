@@ -3,7 +3,8 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
 <div class="container">
     <div style="background-color: grey">
-        <h3>userId : ${principal.userId}</h3>
+        <h3>principal : ${principal.userId}</h3>
+        <h3>user : ${user.userId}</h3>
         <h3>postId : ${post.postId}</h3>
     </div>
 
@@ -46,13 +47,8 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
     <!-- 게시글 작성 -->
 
-
-
-
     <div class="my_post_list">
-
         <c:forEach var="post" items="${postList}">
-            <input id="usersId" type="hidden" value="${post.userId}">
             <div class="my_post_list_item">
                 <div class="my_post_list_item_left">
                     <img id="profileImg" src="/img/${post.postThumnail}" style="width: 100%;height:100%;">
@@ -60,8 +56,14 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
                 </div>
 
                 <div class="my_post_list_item_right my_ellipsis">
+                    <div style="color: gray; font-size: 18;">
+                        ${categoryTitle.post}
+                    </div>
 
-                    <input id="postTitle" type="hidden" value="${post.postTitle}" name="${post.postTitle}">
+                    <input id="postTitle" type="hidden" value="${category.categoryId}" name="categoryTitle">
+                    ${post.categoryTitle}
+
+                    <input id=" postTitle" type="hidden" value="${post.postTitle}" name="${post.postTitle}">
                     <div class="my_text_title my_ellipsis">
                         ${post.postTitle}
                     </div>
@@ -70,7 +72,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
                         <a href="/post/detailForm/${post.postId}/${principal.userId}">
 
-                            <h3>postId : ${post.postId}</h3>
+
                             <button type="button" class="btn btn-light" style="border:2px solid black" ;line-height:
                                 20px;>더보기</button>
                         </a>
@@ -78,6 +80,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
                 </div>
 
             </div>
+
         </c:forEach>
 
         <!-- 페이지 -->
