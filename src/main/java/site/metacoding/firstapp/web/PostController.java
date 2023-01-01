@@ -105,11 +105,12 @@ public class PostController {
 
     // 좋아요 부분
     @PostMapping("/post/{postId}/loves")
-    public @ResponseBody CMRespDto<?> insertLoves(@PathVariable Integer postId, Model model) {
+    public @ResponseBody CMRespDto<?> insertLoves(@PathVariable Integer postId) {
         User principal = (User) session.getAttribute("principal");
         Love love = new Love(principal.getUserId(), postId);
         postService.좋아요(love);// 이제 프라이머리 키가있어서 응답
-        model.addAttribute("love", love);
+        // model.addAttribute("love", love);
+
         return new CMRespDto<>(1, "좋아요 성공", love);
     }
 
@@ -117,6 +118,7 @@ public class PostController {
     @DeleteMapping("/post/{postId}/loves/{loveId}") // 충돌나서 lovesId
     public @ResponseBody CMRespDto<?> deleteLoves(@PathVariable Integer postId, @PathVariable Integer loveId) {
         postService.좋아요취소(loveId);
+        System.out.println("디버그!!!!!!  : " + loveId);
         return new CMRespDto<>(1, "좋아요 취소 성공", null);
     }
 

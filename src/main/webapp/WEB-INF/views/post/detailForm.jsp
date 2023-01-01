@@ -3,6 +3,16 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
 <div class="container">
     <form action="/update/${postId}/delete" method="post">
+
+        <input id="postId" type="hidden" value="${post.postId}" />
+        <input id="userId" type="hidden" value="${post.userId}" />
+        <input id="categoryId" type="hidden" value="${category.categoryId}" />
+
+        <input id="loveId" type="hidden" value="${love.loveId}" name="loveId" />
+
+        <input id="loveuserId" type="hidden" value="${love.userId}" />
+
+
         <div class="my_post_detail_title">
             <div style="color: gray; font-size: 18;">
                 ${categoryTitle.categoryTitle}
@@ -50,12 +60,6 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
         <div class="my_post_info_box d-flex" style="margin-top: 50px;">
 
-            <input id="postId" type="hidden" value="${post.postId}" />
-            <input id="userId" type="hidden" value="${post.userId}" />
-            <input id="categoryId" type="hidden" value="${category.categoryId}" />
-
-            <input id="loveId" type="hidden" value="${love.loveId}" />
-            <input id="loveuserId" type="hidden" value="${love.userId}" />
 
             <div class="d-flex justify-content-between">
 
@@ -63,14 +67,8 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
                     좋아요수 : <span id="countLove">${PostDatailDto.loveCount}</span> <i id="iconLove"
                         class='${PostDatailDto.loved ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
                 </div>
-
-
-
-
             </div>
-
         </div>
-
         <br />
     </form>
 
@@ -99,7 +97,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
                     // 좋아요 수 1 증가
                     let count = $("#countLove").text();
                     $("#countLove").text(Number(count) + 1);
-                    $("#loveId").val(res.data.id);
+                    $("#loveId").val(res.data.postId);
                     alert("좋아요에 성공했습니다");
                 } else {
                     alert("좋아요 실패했습니다");
@@ -120,7 +118,11 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
                     renderCancelLoves();
                     let count = $("#countLove").text();//좋아요 카운트를 가져와서 그 값에 -1 -> 통신이 성공하고 넣어야해서 아해
                     $("#countLove").text(Number(count) - 1);
+                    console.log("1");
+                    alert("좋아요 취소에 성공했습니다");
+                    console.log("2");
                 } else {
+                    console.log("3");
                     alert("좋아요 취소에 실패했습니다");
                 }
             });
