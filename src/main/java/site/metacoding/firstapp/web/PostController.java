@@ -52,14 +52,6 @@ public class PostController {
         return "post/writeForm";
     }
 
-    // @PostMapping("/post/write/{userId}")
-    // public String postinsert(Post post, ImgDto imgDto) {
-    // imgDto.getPostThumnail();
-    // post.setPostThumnail(imgDto.getPostThumnail());
-    // postDao.insert(imgDto);
-    // return "redirect:/";
-    // }
-
     @GetMapping("/post/detailForm/{postId}/{userId}")
     public String 블로그상세보기(@PathVariable Integer postId, @PathVariable Integer userId, Model model) {
         PostDatailDto postDatailDtos = postDao.detailOnly(postId);// 얘를 올려서
@@ -82,7 +74,9 @@ public class PostController {
         List<PostUpdateRespDto> postList = postDao.updateView(postId, userId);
         model.addAttribute("categoryList", postList);
         model.addAttribute("categoryId", postList);
+        model.addAttribute("postThumnail", postList);
         model.addAttribute("post", postPS);
+
         // postps -> DB에 있는거 들고옴
 
         return "post/updateForm";
