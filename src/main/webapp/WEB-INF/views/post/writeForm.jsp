@@ -96,7 +96,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
                 enctype: 'multipart/form-data'
             }).done((res) => {
                 if (res.code == 1) {
-                    alert("이미지 등록 성공");
+                    alert(" 포스팅 업로드 성공");
                     location.replace("/");
                 }
             });

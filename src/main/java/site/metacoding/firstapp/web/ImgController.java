@@ -55,45 +55,47 @@ public class ImgController {
         return "imgtest/imgSaveForm";
     }
 
-    @PostMapping("/imgtest/img")
-    public @ResponseBody CMRespDto<?> create(MultipartHttpServletRequest request, ImgDto imgDto) {
-        String title = request.getParameter("title");
-        String content = request.getParameter("content");
-        MultipartFile file = request.getFile("file");
+    // @PostMapping("/imgtest/img")
+    // public @ResponseBody CMRespDto<?> create(MultipartHttpServletRequest request,
+    // ImgDto imgDto) {
+    // String title = request.getParameter("title");
+    // String content = request.getParameter("content");
+    // MultipartFile file = request.getFile("file");
 
-        // 파일이름에서 " . " 이후의 문자열이 확장자가 됨.
-        int pos = file.getOriginalFilename().lastIndexOf(".");
+    // // 파일이름에서 " . " 이후의 문자열이 확장자가 됨.
+    // int pos = file.getOriginalFilename().lastIndexOf(".");
 
-        // 확장자명을 나중에 합치기 위한 작업.
-        String extension = file.getOriginalFilename().substring(pos + 1);
+    // // 확장자명을 나중에 합치기 위한 작업.
+    // String extension = file.getOriginalFilename().substring(pos + 1);
 
-        // 경로지정하는 구간.
-        String filePath = "C:\\Users\\mysjw\\OneDrive\\바탕 화면\\MyBatis-Jstory\\src\\main\\resources\\static\\img";
+    // // 경로지정하는 구간.
+    // String filePath = "C:\\Users\\mysjw\\OneDrive\\바탕
+    // 화면\\MyBatis-Jstory\\src\\main\\resources\\static\\img";
 
-        // 파일명을 UUID화 하여 중복을 방지하고
-        String imgSaveName = UUID.randomUUID().toString();
+    // // 파일명을 UUID화 하여 중복을 방지하고
+    // String imgSaveName = UUID.randomUUID().toString();
 
-        // UUID화 한 파일명 + 확장자
-        String imgName = imgSaveName + "." + extension;
+    // // UUID화 한 파일명 + 확장자
+    // String imgName = imgSaveName + "." + extension;
 
-        File dest = new File(filePath, imgName);
-        try {
-            Files.copy(file.getInputStream(), dest.toPath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    // File dest = new File(filePath, imgName);
+    // try {
+    // Files.copy(file.getInputStream(), dest.toPath());
+    // } catch (IOException e) {
+    // e.printStackTrace();
+    // }
 
-        System.out.println("=====================");
-        System.out.println("title : " + title);
-        System.out.println("content : " + content);
-        System.out.println("imgName : " + imgName);
-        System.out.println("=====================");
+    // System.out.println("=====================");
+    // System.out.println("title : " + title);
+    // System.out.println("content : " + content);
+    // System.out.println("imgName : " + imgName);
+    // System.out.println("=====================");
 
-        Img img = imgDto.toEntity(imgName);
+    // Img img = imgDto.toEntity(imgName);
 
-        imgService.사진저장(img);
-        return new CMRespDto<>(1, "파일저장성공", imgName);
-    }
+    // imgService.사진저장(img);
+    // return new CMRespDto<>(1, "파일저장성공", imgName);
+    // }
 
     /*************************************************************************/
     @PostMapping(value = "/post/save", consumes = { MediaType.APPLICATION_JSON_VALUE,

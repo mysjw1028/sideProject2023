@@ -49,17 +49,16 @@ public class PostController {
     public String 블로그글쓰기(@PathVariable Integer userId, Model model) {
         List<PostReadDto> postList = postDao.readOnly(userId);
         model.addAttribute("postList", postList);
-
         return "post/writeForm";
     }
 
-    @PostMapping("/post/write/{userId}")
-    public String postinsert(Post post, ImgDto imgDto) {
-        imgDto.getPostThumnail();
-        post.setPostThumnail(imgDto.getPostThumnail());
-        postDao.insert(imgDto);
-        return "redirect:/";
-    }
+    // @PostMapping("/post/write/{userId}")
+    // public String postinsert(Post post, ImgDto imgDto) {
+    // imgDto.getPostThumnail();
+    // post.setPostThumnail(imgDto.getPostThumnail());
+    // postDao.insert(imgDto);
+    // return "redirect:/";
+    // }
 
     @GetMapping("/post/detailForm/{postId}/{userId}")
     public String 블로그상세보기(@PathVariable Integer postId, @PathVariable Integer userId, Model model) {
