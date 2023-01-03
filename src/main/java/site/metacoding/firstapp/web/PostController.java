@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.firstapp.domain.img.ImgDao;
+import site.metacoding.firstapp.domain.img.ImgDto;
 import site.metacoding.firstapp.domain.love.Love;
 import site.metacoding.firstapp.domain.post.Post;
 import site.metacoding.firstapp.domain.post.PostDao;
@@ -29,6 +31,7 @@ public class PostController {
 
     private final HttpSession session;
     private final PostDao postDao;
+    private final ImgDao imgDao;
     private final PostService postService;
 
     @GetMapping("/post/listForm/{userId}")
@@ -45,15 +48,16 @@ public class PostController {
     @GetMapping("/post/writeForm/{userId}")
     public String 블로그글쓰기(@PathVariable Integer userId, Model model) {
         List<PostReadDto> postList = postDao.readOnly(userId);
-
         model.addAttribute("postList", postList);
 
         return "post/writeForm";
     }
 
     @PostMapping("/post/write/{userId}")
-    public String postinsert(Post post) {
-        postDao.insert(post);
+    public String postinsert(Post post, ImgDto imgDto) {
+        imgDto.getPostThumnail();
+        post.setPostThumnail(imgDto.getPostThumnail());
+        postDao.insert(imgDto);
         return "redirect:/";
     }
 
@@ -66,6 +70,7 @@ public class PostController {
         model.addAttribute("categoryTitle", postDatailDtos);// 모델에 띄우는거
         model.addAttribute("post", postDao.findById(postId));
         model.addAttribute("love", postDao.findByDetail(postId, userId));
+        model.addAttribute("postThumnail", postDatailDtos);
         System.out.println("디버그 ~~~~~~~~ : " + postDao.detailOnly(userId));
         return "post/detailForm";
     }
@@ -105,11 +110,12 @@ public class PostController {
 
     // 좋아요 부분
     @PostMapping("/post/{postId}/loves")
-    public @ResponseBody CMRespDto<?> insertLoves(@PathVariable Integer postId, Model model) {
+    public @ResponseBody CMRespDto<?> insertLoves(@PathVariable Integer postId) {
         User principal = (User) session.getAttribute("principal");
         Love love = new Love(principal.getUserId(), postId);
         postService.좋아요(love);// 이제 프라이머리 키가있어서 응답
-        model.addAttribute("love", love);
+        // model.addAttribute("love", love);
+
         return new CMRespDto<>(1, "좋아요 성공", love);
     }
 
@@ -117,6 +123,7 @@ public class PostController {
     @DeleteMapping("/post/{postId}/loves/{loveId}") // 충돌나서 lovesId
     public @ResponseBody CMRespDto<?> deleteLoves(@PathVariable Integer postId, @PathVariable Integer loveId) {
         postService.좋아요취소(loveId);
+        System.out.println("디버그!!!!!!  : " + loveId);
         return new CMRespDto<>(1, "좋아요 취소 성공", null);
     }
 

@@ -9,13 +9,17 @@ import lombok.Setter;
 @Setter
 public class ImgDto {
     private Integer id;
-    private String title;
+    private String postTitle;
     private String imgName;
-    private String content;
+    private String postContent;
+    private String postThumnail;
+    private Integer userId;
+    private String categoryTitle;
+    private Integer categoryId;
     private Timestamp createdAt;
 
     public Img toEntity(String imgName) {
-        Img img = new Img(this.title, imgName, this.content);
+        Img img = new Img(this.postTitle, imgName, this.postContent);
         return img;
     }
 }
