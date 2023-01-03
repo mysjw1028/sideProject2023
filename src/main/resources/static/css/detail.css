@@ -1,9 +1,9 @@
-
 .my_fake_like {
     color: red;
     cursor: pointer;
 }
-.my_fake_un_like{
+
+.my_fake_un_like {
     color: red;
     cursor: pointer;
 }
@@ -20,6 +20,11 @@
 
 .my_post_detail_content {
     overflow: hidden;
+}
+
+.love_text {
+
+    margin-left: 280px;
 }
 
 .my_post_detail_content img {

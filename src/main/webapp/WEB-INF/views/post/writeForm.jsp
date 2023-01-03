@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
             <select class="form-control" id="categoryId" name="categoryId" value="${category.categoryId}">
 
                 <c:forEach var="category" items="${postList}">
-                    <option value="${category.categoryId}">
+                    <option value="${category.categoryId}" id="categoryId">
                         ${category.categoryTitle}
                     </option>
                 </c:forEach>
@@ -36,41 +36,59 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
         <div>
 
 
-            <input type="file" id="file" /><%--사진등록--%>
+            <form enctype="multipart/form-data" id="fileUploadForm">
+                <div class="form-group">
+
+                    <input type="file" id="file" />
+
+                </div>
+            </form><%--사진등록--%>
         </div>
     </div>
     <div style="display: flex;justify-content: right;">
 
-        <button type="submit" class="my_active_btn" id="writeBtn">
+        <button type="submit" class="my_active_btn" id="btnSave">
             글쓰기 등록
         </button>
-        <%-- <button type="button" id="btnSave">작성완료</button>--%>
     </div>
     <br />
     </form>
 
     <script>
+        function setThumbnail(event) {
+            let reader = new FileReader();
+            reader.onload = function (event) {
+                if (document.getElementById("newImg")) {
+                    document.getElementById("newImg").remove();
+                }
+                let img = document.createElement("img");
+                img.setAttribute("src", event.target.result);
+                img.setAttribute("id", "newImg");
+                document.querySelector("#imageContainer").appendChild(img);
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
 
         $("#btnSave").click(() => {
             Save();
         });
-
 
         function Save() {
 
             let formData = new FormData();
 
             let data = {
-
+                userId: $("#userId").val(),
+                categoryId: $("#categoryId").val(),
+                postTitle: $("#postTitle").val(),
+                postContent: $("#postContent").val()
             }
 
-            formData.append('title', $("#title").val());
-            formData.append('content', $("#content").val());
             formData.append('file', $("#file")[0].files[0]);
 
-            formData.append('key', new Blob([JSON.stringify(data)], { type: "application/json" }));
+            formData.append('imgDto', new Blob([JSON.stringify(data)], { type: "application/json" }));
 
-            $.ajax("/imgtest/img", {
+            $.ajax("/post/save", {
                 type: "POST",
                 data: formData,
                 processData: false,
@@ -79,10 +97,10 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
             }).done((res) => {
                 if (res.code == 1) {
                     alert("이미지 등록 성공");
+                    location.replace("/");
                 }
             });
         }
-
     </script>
 </div>
 

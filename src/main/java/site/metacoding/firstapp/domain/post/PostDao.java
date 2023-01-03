@@ -5,12 +5,13 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import site.metacoding.firstapp.domain.category.Category;
+import site.metacoding.firstapp.domain.img.ImgDto;
 import site.metacoding.firstapp.web.dto.post.PostDatailDto;
 import site.metacoding.firstapp.web.dto.post.PostReadDto;
 import site.metacoding.firstapp.web.dto.post.PostUpdateRespDto;
 
 public interface PostDao {
-    public void insert(Post post);
+    public void insert(ImgDto imgDto);
 
     public List<Post> findAll(Integer userId);
 
