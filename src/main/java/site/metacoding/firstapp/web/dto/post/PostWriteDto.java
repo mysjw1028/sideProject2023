@@ -13,10 +13,11 @@ import lombok.Setter;
 @Setter
 public class PostWriteDto {
     private Integer userId;
+    private Integer categoryId;
     private String postTitle;
     private String categoryTitle;
-    private Integer categoryId;
     private String postContent;
     private String postThumnail;
     private Timestamp createdAt;
+
 }

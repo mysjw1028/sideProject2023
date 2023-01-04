@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,8 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
-import site.metacoding.firstapp.domain.img.ImgDao;
-import site.metacoding.firstapp.domain.img.ImgDto;
 import site.metacoding.firstapp.domain.love.Love;
 import site.metacoding.firstapp.domain.post.Post;
 import site.metacoding.firstapp.domain.post.PostDao;
@@ -31,7 +30,6 @@ public class PostController {
 
     private final HttpSession session;
     private final PostDao postDao;
-    private final ImgDao imgDao;
     private final PostService postService;
 
     @GetMapping("/post/listForm/{userId}")
@@ -50,6 +48,12 @@ public class PostController {
         List<PostReadDto> postList = postDao.readOnly(userId);
         model.addAttribute("postList", postList);
         return "post/writeForm";
+    }
+
+    @PostMapping("/post/write/{userId}")
+    public String postinsert(Post post, Integer userId) {
+        postDao.insert(post);
+        return "redirect:/";
     }
 
     @GetMapping("/post/detailForm/{postId}/{userId}")

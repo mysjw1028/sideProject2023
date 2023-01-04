@@ -55,75 +55,82 @@ public class ImgController {
         return "imgtest/imgSaveForm";
     }
 
-    // 사진 업로드하는거
-    @PostMapping(value = "/post/save", consumes = { MediaType.APPLICATION_JSON_VALUE,
-            MediaType.MULTIPART_FORM_DATA_VALUE })
-    public @ResponseBody CMRespDto<?> create(@RequestPart("file") MultipartFile file,
-            @RequestPart("imgDto") ImgDto imgDto, Post post, PostReadDto postReadDto, PostWriteDto postWriteDto)
-            throws Exception {
-        int pos = file.getOriginalFilename().lastIndexOf(".");
-        String extension = file.getOriginalFilename().substring(pos + 1);
-        String filePath = "C:\\Users\\mysjw\\OneDrive\\바탕 화면\\MyBatis-Jstory\\src\\main\\resources\\static\\img";
-        String imgSaveName = UUID.randomUUID().toString();
-        String imgName = imgSaveName + "." + extension;
+    // // 사진 업로드하는거
+    // @PostMapping(value = "/post/save", consumes = {
+    // MediaType.APPLICATION_JSON_VALUE,
+    // MediaType.MULTIPART_FORM_DATA_VALUE })
+    // public @ResponseBody CMRespDto<?> create(MultipartFile file,
+    // @RequestPart("imgDto") ImgDto imgDto, Post post, PostReadDto postReadDto,
+    // PostWriteDto postWriteDto)
+    // throws Exception {
+    // int pos = file.getOriginalFilename().lastIndexOf(".");
+    // String extension = file.getOriginalFilename().substring(pos + 1);
+    // String filePath = "C:\\Users\\mysjw\\OneDrive\\바탕
+    // 화면\\MyBatis-Jstory\\src\\main\\resources\\static\\img";
+    // String imgSaveName = UUID.randomUUID().toString();
+    // String imgName = imgSaveName + "." + extension;
 
-        File makeFileFolder = new File(filePath);
-        if (!makeFileFolder.exists()) {
-            if (!makeFileFolder.mkdir()) {
-                throw new Exception("File.mkdir():Fail.");
-            }
-        }
-        File dest = new File(filePath, imgName);
-        try {
-            Files.copy(file.getInputStream(), dest.toPath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    // File makeFileFolder = new File(filePath);
+    // if (!makeFileFolder.exists()) {
+    // if (!makeFileFolder.mkdir()) {
+    // throw new Exception("File.mkdir():Fail.");
+    // }
+    // }
+    // File dest = new File(filePath, imgName);
+    // try {
+    // Files.copy(file.getInputStream(), dest.toPath());
+    // } catch (IOException e) {
+    // e.printStackTrace();
+    // }
 
-        imgDto.setPostThumnail(imgName);
-        postReadDto.setPostThumnail(imgName);
-        postWriteDto.setPostThumnail(imgName);
-        imgService.사진저장(imgDto);
-        postDao.insert(imgDto);
-        return new CMRespDto<>(1, "업로드 성공", imgName);
-    }
+    // imgDto.setPostThumnail(imgName);
+    // postReadDto.setPostThumnail(imgName);
+    // postWriteDto.setPostThumnail(imgName);
+    // imgService.사진저장(imgDto);
+    // postDao.insert(imgDto);
+    // return new CMRespDto<>(1, "업로드 성공", imgName);
+    // }
 
-    // 사진 업로드 수정
-    @PostMapping(value = "/post/update/{postId}/{userId}", consumes = { MediaType.APPLICATION_JSON_VALUE,
-            MediaType.MULTIPART_FORM_DATA_VALUE })
-    public @ResponseBody CMRespDto<?> create(@RequestParam(value = "file", required = false) MultipartFile file,
-            @RequestPart("imgDto") ImgDto imgDto, Post post, PostReadDto postReadDto, @PathVariable Integer postId,
-            @PathVariable Integer userId)
-            throws Exception {
-        int pos = file.getOriginalFilename().lastIndexOf(".");
-        String extension = file.getOriginalFilename().substring(pos + 1);
-        String filePath = "C:\\Users\\mysjw\\OneDrive\\바탕 화면\\MyBatis-Jstory\\src\\main\\resources\\static\\img";
-        String imgSaveName = UUID.randomUUID().toString();
-        String imgName = imgSaveName + "." + extension;
+    // // 사진 업로드 수정
+    // @PostMapping(value = "/post/update/{postId}/{userId}", consumes = {
+    // MediaType.APPLICATION_JSON_VALUE,
+    // MediaType.MULTIPART_FORM_DATA_VALUE })
+    // public @ResponseBody CMRespDto<?> create(@RequestParam(value = "file",
+    // required = false) MultipartFile file,
+    // @RequestPart("imgDto") ImgDto imgDto, Post post, PostReadDto postReadDto,
+    // @PathVariable Integer postId,
+    // @PathVariable Integer userId)
+    // throws Exception {
+    // int pos = file.getOriginalFilename().lastIndexOf(".");
+    // String extension = file.getOriginalFilename().substring(pos + 1);
+    // String filePath = "C:\\Users\\mysjw\\OneDrive\\바탕
+    // 화면\\MyBatis-Jstory\\src\\main\\resources\\static\\img";
+    // String imgSaveName = UUID.randomUUID().toString();
+    // String imgName = imgSaveName + "." + extension;
 
-        Post postPS = postDao.findById(postId);
-        postPS.update(post);
-        postDao.update(postPS);
+    // Post postPS = postDao.findById(postId);
+    // postPS.update(post);
+    // postDao.update(postPS);
 
-        File makeFileFolder = new File(filePath);
-        if (!makeFileFolder.exists()) {
-            if (!makeFileFolder.mkdir()) {
-                throw new Exception("File.mkdir():Fail.");
-            }
-        }
-        File dest = new File(filePath, imgName);
-        try {
-            Files.copy(file.getInputStream(), dest.toPath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    // File makeFileFolder = new File(filePath);
+    // if (!makeFileFolder.exists()) {
+    // if (!makeFileFolder.mkdir()) {
+    // throw new Exception("File.mkdir():Fail.");
+    // }
+    // }
+    // File dest = new File(filePath, imgName);
+    // try {
+    // Files.copy(file.getInputStream(), dest.toPath());
+    // } catch (IOException e) {
+    // e.printStackTrace();
+    // }
 
-        imgDto.setPostThumnail(imgName);
-        postReadDto.setPostThumnail(imgName);
-        imgService.사진저장(imgDto);
-        postDao.insert(imgDto);
+    // imgDto.setPostThumnail(imgName);
+    // postReadDto.setPostThumnail(imgName);
+    // imgService.사진저장(imgDto);
+    // postDao.insert(imgDto);
 
-        return new CMRespDto<>(1, "tnwjd성공", imgName);
-    }
+    // return new CMRespDto<>(1, "tnwjd성공", imgName);
+    // }
 
 }

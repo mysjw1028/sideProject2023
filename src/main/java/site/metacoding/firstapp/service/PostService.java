@@ -1,11 +1,9 @@
 package site.metacoding.firstapp.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import lombok.RequiredArgsConstructor;
-import site.metacoding.firstapp.domain.img.ImgDto;
 import site.metacoding.firstapp.domain.love.Love;
 import site.metacoding.firstapp.domain.love.LoveDao;
 import site.metacoding.firstapp.domain.post.PostDao;
@@ -30,7 +28,5 @@ public class PostService {
     public PostDatailDto 게시글상세보기(@PathVariable Integer postId, @PathVariable Integer userId) {
         return postDao.findByDetail(postId, userId);
     }
-
- 
 
 }
