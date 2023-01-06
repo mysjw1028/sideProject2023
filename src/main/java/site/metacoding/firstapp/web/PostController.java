@@ -1,10 +1,6 @@
 package site.metacoding.firstapp.web;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,12 +10,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.firstapp.domain.img.ImgDto;
 import site.metacoding.firstapp.domain.love.Love;
 import site.metacoding.firstapp.domain.post.Post;
 import site.metacoding.firstapp.domain.post.PostDao;
@@ -57,9 +51,10 @@ public class PostController {
     }
 
     @PostMapping("/post/write/{userId}")
-    public String postinsert(Post post, Integer userId) {
-        postDao.insert(post);
-
+    public String postinsert(Post post, ImgDto imgDto) {
+        imgDto.getPostThumnail();
+        post.setPostThumnail(imgDto.getPostThumnail());
+        postDao.insert(imgDto);
         return "redirect:/";
     }
 
@@ -95,7 +90,7 @@ public class PostController {
 
     @PostMapping("/post/update/{postId}/{userId}")
     public String blogupdate(@PathVariable Integer postId, @PathVariable Integer userId, Post post) {
-        System.out.println("디버그 getCategoryId  : " + post.getCategoryId());
+        // System.out.println("디버그 getCategoryId : " + post.getCategoryId());
         Post postPS = postDao.findById(postId);
         postPS.update(post);
         postDao.update(postPS);

@@ -30,10 +30,15 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
 
         <input type="text" name="postTitle" value="${post.postTitle}" class="form-control">
         <div class="mb-3">
-            <textarea name="postContent" id="postContent" value="${post.postContent}" type="text" class="form-control"
-                rows="8" style="resize: none;">${post.postContent}</textarea>
+            <textarea name="postContent" id="postContent">${post.postContent}</textarea>
         </div>
+        <form enctype="multipart/form-data" id="fileUploadForm">
+            <div class="form-group">
 
+                <input type="file" id="file" />
+
+            </div>
+        </form><%--사진등록--%>
         <div style="display: flex;justify-content: right;">
             <button type="submit" class="my_active_btn" id="btnupdate">수정완료</button>
         </div>
@@ -44,6 +49,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
         $('#postContent').summernote({
             height: 400
         });
+
     </script>
 
 </div>

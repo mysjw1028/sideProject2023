@@ -2,25 +2,28 @@ package site.metacoding.firstapp.web;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.UUID;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.google.gson.JsonObject;
-
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.domain.img.Img;
+import site.metacoding.firstapp.domain.img.ImgDto;
+import site.metacoding.firstapp.domain.post.Post;
 import site.metacoding.firstapp.domain.post.PostDao;
 import site.metacoding.firstapp.service.ImgService;
+import site.metacoding.firstapp.web.dto.CMRespDto;
+import site.metacoding.firstapp.web.dto.post.PostReadDto;
+import site.metacoding.firstapp.web.dto.post.PostWriteDto;
 
 @RequiredArgsConstructor
 @Controller
@@ -51,41 +54,37 @@ public class ImgController {
         return "imgtest/imgSaveForm";
     }
 
-    // // 사진 업로드하는거
-    // @PostMapping(value = "/post/save", consumes = {
-    // MediaType.APPLICATION_JSON_VALUE,
-    // MediaType.MULTIPART_FORM_DATA_VALUE })
-    // public @ResponseBody CMRespDto<?> create(MultipartFile file,
-    // @RequestPart("imgDto") ImgDto imgDto, Post post, PostReadDto postReadDto,
-    // PostWriteDto postWriteDto)
-    // throws Exception {
-    // int pos = file.getOriginalFilename().lastIndexOf(".");
-    // String extension = file.getOriginalFilename().substring(pos + 1);
-    // String filePath = "C:\\Users\\mysjw\\OneDrive\\바탕
-    // 화면\\MyBatis-Jstory\\src\\main\\resources\\static\\img";
-    // String imgSaveName = UUID.randomUUID().toString();
-    // String imgName = imgSaveName + "." + extension;
+    @PostMapping(value = "/post/save", consumes = { MediaType.APPLICATION_JSON_VALUE,
+            MediaType.MULTIPART_FORM_DATA_VALUE })
+    public @ResponseBody CMRespDto<?> create(@RequestPart("file") MultipartFile file,
+            @RequestPart("imgDto") ImgDto imgDto, Post post, PostReadDto postReadDto, PostWriteDto postWriteDto)
+            throws Exception {
+        int pos = file.getOriginalFilename().lastIndexOf(".");
+        String extension = file.getOriginalFilename().substring(pos + 1);
+        String filePath = "C:\\Users\\mysjw\\OneDrive\\바탕 화면\\MyBatis-Jstory\\src\\main\\resources\\static\\img";
+        String imgSaveName = UUID.randomUUID().toString();
+        String imgName = imgSaveName + "." + extension;
 
-    // File makeFileFolder = new File(filePath);
-    // if (!makeFileFolder.exists()) {
-    // if (!makeFileFolder.mkdir()) {
-    // throw new Exception("File.mkdir():Fail.");
-    // }
-    // }
-    // File dest = new File(filePath, imgName);
-    // try {
-    // Files.copy(file.getInputStream(), dest.toPath());
-    // } catch (IOException e) {
-    // e.printStackTrace();
-    // }
+        File makeFileFolder = new File(filePath);
+        if (!makeFileFolder.exists()) {
+            if (!makeFileFolder.mkdir()) {
+                throw new Exception("File.mkdir():Fail.");
+            }
+        }
+        File dest = new File(filePath, imgName);
+        try {
+            Files.copy(file.getInputStream(), dest.toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-    // imgDto.setPostThumnail(imgName);
-    // postReadDto.setPostThumnail(imgName);
-    // postWriteDto.setPostThumnail(imgName);
-    // imgService.사진저장(imgDto);
-    // postDao.insert(imgDto);
-    // return new CMRespDto<>(1, "업로드 성공", imgName);
-    // }
+        imgDto.setPostThumnail(imgName);
+        postReadDto.setPostThumnail(imgName);
+        postWriteDto.setPostThumnail(imgName);
+        imgService.사진저장(imgDto);
+        postDao.insert(imgDto);
+        return new CMRespDto<>(1, "업로드 성공", imgName);
+    }
 
     // // 사진 업로드 수정
     // @PostMapping(value = "/post/update/{postId}/{userId}", consumes = {
@@ -128,32 +127,35 @@ public class ImgController {
 
     // return new CMRespDto<>(1, "tnwjd성공", imgName);
     // }
-    // @PostMapping(value = "/uploadSummernoteImageFile", produces = "application/json")
+    // @PostMapping(value = "/uploadSummernoteImageFile", produces =
+    // "application/json")
     // @ResponseBody
-    // public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile) {
+    // public JsonObject uploadSummernoteImageFile(@RequestParam("file")
+    // MultipartFile multipartFile) {
 
-    //     JsonObject jsonObject = new JsonObject();
+    // JsonObject jsonObject = new JsonObject();
 
-    //     String fileRoot = "C:\\summernote_image\\"; // 저장될 외부 파일 경로
-    //     String originalFileName = multipartFile.getOriginalFilename(); // 오리지날 파일명
-    //     String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
+    // String fileRoot = "C:\\summernote_image\\"; // 저장될 외부 파일 경로
+    // String originalFileName = multipartFile.getOriginalFilename(); // 오리지날 파일명
+    // String extension =
+    // originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
 
-    //     String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
+    // String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
 
-    //     File targetFile = new File(fileRoot + savedFileName);
+    // File targetFile = new File(fileRoot + savedFileName);
 
-    //     try {
-    //         InputStream fileStream = multipartFile.getInputStream();
-    //         FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
-    //         jsonObject.addProperty("url", "/summernoteImage/" + savedFileName);
-    //         jsonObject.addProperty("responseCode", "success");
+    // try {
+    // InputStream fileStream = multipartFile.getInputStream();
+    // FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
+    // jsonObject.addProperty("url", "/summernoteImage/" + savedFileName);
+    // jsonObject.addProperty("responseCode", "success");
 
-    //     } catch (IOException e) {
-    //         FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
-    //         jsonObject.addProperty("responseCode", "error");
-    //         e.printStackTrace();
-    //     }
+    // } catch (IOException e) {
+    // FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
+    // jsonObject.addProperty("responseCode", "error");
+    // e.printStackTrace();
+    // }
 
-    //     return jsonObject;
+    // return jsonObject;
     // }
 }
