@@ -58,9 +58,10 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
         <hr><br>
 
         <div class="my_post_detail_content">${post.postContent}</div>
-        <img id="profileImg" src="/img/${post.postThumnail}" style="width: 90%;height:80%;  margin: auto;
+        <c:if test="${post.postThumnail !=postThumnai}">
+            <img id="profileImg" src="/img/${post.postThumnail}" style="width: 90%;height:80%;  margin: auto;
         display: block; padding-top:15px;">
-
+        </c:if>
 </div>
 <div class=" my_post_info_box d-flex" style="margin-top: 30px;">
     <div class="d-flex justify-content-between">

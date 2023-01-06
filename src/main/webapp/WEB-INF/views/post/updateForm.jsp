@@ -14,7 +14,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
         <div class="form-group">
 
             <select class="form-control" name="categoryId">
-                <option placeholder="카테고리타이틀">---선택해주세요---</option>
+
                 <c:forEach var="category" items="${categoryList}">
                     <option value="${category.categoryId}" name=categoryId class="categoryId">
                         ${category.categoryTitle}
@@ -25,24 +25,33 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
 
             <input type="hidden" id="userId" value="${principal.userId}" name="userId" />
             <input type="hidden" id="postId" value="${post.postId}" name="postId" />
+            <input type="hidden" id="categoryId" value="${post.categoryId}" name="categoryId" />
         </div>
 
         <input type="text" name="postTitle" value="${post.postTitle}" class="form-control">
         <div class="mb-3">
-            <textarea name="postContent" if="postContent" value="${post.postContent}" type="text" class="form-control"
-                rows="8" style="resize: none;">${post.postContent}</textarea>
+            <textarea name="postContent" id="postContent">${post.postContent}</textarea>
         </div>
-        <div class="form-control d-flex justify-content-end">
-            <div>
-                섬네일 사진 등록 :
-                <input type="file" id="file" name="postThumnail" />
+        <form enctype="multipart/form-data" id="fileUploadForm">
+            <div class="form-group">
+
+                <input type="file" id="file" />
+
             </div>
-        </div>
+        </form><%--사진등록--%>
         <div style="display: flex;justify-content: right;">
-            <button type="submit" class="my_active_btn">수정완료</button>
+            <button type="submit" class="my_active_btn" id="btnupdate">수정완료</button>
         </div>
         <br />
     </form>
+    <script>
+        //summernote/ 게시글작성 모델
+        $('#postContent').summernote({
+            height: 400
+        });
+
+    </script>
+
 </div>
 
 

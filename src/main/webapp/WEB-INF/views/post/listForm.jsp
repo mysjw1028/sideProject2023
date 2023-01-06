@@ -49,13 +49,10 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
                 <div class="my_post_list_item_right my_ellipsis">
                     <div style="color: gray; font-size: 18;">
-                        ${categoryTitle.post}
+                        ${post.categoryTitle}
                     </div>
 
-                    <input id="postTitle" type="hidden" value="${category.categoryId}" name="categoryTitle">
-                    ${post.categoryTitle}
-
-                    <input id=" postTitle" type="hidden" value="${post.postTitle}" name="${post.postTitle}">
+                    <input id="postTitle" type="hidden" value="${post.postTitle}" name=postTitle>
                     <div class="my_text_title my_ellipsis">
                         ${post.postTitle}
                     </div>
