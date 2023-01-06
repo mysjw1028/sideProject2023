@@ -35,7 +35,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
         <form enctype="multipart/form-data" id="fileUploadForm">
             <div class="form-group">
 
-                <input type="file" id="file" />
+                <input type="file" id="file" multiple />
 
             </div>
         </form><%--사진등록--%>
