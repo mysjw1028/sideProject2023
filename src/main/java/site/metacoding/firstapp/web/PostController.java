@@ -35,7 +35,7 @@ public class PostController {
     @GetMapping("/post/listForm/{userId}")
     public String 내블로그(@PathVariable Integer userId, Model model) {
         List<Post> postList = postDao.findAll(userId);
-        for (Post post : postList) {
+        for (Post post : postList) {//
             String s = post.getPostTitle();
             System.out.println("디버그    " + s);
         }
