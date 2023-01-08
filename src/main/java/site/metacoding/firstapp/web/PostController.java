@@ -35,11 +35,12 @@ public class PostController {
     @GetMapping("/post/listForm/{userId}")
     public String 내블로그(@PathVariable Integer userId, Model model) {
         List<Post> postList = postDao.findAll(userId);
-        for (Post post : postList) {//
-            String s = post.getPostTitle();
+        for (Post post : postList) {
+            String s = post.getPostThumnail();
             System.out.println("디버그    " + s);
         }
         model.addAttribute("postList", postList);
+        model.addAttribute("postThumnail", postList);
         return "post/listForm";
     }
 
@@ -69,6 +70,7 @@ public class PostController {
         model.addAttribute("love", postDao.findByDetail(postId, userId));
         model.addAttribute("postThumnail", postDatailDtos);
         System.out.println("디버그 ~~~~~~~~ : " + postDao.detailOnly(userId));
+        System.out.println("디버그 ~~~~~~~~ : " + postDatailDtos.getPostThumnail());
         return "post/detailForm";
     }
 

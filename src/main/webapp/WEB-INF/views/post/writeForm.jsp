@@ -34,9 +34,8 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
 
         <form enctype="multipart/form-data" id="fileUploadForm">
             <div class="form-group">
-
+                썸네일 사진등록 :
                 <input type="file" id="file" multiple />
-
             </div>
         </form><%--사진등록--%>
         <button type="submit" class="my_active_btn" id="btnSave">
