@@ -21,6 +21,7 @@ import site.metacoding.firstapp.domain.user.User;
 import site.metacoding.firstapp.service.PostService;
 import site.metacoding.firstapp.web.dto.CMRespDto;
 import site.metacoding.firstapp.web.dto.post.PostDatailDto;
+import site.metacoding.firstapp.web.dto.post.PostListDto;
 import site.metacoding.firstapp.web.dto.post.PostReadDto;
 import site.metacoding.firstapp.web.dto.post.PostUpdateRespDto;
 
@@ -33,10 +34,16 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping("/post/listForm/{userId}")
-    public String 내블로그(@PathVariable Integer userId, Model model) {
-        List<Post> postList = postDao.findAll(userId);
-        for (Post post : postList) {
-            String s = post.getPostThumnail();
+    public String 내블로그(Model model, Integer page, @PathVariable Integer userId) { // 0 -> 0, 1->10, 2->20
+        if (page == null) {
+            page = 0;
+        }
+
+        int startNum = page * 10;
+
+        List<PostListDto> postList = postDao.findAll(startNum, userId);
+        for (PostListDto postListDto : postList) {
+            String s = postListDto.getPostThumnail();
             System.out.println("디버그    " + s);
         }
         model.addAttribute("postList", postList);

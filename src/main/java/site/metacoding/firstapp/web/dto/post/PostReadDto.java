@@ -16,4 +16,5 @@ public class PostReadDto {
     private String categoryTitle;
     private String postContent;
     private String postThumnail;
+    
 }
