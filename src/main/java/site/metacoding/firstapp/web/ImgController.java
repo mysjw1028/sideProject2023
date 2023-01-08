@@ -68,8 +68,8 @@ public class ImgController {
             @RequestPart("imgDto") ImgDto imgDto, Post post, PostReadDto postReadDto, PostWriteDto postWriteDto)
             throws Exception {
         int pos = file.getOriginalFilename().lastIndexOf(".");
-        String extension = file.getOriginalFilename().substring(pos + 1);
-        String filePath = "C:\\Users\\mysjw\\OneDrive\\바탕 화면\\MyBatis-Jstory\\src\\main\\resources\\static\\img";
+        String extension = file.getOriginalFilename().substring(pos + 1);// 사진경로가 안맞을경우 직접 폴더 들어가서 경로를 맞춰줄것
+        String filePath = "C:\\Users\\mysjw\\OneDrive\\바탕 화면\\취업준비 자료\\프로젝트 깃 정리\\Tstroy\\SpringBoot-Mybatis-Tstory\\src\\main\\resources\\static\\img";
         String imgSaveName = UUID.randomUUID().toString();
         String imgName = imgSaveName + "." + extension;
 

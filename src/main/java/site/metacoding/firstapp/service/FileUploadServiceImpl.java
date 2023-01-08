@@ -20,7 +20,8 @@ public class FileUploadServiceImpl implements FileUploadService {
         System.out.println("saveName: " + saveName);
 
         // 저장할 File 객체를 생성(껍데기 파일)
-        File fileInfo = new File("C:\\Users\\mysjw\\OneDrive\\바탕 화면\\MyBatis-Jstory\\src\\main\\resources\\static\\img",
+        File fileInfo = new File(
+                "C:\\Users\\mysjw\\OneDrive\\바탕 화면\\취업준비 자료\\프로젝트 깃 정리\\Tstroy\\SpringBoot-Mybatis-Tstory\\src\\main\\resources\\static\\img",
                 saveName); // 저장할 폴더 경로, 저장할 파일 이름
 
         try {
