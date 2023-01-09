@@ -28,6 +28,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/js/drawer.min.js"></script>
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
 
+
+
     <link rel="stylesheet" href="/css/styles.css" /><!--css impoort해서 모아둔 곳-->
 </head>
 

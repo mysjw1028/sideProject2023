@@ -1,4 +1,4 @@
-package site.metacoding.firstapp.domain.post;
+package site.metacoding.firstapp.web.dto.post;
 
 import java.sql.Timestamp;
 
@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Post {
+public class PostListDto {
     private Integer postId;
     private Integer categoryId;
     private String postTitle;
@@ -26,13 +26,4 @@ public class Post {
 
     // 페이징
     private Integer startNum;
-
-    public void update(Post post) {
-        this.postId = post.getPostId();
-        this.categoryId = post.getCategoryId();
-        this.postTitle = post.getPostTitle();
-        this.postContent = post.getPostContent();
-        this.postThumnail = post.getPostThumnail();
-    }
-
 }
