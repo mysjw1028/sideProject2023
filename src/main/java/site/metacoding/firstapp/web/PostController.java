@@ -24,6 +24,7 @@ import site.metacoding.firstapp.web.dto.post.PostDatailDto;
 import site.metacoding.firstapp.web.dto.post.PostListDto;
 import site.metacoding.firstapp.web.dto.post.PostReadDto;
 import site.metacoding.firstapp.web.dto.post.PostUpdateRespDto;
+import site.metacoding.firstapp.web.dto.post.PostpagingDto;
 
 @RequiredArgsConstructor
 @Controller
@@ -42,12 +43,14 @@ public class PostController {
         int startNum = page * 10;
 
         List<PostListDto> postList = postDao.findAll(startNum, userId);
+        PostpagingDto paging = postDao.paging(page);// 페이지 호출
         for (PostListDto postListDto : postList) {
             String s = postListDto.getPostThumnail();
             System.out.println("디버그    " + s);
         }
         model.addAttribute("postList", postList);
         model.addAttribute("postThumnail", postList);
+        model.addAttribute("paging", paging);
         return "post/listForm";
     }
 
@@ -63,7 +66,7 @@ public class PostController {
         imgDto.getPostThumnail();
         post.setPostThumnail(imgDto.getPostThumnail());
         postDao.insert(imgDto);
-        return "redirect:/";
+        return "post/listForm";
     }
 
     @GetMapping("/post/detailForm/{postId}/{userId}")

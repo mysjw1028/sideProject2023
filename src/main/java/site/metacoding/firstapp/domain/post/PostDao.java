@@ -10,6 +10,7 @@ import site.metacoding.firstapp.web.dto.post.PostDatailDto;
 import site.metacoding.firstapp.web.dto.post.PostListDto;
 import site.metacoding.firstapp.web.dto.post.PostReadDto;
 import site.metacoding.firstapp.web.dto.post.PostUpdateRespDto;
+import site.metacoding.firstapp.web.dto.post.PostpagingDto;
 
 public interface PostDao {
     public void insert(ImgDto imgDto);
@@ -31,4 +32,6 @@ public interface PostDao {
     public void update(Post post);
 
     public PostDatailDto findByDetail(@Param("postId") Integer postId, @Param("userId") Integer userId);
+
+    public PostpagingDto paging(Integer page);
 }

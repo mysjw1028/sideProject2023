@@ -72,6 +72,13 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
         </c:forEach>
 
+        <div style="background-color: aqua;">
+            <h3>totalCount : ${paging.totalCount}</h3>
+            <h3>totalPage : ${paging.totalPage}</h3>
+            <h3>currentPage : ${paging.currentPage}</h3>
+            <h3>isLast : ${paging.isLast}</h3>
+            <h3>isFirst : ${paging.isFirst}</h3>
+        </div>
         <!-- 페이지 -->
         <div class="d-flex justify-content-center">
             <ul class="pagination">
