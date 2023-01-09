@@ -46,7 +46,7 @@
         resultType="site.metacoding.firstapp.web.dto.post.PostpagingDto"> SELECT
         p.totalCount,p.totalPage,p.currentPage, (case currentPage when 0 then 1 else 0 end) first,
         (case currentPage when totalPage-1 then 1 ELSE 0 end) last FROM ( select count(*)
-        totalCount, ceil(COUNT(*)/8) totalPage, #{page} as currentPage, 0 as first, 0 as last FROM
+        totalCount, ceil(COUNT(*)/3) totalPage, #{page} as currentPage, 0 as first, 0 as last FROM
         post WHERE user_id = #{userId} )p </select>
 
 </mapper>

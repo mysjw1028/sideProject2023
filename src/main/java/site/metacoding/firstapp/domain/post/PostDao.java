@@ -33,5 +33,5 @@ public interface PostDao {
 
     public PostDatailDto findByDetail(@Param("postId") Integer postId, @Param("userId") Integer userId);
 
-    public PostpagingDto paging(Integer page);
+    public PostpagingDto paging(@Param("page") Integer page, @Param("userId") Integer userId);
 }

@@ -41,31 +41,28 @@ public class PostController {
         int startNum = page * 3; // 1. 수정함
 
         List<PostListDto> postList = postDao.findAll(startNum, userId);
-        PostpagingDto paging = postDao.paging(page);// 페이지 호출
+        PostpagingDto paging = postDao.paging(page, userId);// 페이지 호출
 
         // 2. 수정함
-        int blockCount = 5;
-        int currentBlock = page / 5;
-        int startPageNum = 1;
-        if (page != 0)
-            startPageNum = 1 + blockCount * currentBlock;
-        int lastPageNum = 5;
-        if (page != 0) {
-            lastPageNum = 5 + blockCount * currentBlock;
+        final int blockCount = 5;
 
-            if (paging.getTotalPage() < lastPageNum) {
-                lastPageNum = paging.getTotalPage();
-            }
+        int currentBlock = page / blockCount;
+        int startPageNum = 1 + blockCount * currentBlock;
+        int lastPageNum = 5 + blockCount * currentBlock;
+
+        if (paging.getTotalPage() < lastPageNum) {
+            lastPageNum = paging.getTotalPage();
         } // 예외라서 따로 빼둔다,
+
+        paging.setBlockCount(blockCount);
+        paging.setCurrentBlock(currentBlock);
+        paging.setStartPageNum(startPageNum);
+        paging.setLastPageNum(lastPageNum);
 
         for (PostListDto postListDto : postList) {
             String s = postListDto.getPostThumnail();
             System.out.println("디버그    " + s);
         }
-        paging.setBlockCount(blockCount);
-        paging.setCurrentBlock(currentBlock);
-        paging.setStartPageNum(startPageNum);
-        paging.setLastPageNum(lastPageNum);
 
         model.addAttribute("postList", postList);
         model.addAttribute("postThumnail", postList);
