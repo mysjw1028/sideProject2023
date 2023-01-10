@@ -12,8 +12,8 @@ public class PostPagingDto { // (= 0)
     private Integer startPageNum; // 변수 1 -> 6 -> 11
     private Integer lastPageNum; // 변수 5 -> 10 -> 15
     private Integer totalCount;
-    private Integer totalPage;
-    private Integer currentPage;
+    private Integer totalPage;// (=3) 23 / 한페이지당 개수 -> 10으로 나누면 된다.
+    private Integer currentPage; // 현재 몇 페이지 있는지
     private boolean isLast; // getter가 만들어지면 isLast() 이름으로 만들어짐. -> el에서는 last로 찾음
     private boolean isFirst; // getter가 만들어지면 isFirst() 이름으로 만들어짐. -> el에서는 first로 찾음
 

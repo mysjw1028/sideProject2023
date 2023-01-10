@@ -38,12 +38,12 @@ public class PostController {
     @GetMapping("/post/listForm/{userId}")
     public String 내블로그(Model model, Integer page, @PathVariable Integer userId, String keyword) { // 0 -> 0, 1->10,
         // 2->20
-        System.out.println("dddddddddd : keyword : " + keyword);
+        System.out.println("디버그 : keyword : " + keyword);
 
         if (page == null) {
             page = 0;
         }
-        int startNum = page * 3; // 1. 수정함
+        int startNum = page * 5; // 1. 수정함
 
         if (keyword == null || keyword.isEmpty()) {
             System.out.println("디버그 : ================");
@@ -51,42 +51,52 @@ public class PostController {
             PostPagingDto paging = postDao.paging(page, userId, null);// 페이지 호출
             paging.makeBlockInfo(keyword, userId);
 
-            // 2. 수정함
-            final int blockCount = 5;
-
-            int currentBlock = page / blockCount;
-            int startPageNum = 1 + blockCount * currentBlock;
-            int lastPageNum = 5 + blockCount * currentBlock;
-
-            if (paging.getTotalPage() < lastPageNum) {
-                lastPageNum = paging.getTotalPage();
-            } // 예외라서 따로 빼둔다,
-
-            paging.setBlockCount(blockCount);
-            paging.setCurrentBlock(currentBlock);
-            paging.setStartPageNum(startPageNum);
-            paging.setLastPageNum(lastPageNum);
-
-            for (PostListDto postListDto : postList) {
-                String s = postListDto.getPostThumnail();
-                System.out.println("디버그    " + s);
-            }
-
             model.addAttribute("postList", postList);
             model.addAttribute("postThumnail", postList);
             model.addAttribute("paging", paging);
+            for (PostListDto postListDto : postList) {
+                String s = postListDto.getKeyword();
+                String a = postListDto.getNickName();
+                String b = postListDto.getPostTitle();
+                String c = postListDto.getPostThumnail();
+                String d = postListDto.getCategoryTitle();
+                System.out.println("디버그 null  getKeyword " + s);
+                System.out.println("디버그 null  getNickName " + a);
+                System.out.println("디버그 null  getPostTitle   " + b);
+                System.out.println("디버그 null  getPostThumnail    " + c);
+                System.out.println("디버그 null  getCategoryTitle   " + d);
+
+            }
             return "post/listForm";
+
         } else {
             // null이 아닐경우
             List<PostListDto> postList = postDao.findSearch(startNum, userId, keyword);
             PostPagingDto paging = postDao.paging(page, userId, keyword);// 페이지 호출
+
             paging.makeBlockInfo(keyword, userId);
 
             model.addAttribute("postList", postList);
             model.addAttribute("postThumnail", postList);
             model.addAttribute("paging", paging);
-            System.out.println("디버그  키워드 " + paging.getKeyword());
 
+            System.out.println("디버그  키워드 " + paging.getKeyword());
+            System.out.println("디버그  키워드 " + postList);
+            System.out.println("디버그 키워드 " + postList.getClass());
+
+            for (PostListDto postListDto : postList) {
+                String s = postListDto.getKeyword();
+                String a = postListDto.getNickName();
+                String b = postListDto.getPostTitle();
+                String c = postListDto.getPostThumnail();
+                String d = postListDto.getCategoryTitle();
+                System.out.println("디버그 null이 아닐경우  getKeyword" + s);
+                System.out.println("디버그 null이 아닐경우 getNickName" + a);
+                System.out.println("디버그 null이 아닐경우  getPostTitle" + b);
+                System.out.println("디버그 null이 아닐경우  getPostThumnail " + c);
+                System.out.println("디버그 null이 아닐경우  getCategoryTitle " + d);
+
+            }
         }
 
         return "post/listForm";

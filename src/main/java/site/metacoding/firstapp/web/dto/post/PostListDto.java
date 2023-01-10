@@ -14,6 +14,7 @@ public class PostListDto {
     private String nickName;
     private String postContent;
     private String postThumnail;
+
     private Integer userId;
     private Timestamp updatedAt;
     private Timestamp createdAt;
@@ -23,6 +24,7 @@ public class PostListDto {
     private String postCount;
     private Integer loveId;
     private String categoryTitle;
+    private String keyword;
 
     // 페이징
     private Integer startNum;
