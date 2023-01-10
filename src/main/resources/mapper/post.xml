@@ -13,6 +13,11 @@
         #{userId},NOW()) </insert>
 
 
+    <select id="findSearch" resultType="site.metacoding.firstapp.web.dto.post.PostListDto"> SELECT
+        p.*, c.* FROM category c JOIN post p ON p.category_id = c.category_id WHERE p.user_id
+        =#{userId} AND p.post_title like CONCAT ('%','#{keyword}','%') OFFSET 0 ROWS FETCH NEXT 3
+        ROWS ONLY</select>
+
     <select id="findAll" resultType="site.metacoding.firstapp.web.dto.post.PostListDto">SELECT p.*,
         c.* FROM category c JOIN post p ON p.category_id =c.category_id WHERE p.user_id =#{userId}
         OFFSET #{startNum} ROWS FETCH NEXT 3 ROWS ONLY</select>
@@ -43,11 +48,13 @@
 
 
     <select id="paging"
-        resultType="site.metacoding.firstapp.web.dto.post.PostpagingDto"> SELECT
+        resultType="site.metacoding.firstapp.web.dto.post.PostPagingDto"> SELECT
         p.totalCount,p.totalPage,p.currentPage, (case currentPage when 0 then 1 else 0 end) first,
         (case currentPage when totalPage-1 then 1 ELSE 0 end) last FROM ( select count(*)
         totalCount, ceil(COUNT(*)/3) totalPage, #{page} as currentPage, 0 as first, 0 as last FROM
-        post WHERE user_id = #{userId} )p </select>
+        post WHERE user_id = #{userId} 
+        <if test="keyword != null">and post_title like '%${keyword}%' </if>
+        ) p </select>
 
 </mapper>
 

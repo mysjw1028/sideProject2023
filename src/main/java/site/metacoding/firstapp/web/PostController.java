@@ -22,9 +22,9 @@ import site.metacoding.firstapp.service.PostService;
 import site.metacoding.firstapp.web.dto.CMRespDto;
 import site.metacoding.firstapp.web.dto.post.PostDatailDto;
 import site.metacoding.firstapp.web.dto.post.PostListDto;
+import site.metacoding.firstapp.web.dto.post.PostPagingDto;
 import site.metacoding.firstapp.web.dto.post.PostReadDto;
 import site.metacoding.firstapp.web.dto.post.PostUpdateRespDto;
-import site.metacoding.firstapp.web.dto.post.PostpagingDto;
 
 @RequiredArgsConstructor
 @Controller
@@ -34,40 +34,63 @@ public class PostController {
     private final PostDao postDao;
     private final PostService postService;
 
+    // 1번째 ?page=0&keyword=스프링 -> 프라이머리키가 아니라서 @PathVariable를 걸음
     @GetMapping("/post/listForm/{userId}")
-    public String 내블로그(Model model, Integer page, @PathVariable Integer userId) { // 0 -> 0, 1->10, 2->20
-        if (page == null)
+    public String 내블로그(Model model, Integer page, @PathVariable Integer userId, String keyword) { // 0 -> 0, 1->10,
+        // 2->20
+        System.out.println("dddddddddd : keyword : " + keyword);
+
+        if (page == null) {
             page = 0;
+        }
         int startNum = page * 3; // 1. 수정함
 
-        List<PostListDto> postList = postDao.findAll(startNum, userId);
-        PostpagingDto paging = postDao.paging(page, userId);// 페이지 호출
+        if (keyword == null || keyword.isEmpty()) {
+            System.out.println("디버그 : ================");
+            List<PostListDto> postList = postDao.findAll(startNum, userId);
+            PostPagingDto paging = postDao.paging(page, userId, null);// 페이지 호출
+            paging.makeBlockInfo(keyword, userId);
 
-        // 2. 수정함
-        final int blockCount = 5;
+            // 2. 수정함
+            final int blockCount = 5;
 
-        int currentBlock = page / blockCount;
-        int startPageNum = 1 + blockCount * currentBlock;
-        int lastPageNum = 5 + blockCount * currentBlock;
+            int currentBlock = page / blockCount;
+            int startPageNum = 1 + blockCount * currentBlock;
+            int lastPageNum = 5 + blockCount * currentBlock;
 
-        if (paging.getTotalPage() < lastPageNum) {
-            lastPageNum = paging.getTotalPage();
-        } // 예외라서 따로 빼둔다,
+            if (paging.getTotalPage() < lastPageNum) {
+                lastPageNum = paging.getTotalPage();
+            } // 예외라서 따로 빼둔다,
 
-        paging.setBlockCount(blockCount);
-        paging.setCurrentBlock(currentBlock);
-        paging.setStartPageNum(startPageNum);
-        paging.setLastPageNum(lastPageNum);
+            paging.setBlockCount(blockCount);
+            paging.setCurrentBlock(currentBlock);
+            paging.setStartPageNum(startPageNum);
+            paging.setLastPageNum(lastPageNum);
 
-        for (PostListDto postListDto : postList) {
-            String s = postListDto.getPostThumnail();
-            System.out.println("디버그    " + s);
+            for (PostListDto postListDto : postList) {
+                String s = postListDto.getPostThumnail();
+                System.out.println("디버그    " + s);
+            }
+
+            model.addAttribute("postList", postList);
+            model.addAttribute("postThumnail", postList);
+            model.addAttribute("paging", paging);
+            return "post/listForm";
+        } else {
+            // null이 아닐경우
+            List<PostListDto> postList = postDao.findSearch(startNum, userId, keyword);
+            PostPagingDto paging = postDao.paging(page, userId, keyword);// 페이지 호출
+            paging.makeBlockInfo(keyword, userId);
+
+            model.addAttribute("postList", postList);
+            model.addAttribute("postThumnail", postList);
+            model.addAttribute("paging", paging);
+            System.out.println("디버그  키워드 " + paging.getKeyword());
+
         }
 
-        model.addAttribute("postList", postList);
-        model.addAttribute("postThumnail", postList);
-        model.addAttribute("paging", paging);
         return "post/listForm";
+
     }
 
     @GetMapping("/post/writeForm/{userId}")
