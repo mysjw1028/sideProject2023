@@ -13,30 +13,30 @@ import site.metacoding.firstapp.web.dto.post.PostReadDto;
 import site.metacoding.firstapp.web.dto.post.PostUpdateRespDto;
 
 public interface PostDao {
-    public void insert(ImgDto imgDto);
+        public void insert(ImgDto imgDto);
 
-    public List<PostListDto> findAll(@Param("startNum") int startNum, @Param("userId") Integer userId);
+        public List<PostListDto> findAll(@Param("startNum") int startNum, @Param("userId") Integer userId);
 
-    public PostPagingDto paging(@Param("page") Integer page, @Param("userId") Integer userId,
-            @Param("keyword") String keyword);
+        public PostPagingDto paging(@Param("page") Integer page, @Param("userId") Integer userId,
+                        @Param("keyword") String keyword);
 
-    public List<PostListDto> findSearch(@Param("startNum") int startNum, @Param("userId") Integer userId,
-            @Param("keyword") String keyword);
+        public List<PostListDto> findSearch(@Param("userId") Integer userId,
+                        @Param("keyword") String keyword);
 
-    public List<Category> findAllcategory(Integer userId);
+        public List<Category> findAllcategory(Integer userId);
 
-    public Post findById(Integer postId);
+        public Post findById(Integer postId);
 
-    public void deleteById(Integer postId);
+        public void deleteById(Integer postId);
 
-    public PostDatailDto detailOnly(Integer postId);
+        public PostDatailDto detailOnly(Integer postId);
 
-    public List<PostReadDto> readOnly(Integer userId);
+        public List<PostReadDto> readOnly(Integer userId);
 
-    public List<PostUpdateRespDto> updateView(@Param("postId") Integer postId, @Param("userId") Integer userId);
+        public List<PostUpdateRespDto> updateView(@Param("postId") Integer postId, @Param("userId") Integer userId);
 
-    public void update(Post post);
+        public void update(Post post);
 
-    public PostDatailDto findByDetail(@Param("postId") Integer postId, @Param("userId") Integer userId);
+        public PostDatailDto findByDetail(@Param("postId") Integer postId, @Param("userId") Integer userId);
 
 }

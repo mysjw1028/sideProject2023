@@ -65,13 +65,12 @@ public class PostController {
                 System.out.println("디버그 null  getPostTitle   " + b);
                 System.out.println("디버그 null  getPostThumnail    " + c);
                 System.out.println("디버그 null  getCategoryTitle   " + d);
-
             }
             return "post/listForm";
 
         } else {
             // null이 아닐경우
-            List<PostListDto> postList = postDao.findSearch(startNum, userId, keyword);
+            List<PostListDto> postList = postDao.findSearch(userId, keyword);
             PostPagingDto paging = postDao.paging(page, userId, keyword);// 페이지 호출
 
             paging.makeBlockInfo(keyword, userId);
@@ -80,9 +79,8 @@ public class PostController {
             model.addAttribute("postThumnail", postList);
             model.addAttribute("paging", paging);
 
-            System.out.println("디버그  키워드 " + paging.getKeyword());
-            System.out.println("디버그  키워드 " + postList);
-            System.out.println("디버그 키워드 " + postList.getClass());
+            System.out.println("디버그  paging키워드 " + paging.getKeyword());
+            System.out.println("디버그  postList키워드 " + postList);
 
             for (PostListDto postListDto : postList) {
                 String s = postListDto.getKeyword();
@@ -91,11 +89,10 @@ public class PostController {
                 String c = postListDto.getPostThumnail();
                 String d = postListDto.getCategoryTitle();
                 System.out.println("디버그 null이 아닐경우  getKeyword" + s);
-                System.out.println("디버그 null이 아닐경우 getNickName" + a);
+                System.out.println("디버그 null이 아닐경우  getNickName" + a);
                 System.out.println("디버그 null이 아닐경우  getPostTitle" + b);
                 System.out.println("디버그 null이 아닐경우  getPostThumnail " + c);
                 System.out.println("디버그 null이 아닐경우  getCategoryTitle " + d);
-
             }
         }
 
