@@ -78,21 +78,21 @@ public class PostController {
             model.addAttribute("postList", postList);
             model.addAttribute("postThumnail", postList);
             model.addAttribute("paging", paging);
+            model.addAttribute("keyword", postList);
 
+            System.out.println("디버그  searchList " + postList);
             System.out.println("디버그  paging키워드 " + paging.getKeyword());
-            System.out.println("디버그  postList키워드 " + postList);
-
             for (PostListDto postListDto : postList) {
                 String s = postListDto.getKeyword();
                 String a = postListDto.getNickName();
                 String b = postListDto.getPostTitle();
                 String c = postListDto.getPostThumnail();
                 String d = postListDto.getCategoryTitle();
-                System.out.println("디버그 null이 아닐경우  getKeyword" + s);
-                System.out.println("디버그 null이 아닐경우  getNickName" + a);
-                System.out.println("디버그 null이 아닐경우  getPostTitle" + b);
-                System.out.println("디버그 null이 아닐경우  getPostThumnail " + c);
-                System.out.println("디버그 null이 아닐경우  getCategoryTitle " + d);
+                System.out.println("디버그  getKeyword" + s);
+                System.out.println("디버그  getNickName" + a);
+                System.out.println("디버그  getPostTitle" + b);
+                System.out.println("디버그  getPostThumnail " + c);
+                System.out.println("디버그  getCategoryTitle " + d);
             }
         }
 
