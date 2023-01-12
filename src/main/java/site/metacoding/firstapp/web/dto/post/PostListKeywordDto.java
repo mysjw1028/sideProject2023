@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PostListDto {
+public class PostListKeywordDto {// 검색용 Dto
     private Integer postId;
     private Integer categoryId;
     private String postTitle;

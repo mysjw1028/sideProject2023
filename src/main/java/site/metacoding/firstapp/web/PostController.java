@@ -22,6 +22,7 @@ import site.metacoding.firstapp.service.PostService;
 import site.metacoding.firstapp.web.dto.CMRespDto;
 import site.metacoding.firstapp.web.dto.post.PostDatailDto;
 import site.metacoding.firstapp.web.dto.post.PostListDto;
+import site.metacoding.firstapp.web.dto.post.PostListKeywordDto;
 import site.metacoding.firstapp.web.dto.post.PostPagingDto;
 import site.metacoding.firstapp.web.dto.post.PostReadDto;
 import site.metacoding.firstapp.web.dto.post.PostUpdateRespDto;
@@ -38,7 +39,6 @@ public class PostController {
     @GetMapping("/post/listForm/{userId}")
     public String 내블로그(Model model, Integer page, @PathVariable Integer userId, String keyword) { // 0 -> 0, 1->10,
         // 2->20
-        System.out.println("디버그 : keyword : " + keyword);
 
         if (page == null) {
             page = 0;
@@ -48,6 +48,7 @@ public class PostController {
         if (keyword == null || keyword.isEmpty()) {
             System.out.println("디버그 : ================");
             List<PostListDto> postList = postDao.findAll(startNum, userId);
+
             PostPagingDto paging = postDao.paging(page, userId, null);// 페이지 호출
             paging.makeBlockInfo(keyword, userId);
 
@@ -69,25 +70,25 @@ public class PostController {
             return "post/listForm";
 
         } else {
-            // null이 아닐경우
-            List<PostListDto> postList = postDao.findSearch(userId, keyword);
+            // null이 아닐경우 //값에 안담김
+
+            System.out.println("디버그 : userId : " + userId);
+            List<PostListKeywordDto> postListkeyword = postDao.findSearch(userId, keyword);
             PostPagingDto paging = postDao.paging(page, userId, keyword);// 페이지 호출
-
             paging.makeBlockInfo(keyword, userId);
+            System.out.println("디버그 : keyword : " + keyword);
 
-            model.addAttribute("postList", postList);
-            model.addAttribute("postThumnail", postList);
+            model.addAttribute("postList", postListkeyword);
             model.addAttribute("paging", paging);
-            model.addAttribute("keyword", postList);
 
-            System.out.println("디버그  searchList " + postList);
+            System.out.println("디버그  postListkeyword " + postListkeyword);
             System.out.println("디버그  paging키워드 " + paging.getKeyword());
-            for (PostListDto postListDto : postList) {
-                String s = postListDto.getKeyword();
-                String a = postListDto.getNickName();
-                String b = postListDto.getPostTitle();
-                String c = postListDto.getPostThumnail();
-                String d = postListDto.getCategoryTitle();
+            for (PostListKeywordDto postListKeywordDto : postListkeyword) {
+                String s = postListKeywordDto.getKeyword();
+                String a = postListKeywordDto.getNickName();
+                String b = postListKeywordDto.getPostTitle();
+                String c = postListKeywordDto.getPostThumnail();
+                String d = postListKeywordDto.getCategoryTitle();
                 System.out.println("디버그  getKeyword" + s);
                 System.out.println("디버그  getNickName" + a);
                 System.out.println("디버그  getPostTitle" + b);
@@ -125,6 +126,7 @@ public class PostController {
         model.addAttribute("post", postDao.findById(postId));
         model.addAttribute("love", postDao.findByDetail(postId, userId));
         model.addAttribute("postThumnail", postDatailDtos);
+
         System.out.println("디버그 ~~~~~~~~ : " + postDao.detailOnly(userId));
         System.out.println("디버그 ~~~~~~~~ : " + postDatailDtos.getPostThumnail());
         return "post/detailForm";

@@ -71,6 +71,13 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
             </div>
 
         </c:forEach>
+        <div style="color: white; background-color: rgb(30, 30, 80) ;">
+            <h3>postTitle : ${postListKeywordDto[0].postTitle}</h3>
+            <h3>username : ${postListKeywordDto[0].username}</h3>
+            <h3>postContent : ${postListKeywordDto[0].postContent}</h3>
+            <h3>categoryId : ${postListKeywordDto[0].categoryId}</h3>
+            <h3>postId : ${postListKeywordDto[0].postId}</h3>
+        </div>
 
         <div style="background-color: grey;">
             <h3>blockCount : ${paging.blockCount}</h3>

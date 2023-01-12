@@ -8,6 +8,7 @@ import site.metacoding.firstapp.domain.category.Category;
 import site.metacoding.firstapp.domain.img.ImgDto;
 import site.metacoding.firstapp.web.dto.post.PostDatailDto;
 import site.metacoding.firstapp.web.dto.post.PostListDto;
+import site.metacoding.firstapp.web.dto.post.PostListKeywordDto;
 import site.metacoding.firstapp.web.dto.post.PostPagingDto;
 import site.metacoding.firstapp.web.dto.post.PostReadDto;
 import site.metacoding.firstapp.web.dto.post.PostUpdateRespDto;
@@ -20,7 +21,7 @@ public interface PostDao {
         public PostPagingDto paging(@Param("page") Integer page, @Param("userId") Integer userId,
                         @Param("keyword") String keyword);
 
-        public List<PostListDto> findSearch(@Param("userId") Integer userId,
+        public List<PostListKeywordDto> findSearch(@Param("userId") Integer userId,
                         @Param("keyword") String keyword);
 
         public List<Category> findAllcategory(Integer userId);

@@ -30,9 +30,7 @@ public class PostPagingDto { // (= 0)
         }
     }
 
-    public String contains(String keyword2) {
-        return null;
-    }
+  
 
 }// isLast / isFirst는 페이지마다 다르게 false & true이런식으로 해야한다private Integer startNum;
  // boolean은 의문문으로 만들어서

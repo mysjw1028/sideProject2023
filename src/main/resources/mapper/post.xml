@@ -8,14 +8,13 @@
     <select id="updateView" resultType="site.metacoding.firstapp.web.dto.post.PostUpdateRespDto">SELECT
         * FROM category WHERE user_id =#{userId}</select>
 
-    <insert id="insert"> INSERT INTO post(post_title, post_content, post_thumnail, category_id,
-        user_id, created_at) VALUES(#{postTitle}, #{postContent}, #{postThumnail}, #{categoryId},
-        #{userId},NOW()) </insert>
+  
+        <insert id="insert"> 
+            INSERT INTO post(post_title, post_content, post_thumnail, category_id,
+            user_id, created_at) VALUES(#{postTitle}, #{postContent}, #{postThumnail}, #{categoryId},
+            #{userId},NOW()) </insert>
 
 
-    <select id="findSearch" resultType="site.metacoding.firstapp.web.dto.post.PostListDto"> SELECT
-        p.*, c.* FROM category c JOIN post p ON p.category_id = c.category_id WHERE p.user_id
-        =#{userId} AND p.post_title like '%#{keyword}%' OFFSET 0 ROWS FETCH NEXT 3 ROWS ONLY</select>
 
 
     <select id="findAll" resultType="site.metacoding.firstapp.web.dto.post.PostListDto">SELECT p.*,
@@ -48,12 +47,30 @@
 
 
     <select id="paging"
-        resultType="site.metacoding.firstapp.web.dto.post.PostPagingDto"> SELECT
-        p.totalCount,p.totalPage,p.currentPage, (case currentPage when 0 then 1 else 0 end) first,
-        (case currentPage when totalPage-1 then 1 ELSE 0 end) last FROM ( select count(*)
-        totalCount, ceil(COUNT(*)/5) totalPage, #{page} as currentPage, 0 as first, 0 as last FROM
-        post WHERE user_id = #{userId} <if test="keyword != null"> and post_title like
-        CONCAT('%',#{keyword},'%')</if> ) p </select>
+        resultType="site.metacoding.firstapp.web.dto.post.PostPagingDto"> 
+        SELECT
+        p.totalCount,p.totalPage,p.currentPage, 
+        (case currentPage when 0 then 1 else 0 end) first,
+        (case currentPage when totalPage-1 then 1 ELSE 0 end) last 
+        FROM ( select count(*)
+        totalCount, ceil(COUNT(*)/5) totalPage, 
+        #{page} as currentPage, 0 as first, 0 as last FROM
+        post WHERE user_id = #{userId} 
+            <if test="keyword != null"> 
+            and post_title like
+            CONCAT('%',#{keyword},'%')
+            </if> ) p 
+    </select>
+    
+    <select id="findSearch" resultType="site.metacoding.firstapp.web.dto.post.PostListDto">
+         SELECT
+        p.*, c.* FROM category c JOIN post p ON p.category_id =c.category_id WHERE p.user_id =#{userId}
+            and p.post_title LIKE CONCAT('%','#{keyword}','%') 
+         OFFSET
+        0 ROWS FETCH NEXT 5 ROWS ONLY
+    </select>
+
+
 
 </mapper>
 
