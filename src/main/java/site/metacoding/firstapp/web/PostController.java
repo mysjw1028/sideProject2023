@@ -40,10 +40,9 @@ public class PostController {
     public String 내블로그(Model model, Integer page, @PathVariable Integer userId, String keyword) { // 0 -> 0, 1->10,
         // 2->20
 
-        if (page == null) {
+        if (page == null)
             page = 0;
-        }
-        int startNum = page * 5; // 1. 수정함
+        int startNum = page * 3; // 1. 수정함 -> 3개씩 보임
 
         if (keyword == null || keyword.isEmpty()) {
             System.out.println("디버그 : ================");
@@ -53,20 +52,8 @@ public class PostController {
             paging.makeBlockInfo(keyword, userId);
 
             model.addAttribute("postList", postList);
-            model.addAttribute("postThumnail", postList);
             model.addAttribute("paging", paging);
-            for (PostListDto postListDto : postList) {
-                String s = postListDto.getKeyword();
-                String a = postListDto.getNickName();
-                String b = postListDto.getPostTitle();
-                String c = postListDto.getPostThumnail();
-                String d = postListDto.getCategoryTitle();
-                System.out.println("디버그 null  getKeyword " + s);
-                System.out.println("디버그 null  getNickName " + a);
-                System.out.println("디버그 null  getPostTitle   " + b);
-                System.out.println("디버그 null  getPostThumnail    " + c);
-                System.out.println("디버그 null  getCategoryTitle   " + d);
-            }
+
             return "post/listForm";
 
         } else {
