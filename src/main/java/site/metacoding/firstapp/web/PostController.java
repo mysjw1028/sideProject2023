@@ -60,22 +60,22 @@ public class PostController {
             // null이 아닐경우 //값에 안담김
 
             System.out.println("디버그 : userId : " + userId);
-            List<PostListKeywordDto> postListkeyword = postDao.findSearch(userId, keyword);
+            List<PostListDto> postList = postDao.findSearch(userId, keyword);
             PostPagingDto paging = postDao.paging(page, userId, keyword);// 페이지 호출
             paging.makeBlockInfo(keyword, userId);
             System.out.println("디버그 : keyword : " + keyword);
 
-            model.addAttribute("postList", postListkeyword);
+            model.addAttribute("postList", postList);
             model.addAttribute("paging", paging);
 
-            System.out.println("디버그  postListkeyword " + postListkeyword);
+            System.out.println("디버그  postListkeyword " + postList);
             System.out.println("디버그  paging키워드 " + paging.getKeyword());
-            for (PostListKeywordDto postListKeywordDto : postListkeyword) {
-                String s = postListKeywordDto.getKeyword();
-                String a = postListKeywordDto.getNickName();
-                String b = postListKeywordDto.getPostTitle();
-                String c = postListKeywordDto.getPostThumnail();
-                String d = postListKeywordDto.getCategoryTitle();
+            for (PostListDto postListDto : postList) {
+                String s = postListDto.getKeyword();
+                String a = postListDto.getNickName();
+                String b = postListDto.getPostTitle();
+                String c = postListDto.getPostThumnail();
+                String d = postListDto.getCategoryTitle();
                 System.out.println("디버그  getKeyword" + s);
                 System.out.println("디버그  getNickName" + a);
                 System.out.println("디버그  getPostTitle" + b);

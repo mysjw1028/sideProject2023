@@ -21,7 +21,7 @@ public interface PostDao {
         public PostPagingDto paging(@Param("page") Integer page, @Param("userId") Integer userId,
                         @Param("keyword") String keyword);
 
-        public List<PostListKeywordDto> findSearch(@Param("userId") Integer userId,
+        public List<PostListDto> findSearch(@Param("userId") Integer userId,
                         @Param("keyword") String keyword);
 
         public List<Category> findAllcategory(Integer userId);

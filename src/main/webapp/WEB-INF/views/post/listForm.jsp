@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
     <div style="display: inline-flex;">
         <div style="width: 100px;">
-            <h5 style="line-height: 50px;">전체글(${postCount.postCount})</h5>
+            <!-- <h5 style="line-height: 50px;">전체글(${postCount.postCount})</h5> -->
         </div>
 
         <!-- 검색바 -->
