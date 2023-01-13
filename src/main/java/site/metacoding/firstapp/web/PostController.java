@@ -22,9 +22,9 @@ import site.metacoding.firstapp.service.PostService;
 import site.metacoding.firstapp.web.dto.CMRespDto;
 import site.metacoding.firstapp.web.dto.post.PostDatailDto;
 import site.metacoding.firstapp.web.dto.post.PostListDto;
+import site.metacoding.firstapp.web.dto.post.PostPagingDto;
 import site.metacoding.firstapp.web.dto.post.PostReadDto;
 import site.metacoding.firstapp.web.dto.post.PostUpdateRespDto;
-import site.metacoding.firstapp.web.dto.post.PostpagingDto;
 
 @RequiredArgsConstructor
 @Controller
@@ -34,40 +34,57 @@ public class PostController {
     private final PostDao postDao;
     private final PostService postService;
 
+    // 1번째 ?page=0&keyword=스프링 -> 프라이머리키가 아니라서 @PathVariable를 걸음
     @GetMapping("/post/listForm/{userId}")
-    public String 내블로그(Model model, Integer page, @PathVariable Integer userId) { // 0 -> 0, 1->10, 2->20
+    public String 내블로그(Model model, Integer page, @PathVariable Integer userId, String keyword) { // 0 -> 0, 1->10,
+        // 2->20
+
         if (page == null)
             page = 0;
-        int startNum = page * 3; // 1. 수정함
+        int startNum = page * 3; // 1. 수정함 -> 3개씩 보임
 
-        List<PostListDto> postList = postDao.findAll(startNum, userId);
-        PostpagingDto paging = postDao.paging(page, userId);// 페이지 호출
+        if (keyword == null || keyword.isEmpty()) {
+            System.out.println("디버그 : ================");
+            List<PostListDto> postList = postDao.findAll(startNum, userId);
 
-        // 2. 수정함
-        final int blockCount = 5;
+            PostPagingDto paging = postDao.paging(page, userId, null);// 페이지 호출
+            paging.makeBlockInfo(keyword, userId);
 
-        int currentBlock = page / blockCount;
-        int startPageNum = 1 + blockCount * currentBlock;
-        int lastPageNum = 5 + blockCount * currentBlock;
+            model.addAttribute("postList", postList);
+            model.addAttribute("paging", paging);
 
-        if (paging.getTotalPage() < lastPageNum) {
-            lastPageNum = paging.getTotalPage();
-        } // 예외라서 따로 빼둔다,
+            return "post/listForm";
 
-        paging.setBlockCount(blockCount);
-        paging.setCurrentBlock(currentBlock);
-        paging.setStartPageNum(startPageNum);
-        paging.setLastPageNum(lastPageNum);
+        } else {
+            // null이 아닐경우 //값에 안담김
 
-        for (PostListDto postListDto : postList) {
-            String s = postListDto.getPostThumnail();
-            System.out.println("디버그    " + s);
+            System.out.println("디버그 : userId : " + userId);
+            List<PostListDto> postList = postDao.findSearch(userId, keyword);
+            PostPagingDto paging = postDao.paging(page, userId, keyword);// 페이지 호출
+            paging.makeBlockInfo(keyword, userId);
+            System.out.println("디버그 : keyword : " + keyword);
+
+            model.addAttribute("postList", postList);
+            model.addAttribute("paging", paging);
+
+            System.out.println("디버그  postListkeyword " + postList);
+            System.out.println("디버그  paging키워드 " + paging.getKeyword());
+            for (PostListDto postListDto : postList) {
+                String s = postListDto.getKeyword();
+                String a = postListDto.getNickName();
+                String b = postListDto.getPostTitle();
+                String c = postListDto.getPostThumnail();
+                String d = postListDto.getCategoryTitle();
+                System.out.println("디버그  getKeyword" + s);
+                System.out.println("디버그  getNickName" + a);
+                System.out.println("디버그  getPostTitle" + b);
+                System.out.println("디버그  getPostThumnail " + c);
+                System.out.println("디버그  getCategoryTitle " + d);
+            }
         }
 
-        model.addAttribute("postList", postList);
-        model.addAttribute("postThumnail", postList);
-        model.addAttribute("paging", paging);
         return "post/listForm";
+
     }
 
     @GetMapping("/post/writeForm/{userId}")
@@ -95,6 +112,7 @@ public class PostController {
         model.addAttribute("post", postDao.findById(postId));
         model.addAttribute("love", postDao.findByDetail(postId, userId));
         model.addAttribute("postThumnail", postDatailDtos);
+
         System.out.println("디버그 ~~~~~~~~ : " + postDao.detailOnly(userId));
         System.out.println("디버그 ~~~~~~~~ : " + postDatailDtos.getPostThumnail());
         return "post/detailForm";
@@ -117,13 +135,15 @@ public class PostController {
     }
 
     @PostMapping("/post/update/{postId}/{userId}")
-    public String blogupdate(@PathVariable Integer postId, @PathVariable Integer userId, Post post) {
-        // System.out.println("디버그 getCategoryId : " + post.getCategoryId());
-        Post postPS = postDao.findById(postId);
-        postPS.update(post);
-        postDao.update(postPS);
-
-        return "redirect:/";
+    public String blogupdate(@PathVariable Integer postId, @PathVariable Integer userId, Post post, ImgDto imgDto) {
+        Post postPS = postDao.findById(postId); // DB에 있는지 확인
+        System.out.println("디버그 " + postPS.getPostThumnail());
+        postPS.update(imgDto);// DB에있는 값
+        System.out.println("디버그 " + postPS.getPostThumnail());
+        // imgDto.getPostThumnail();// 포스트 getter로 받아왔기 때문에 굳이 쓸필요 없다
+        // post.setPostThumnail(imgDto.getPostThumnail());// 이미지 넣기
+        postDao.update(imgDto);// 기존에 있던값 변경 & 이미지 넣기
+        return "post/listForm";
     }
 
     @PostMapping("/update/{postId}/delete") // 5번 deleteById -> 삭제하기 -> post로 값 삭제

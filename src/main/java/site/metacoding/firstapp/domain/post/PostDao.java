@@ -8,30 +8,35 @@ import site.metacoding.firstapp.domain.category.Category;
 import site.metacoding.firstapp.domain.img.ImgDto;
 import site.metacoding.firstapp.web.dto.post.PostDatailDto;
 import site.metacoding.firstapp.web.dto.post.PostListDto;
+import site.metacoding.firstapp.web.dto.post.PostPagingDto;
 import site.metacoding.firstapp.web.dto.post.PostReadDto;
 import site.metacoding.firstapp.web.dto.post.PostUpdateRespDto;
-import site.metacoding.firstapp.web.dto.post.PostpagingDto;
 
 public interface PostDao {
-    public void insert(ImgDto imgDto);
+        public void insert(ImgDto imgDto);
 
-    public List<PostListDto> findAll(@Param("startNum") int startNum, @Param("userId") Integer userId);
+        public List<PostListDto> findAll(@Param("startNum") int startNum, @Param("userId") Integer userId);
 
-    public List<Category> findAllcategory(Integer userId);
+        public PostPagingDto paging(@Param("page") Integer page, @Param("userId") Integer userId,
+                        @Param("keyword") String keyword);
 
-    public Post findById(Integer postId);
+        public List<PostListDto> findSearch(@Param("userId") Integer userId,
+                        @Param("keyword") String keyword);
 
-    public void deleteById(Integer postId);
+        public List<Category> findAllcategory(Integer userId);
 
-    public PostDatailDto detailOnly(Integer postId);
+        public Post findById(Integer postId);
 
-    public List<PostReadDto> readOnly(Integer userId);
+        public void deleteById(Integer postId);
 
-    public List<PostUpdateRespDto> updateView(@Param("postId") Integer postId, @Param("userId") Integer userId);
+        public PostDatailDto detailOnly(Integer postId);
 
-    public void update(Post post);
+        public List<PostReadDto> readOnly(Integer userId);
 
-    public PostDatailDto findByDetail(@Param("postId") Integer postId, @Param("userId") Integer userId);
+        public List<PostUpdateRespDto> updateView(@Param("postId") Integer postId, @Param("userId") Integer userId);
 
-    public PostpagingDto paging(@Param("page") Integer page, @Param("userId") Integer userId);
+        public void update(ImgDto imgDto);
+
+        public PostDatailDto findByDetail(@Param("postId") Integer postId, @Param("userId") Integer userId);
+
 }

@@ -103,7 +103,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
         }).done((res) => {
             if (res.code == 1) {
                 alert(" 포스팅 업로드 성공");
-                location.href = "/";
+                location.href = "/post/listForm/${principal.userId}";
             }
         });
     }
