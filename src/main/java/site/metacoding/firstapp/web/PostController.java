@@ -22,7 +22,6 @@ import site.metacoding.firstapp.service.PostService;
 import site.metacoding.firstapp.web.dto.CMRespDto;
 import site.metacoding.firstapp.web.dto.post.PostDatailDto;
 import site.metacoding.firstapp.web.dto.post.PostListDto;
-import site.metacoding.firstapp.web.dto.post.PostListKeywordDto;
 import site.metacoding.firstapp.web.dto.post.PostPagingDto;
 import site.metacoding.firstapp.web.dto.post.PostReadDto;
 import site.metacoding.firstapp.web.dto.post.PostUpdateRespDto;
@@ -109,6 +108,7 @@ public class PostController {
 
         model.addAttribute("PostDatailDto", postService.게시글상세보기(postId, userId));
 
+        
         model.addAttribute("categoryTitle", postDatailDtos);// 모델에 띄우는거
         model.addAttribute("post", postDao.findById(postId));
         model.addAttribute("love", postDao.findByDetail(postId, userId));

@@ -8,7 +8,6 @@ import site.metacoding.firstapp.domain.category.Category;
 import site.metacoding.firstapp.domain.img.ImgDto;
 import site.metacoding.firstapp.web.dto.post.PostDatailDto;
 import site.metacoding.firstapp.web.dto.post.PostListDto;
-import site.metacoding.firstapp.web.dto.post.PostListKeywordDto;
 import site.metacoding.firstapp.web.dto.post.PostPagingDto;
 import site.metacoding.firstapp.web.dto.post.PostReadDto;
 import site.metacoding.firstapp.web.dto.post.PostUpdateRespDto;

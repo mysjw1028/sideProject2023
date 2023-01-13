@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
     <div style="display: inline-flex;">
         <div style="width: 100px;">
-            <!-- <h5 style="line-height: 50px;">전체글(${postCount.postCount})</h5> -->
+            <h5 style="line-height: 50px;">전체글(${postCount.postCount})</h5>
         </div>
 
         <!-- 검색바 -->
@@ -71,25 +71,6 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
             </div>
 
         </c:forEach>
-        <div style="color: white; background-color: rgb(30, 30, 80) ;">
-            <h3>postTitle : ${postListKeywordDto[0].postTitle}</h3>
-            <h3>username : ${postListKeywordDto[0].username}</h3>
-            <h3>postContent : ${postListKeywordDto[0].postContent}</h3>
-            <h3>categoryId : ${postListKeywordDto[0].categoryId}</h3>
-            <h3>postId : ${postListKeywordDto[0].postId}</h3>
-        </div>
-
-        <div style="background-color: grey;">
-            <h3>blockCount : ${paging.blockCount}</h3>
-            <h3>currentBlock : ${paging.currentBlock}</h3>
-            <h3>startPageNum : ${paging.startPageNum}</h3>
-            <h3>lastPageNum : ${paging.lastPageNum}</h3>
-            <h3>totalCount : ${paging.totalCount}</h3>
-            <h3>totalPage : ${paging.totalPage}</h3>
-            <h3>currentPage : ${paging.currentPage}</h3>
-            <h3>isLast : ${paging.last}</h3>
-            <h3>isFirst : ${paging.first}</h3>
-        </div>
 
         <!-- 페이지 -->
         <div class="d-flex justify-content-center">
