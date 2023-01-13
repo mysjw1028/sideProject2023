@@ -108,7 +108,6 @@ public class PostController {
 
         model.addAttribute("PostDatailDto", postService.게시글상세보기(postId, userId));
 
-        
         model.addAttribute("categoryTitle", postDatailDtos);// 모델에 띄우는거
         model.addAttribute("post", postDao.findById(postId));
         model.addAttribute("love", postDao.findByDetail(postId, userId));
@@ -136,13 +135,15 @@ public class PostController {
     }
 
     @PostMapping("/post/update/{postId}/{userId}")
-    public String blogupdate(@PathVariable Integer postId, @PathVariable Integer userId, Post post) {
-        // System.out.println("디버그 getCategoryId : " + post.getCategoryId());
-        Post postPS = postDao.findById(postId);
-        postPS.update(post);
-        postDao.update(postPS);
-
-        return "redirect:/";
+    public String blogupdate(@PathVariable Integer postId, @PathVariable Integer userId, Post post, ImgDto imgDto) {
+        Post postPS = postDao.findById(postId); // DB에 있는지 확인
+        System.out.println("디버그 " + postPS.getPostThumnail());
+        postPS.update(imgDto);// DB에있는 값
+        System.out.println("디버그 " + postPS.getPostThumnail());
+        // imgDto.getPostThumnail();// 포스트 getter로 받아왔기 때문에 굳이 쓸필요 없다
+        // post.setPostThumnail(imgDto.getPostThumnail());// 이미지 넣기
+        postDao.update(imgDto);// 기존에 있던값 변경 & 이미지 넣기
+        return "post/listForm";
     }
 
     @PostMapping("/update/{postId}/delete") // 5번 deleteById -> 삭제하기 -> post로 값 삭제

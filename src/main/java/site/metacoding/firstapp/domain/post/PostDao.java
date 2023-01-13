@@ -35,7 +35,7 @@ public interface PostDao {
 
         public List<PostUpdateRespDto> updateView(@Param("postId") Integer postId, @Param("userId") Integer userId);
 
-        public void update(Post post);
+        public void update(ImgDto imgDto);
 
         public PostDatailDto findByDetail(@Param("postId") Integer postId, @Param("userId") Integer userId);
 

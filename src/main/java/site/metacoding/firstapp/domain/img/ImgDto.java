@@ -14,6 +14,7 @@ public class ImgDto {
     private String postContent;
     private String postThumnail;
     private Integer userId;
+    private Integer postId;
     private String categoryTitle;
     private Integer categoryId;
     private Timestamp createdAt;

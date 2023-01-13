@@ -28,17 +28,16 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
             <input type="hidden" id="categoryId" value="${post.categoryId}" name="categoryId" />
         </div>
 
-        <input type="text" name="postTitle" value="${post.postTitle}" class="form-control">
+        <input type="text" id="postTitle" name="postTitle" value="${post.postTitle}" class="form-control">
         <div class="mb-3">
-            <textarea name="postContent" id="postContent">${post.postContent}</textarea>
+            <textarea name="postContent" id="postContent" rows="8">${post.postContent}</textarea>
         </div>
         <form enctype="multipart/form-data" id="fileUploadForm">
             <div class="form-group">
-
-                <input type="file" id="file" />
-
+                썸네일 사진등록 :
+                <input type="file" id="file" multiple />
             </div>
-        </form><%--사진등록--%>
+        </form> <%--사진등록--%>
         <div style="display: flex;justify-content: right;">
             <button type="submit" class="my_active_btn" id="btnupdate">수정완료</button>
         </div>
@@ -72,7 +71,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
         };
         formData.append("file", $("#file")[0].files[0]);
         formData.append(
-            "postUpdateDto",
+            "postUpdateReqDto",
             new Blob([JSON.stringify(data)], { type: "application/json" })
         );
 
@@ -83,13 +82,14 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
             let formData = new FormData();
             let data = {
                 userId: $("#userId").val(),
+                postId: $("#postId").val(),
                 categoryId: $("#categoryId").val(),
                 postTitle: $("#postTitle").val(),
                 postContent: $("#postContent").val()
             }
             formData.append('file', $("#file")[0].files[0]);
             formData.append('imgDto', new Blob([JSON.stringify(data)], { type: "application/json" }));
-            $.ajax("/post/save", {
+            $.ajax("/post/update", {
                 type: "POST",
                 data: formData,
                 processData: false,
@@ -97,8 +97,8 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
                 enctype: 'multipart/form-data'
             }).done((res) => {
                 if (res.code == 1) {
-                    alert(" 포스팅 업로드 성공");
-                    location.href = "/";
+                    alert(" 포스팅 수정 성공");
+                    location.href = "/post/listForm/${principal.userId}";
                 }
             });
         }

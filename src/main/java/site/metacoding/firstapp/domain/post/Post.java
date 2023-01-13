@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
+import site.metacoding.firstapp.domain.img.ImgDto;
 
 @Getter
 @Setter
@@ -27,12 +28,12 @@ public class Post {
     // 페이징
     private Integer startNum;
 
-    public void update(Post post) {
-        this.postId = post.getPostId();
-        this.categoryId = post.getCategoryId();
-        this.postTitle = post.getPostTitle();
-        this.postContent = post.getPostContent();
-        this.postThumnail = post.getPostThumnail();
+    public void update(ImgDto imgDto) {
+        this.postId = imgDto.getPostId();
+        this.categoryId = imgDto.getCategoryId();
+        this.postTitle = imgDto.getPostTitle();
+        this.postContent = imgDto.getPostContent();
+        this.postThumnail = imgDto.getPostThumnail();
     }
 
 }
