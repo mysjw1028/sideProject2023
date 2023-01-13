@@ -129,7 +129,7 @@ public class ImgController {
     // 1 post컨트롤러가 돌아간다고 착각을 함
     // 2 실제로는 ImgController가 돌아감
     // 3 실제로는 다른컨토롤러에서 돌린거 처럼 imgController에서 findById해서 postId를 들고와서 DB에 있는 값을 찾아서
-    // imgDto에 있는 postId가 그대로 값이 들어감 -> jsp에있는 js가 인식을 해서 값이 변겅
+    // imgDto에 있는 postId가 그대로 값이 들어감 -> jsp에있는 js가 인식을 해서 값이 변겅 test
 
     @PostMapping(value = "/uploadTest", consumes = { MediaType.APPLICATION_JSON_VALUE,
             MediaType.MULTIPART_FORM_DATA_VALUE }) // jsp파일명이랑 이름이 같아야한다.
