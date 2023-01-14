@@ -21,7 +21,7 @@ public interface PostDao {
                         @Param("keyword") String keyword);
 
         public List<PostListDto> findSearch(@Param("userId") Integer userId,
-                        @Param("keyword") String keyword);
+                        @Param("keyword") String keyword, @Param("startNum") int startNum);
 
         public List<Category> findAllcategory(Integer userId);
 

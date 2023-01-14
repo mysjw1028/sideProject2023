@@ -51,15 +51,10 @@
         post WHERE user_id = #{userId} <if test="keyword != null"> and post_title like
         CONCAT('%',#{keyword},'%') </if> ) p </select>
 
-    <select id="findSearch" resultType="site.metacoding.firstapp.web.dto.post.PostListDto">
-        SELECT
-        p.*, c.* FROM category c JOIN post p 
-        ON p.category_id =c.category_id WHERE p.user_id  =#{userId} 
-        and p.post_title LIKE '%${keyword}%' 
-        OFFSET 0 ROWS FETCH NEXT 3 ROWS ONLY 
-    </select>
-
-
+    <select id="findSearch" resultType="site.metacoding.firstapp.web.dto.post.PostListDto"> SELECT
+        p.*, c.* FROM category c JOIN post p ON p.category_id =c.category_id WHERE p.user_id
+        =#{userId} and p.post_title LIKE '%${keyword}%' OFFSET #{startNum} ROWS FETCH NEXT 3 ROWS
+        ONLY </select>
 
 
 </mapper>
