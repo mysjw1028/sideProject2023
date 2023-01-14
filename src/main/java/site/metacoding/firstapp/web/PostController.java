@@ -59,7 +59,7 @@ public class PostController {
             // null이 아닐경우 //값에 안담김
 
             System.out.println("디버그 : userId : " + userId);
-            List<PostListDto> postList = postDao.findSearch(userId, keyword);
+            List<PostListDto> postList = postDao.findSearch(userId, keyword, startNum);
             PostPagingDto paging = postDao.paging(page, userId, keyword);// 페이지 호출
             paging.makeBlockInfo(keyword, userId);
             System.out.println("디버그 : keyword : " + keyword);
