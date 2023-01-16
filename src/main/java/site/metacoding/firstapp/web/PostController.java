@@ -64,13 +64,11 @@ public class PostController {
             List<PostListDto> postList = postDao.findSearch(userId, keyword, startNum);
             PostPagingDto paging = postDao.paging(page, userId, keyword);// 페이지 호출
             paging.makeBlockInfo(keyword, userId);
-            System.out.println("디버그 : keyword : " + keyword);
 
             model.addAttribute("postList", postList);
             model.addAttribute("paging", paging);
 
             System.out.println("디버그  postListkeyword " + postList);
-            System.out.println("디버그  paging키워드 " + paging.getKeyword());
         }
 
         return "post/listForm";

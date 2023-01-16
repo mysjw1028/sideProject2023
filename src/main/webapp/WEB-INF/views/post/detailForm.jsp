@@ -12,8 +12,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
         <input id="loveuserId" type="hidden" value="${love.userId}" />
 
-
-
+      
         <div class="my_post_detail_title">
             <div style="color: gray; font-size: 18;">
                 ${categoryTitle.categoryTitle}
@@ -53,6 +52,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
                 </c:otherwise>
 
             </c:choose>
+            
 
 
         </div>
