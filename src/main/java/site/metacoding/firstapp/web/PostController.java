@@ -18,6 +18,7 @@ import site.metacoding.firstapp.domain.love.Love;
 import site.metacoding.firstapp.domain.post.Post;
 import site.metacoding.firstapp.domain.post.PostDao;
 import site.metacoding.firstapp.domain.user.User;
+import site.metacoding.firstapp.domain.user.UserDao;
 import site.metacoding.firstapp.service.PostService;
 import site.metacoding.firstapp.web.dto.CMRespDto;
 import site.metacoding.firstapp.web.dto.post.PostDatailDto;
@@ -32,6 +33,7 @@ public class PostController {
 
     private final HttpSession session;
     private final PostDao postDao;
+    private final UserDao userDao;
     private final PostService postService;
 
     // 1번째 ?page=0&keyword=스프링 -> 프라이머리키가 아니라서 @PathVariable를 걸음
@@ -69,18 +71,6 @@ public class PostController {
 
             System.out.println("디버그  postListkeyword " + postList);
             System.out.println("디버그  paging키워드 " + paging.getKeyword());
-            for (PostListDto postListDto : postList) {
-                String s = postListDto.getKeyword();
-                String a = postListDto.getNickName();
-                String b = postListDto.getPostTitle();
-                String c = postListDto.getPostThumnail();
-                String d = postListDto.getCategoryTitle();
-                System.out.println("디버그  getKeyword" + s);
-                System.out.println("디버그  getNickName" + a);
-                System.out.println("디버그  getPostTitle" + b);
-                System.out.println("디버그  getPostThumnail " + c);
-                System.out.println("디버그  getCategoryTitle " + d);
-            }
         }
 
         return "post/listForm";
@@ -106,15 +96,14 @@ public class PostController {
     public String 블로그상세보기(@PathVariable Integer postId, @PathVariable Integer userId, Model model) {
         PostDatailDto postDatailDtos = postDao.detailOnly(postId);// 얘를 올려서
 
+        model.addAttribute("user", userDao.findById(userId));
+
         model.addAttribute("PostDatailDto", postService.게시글상세보기(postId, userId));
 
         model.addAttribute("categoryTitle", postDatailDtos);// 모델에 띄우는거
         model.addAttribute("post", postDao.findById(postId));
         model.addAttribute("love", postDao.findByDetail(postId, userId));
         model.addAttribute("postThumnail", postDatailDtos);
-
-        System.out.println("디버그 ~~~~~~~~ : " + postDao.detailOnly(userId));
-        System.out.println("디버그 ~~~~~~~~ : " + postDatailDtos.getPostThumnail());
         return "post/detailForm";
     }
 
@@ -168,7 +157,7 @@ public class PostController {
     @DeleteMapping("/post/{postId}/loves/{loveId}") // 충돌나서 lovesId
     public @ResponseBody CMRespDto<?> deleteLoves(@PathVariable Integer postId, @PathVariable Integer loveId) {
         postService.좋아요취소(loveId);
-        System.out.println("디버그!!!!!!  : " + loveId);
+        // System.out.println("디버그!!!!!! : " + loveId);
         return new CMRespDto<>(1, "좋아요 취소 성공", null);
     }
 

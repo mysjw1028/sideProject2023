@@ -42,7 +42,7 @@
                 </a>
                 <a href="/post/listForm/${post.userId}" class="my_atag_none">
                     <div class="my_main_item_username">
-                        <span>by ${post.nickname} </span>
+                        <span>by ${post.nickName} </span>
                     </div>
                 </a>
             </div>

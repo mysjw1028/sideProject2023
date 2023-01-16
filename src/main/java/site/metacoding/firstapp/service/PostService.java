@@ -12,7 +12,6 @@ import site.metacoding.firstapp.web.dto.post.PostDatailDto;
 @RequiredArgsConstructor
 @Service
 public class PostService {
-
     private final PostDao postDao;
     private final LoveDao loveDao;
 
@@ -28,5 +27,4 @@ public class PostService {
     public PostDatailDto 게시글상세보기(@PathVariable Integer postId, @PathVariable Integer userId) {
         return postDao.findByDetail(postId, userId);
     }
-
 }

@@ -2,24 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.metacoding.firstapp.domain.user.UserDao">
 
-    <insert id="insert">
-        INSERT INTO user(username ,password ,email ,nick_name ,created_at) 
-        VALUES(#{userName} ,#{password} ,#{email},#{nickName},NOW())
-    </insert>
+    <insert id="insert"> INSERT INTO user(username ,password ,email ,nick_name ,created_at)
+        VALUES(#{userName} ,#{password} ,#{email},#{nickName},NOW()) </insert>
 
-    <select id="login" resultType="site.metacoding.firstapp.domain.user.User">
-		SELECT * FROM user WHERE  username =#{userName} AND password=#{password}
-	</select>
+    <select id="login" resultType="site.metacoding.firstapp.domain.user.User"> SELECT * FROM user
+        WHERE username =#{userName} AND password=#{password} </select>
+
+    <select id="findById"
+        resultType="site.metacoding.firstapp.domain.user.User">SELECT * FROM user WHERE user_id =
+        #{userId}</select>
 
     <select id="findByIdUserName"
-        resultType="site.metacoding.firstapp.domain.user.User">
-		SELECT * FROM user WHERE username = #{userName}
-	</select>
+        resultType="site.metacoding.firstapp.domain.user.User"> SELECT * FROM user WHERE username =
+        #{userName} </select>
+
 
     <select id="passwordCheckForm"
-        resultType="site.metacoding.firstapp.domain.user.User">
-    SELECT * FROM user WHERE user_id =#{userId} AND password=#{password}
-    </select>
+        resultType="site.metacoding.firstapp.domain.user.User"> SELECT * FROM user WHERE user_id
+        =#{userId} AND password=#{password} </select>
 
 </mapper>
     

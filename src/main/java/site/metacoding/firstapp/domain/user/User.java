@@ -21,6 +21,7 @@ public class User {
     // 디비에 없는값
     private Integer postId;
     private Integer categoryId;
+    private String profileImg;
 
     public User(String userName, String password, String email, String nickName) {
         this.userName = userName;

@@ -32,6 +32,9 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     <link rel="stylesheet" href="/css/styles.css" />
 </head>
 
+<input id="userId" type="hidden" value="${user.userId}" />
+<input id="postId" type="hidden" value="${post.postId}" />
+
 <body class="drawer drawer--left" style="height:  72px;">
     <div style="margin-bottom: 70px ">
         <nav class="drawer-nav my_nav_slider" role="navigation">
@@ -65,7 +68,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 
             <div class="my_navbar_title">
                 <a href="/" style="color: black " style>
-                    ${principal.nickName} 의 블로그</a>
+                    ${user.nickName} 의 블로그</a>
             </div>
             <input type="hidden" id="userId" value="${principal.nickName}" name="userId" />
 
