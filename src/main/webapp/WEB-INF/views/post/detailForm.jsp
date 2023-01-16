@@ -3,14 +3,15 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
 <div class="container">
     <form action="/update/${postId}/delete" method="post">
-
         <input id="postId" type="hidden" value="${post.postId}" />
         <input id="userId" type="hidden" value="${post.userId}" />
+
         <input id="categoryId" type="hidden" value="${category.categoryId}" />
 
         <input id="loveId" type="hidden" value="${love.loveId}" name="loveId" />
 
         <input id="loveuserId" type="hidden" value="${love.userId}" />
+
 
 
         <div class="my_post_detail_title">
@@ -39,14 +40,14 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
                 <c:when test="${principal.userId==post.userId}">
                     <div style="padding-left: 550px; ">
-                        작성자: ${principal.nickName}
+                        작성자: ${user.nickName}
                         최근 수정일: ${post.updatedAt}
                     </div>
                 </c:when>
 
                 <c:otherwise>
                     <div style="padding-left: 750px; ">
-                        작성자: ${user.nickName}
+                        작성자: ${user.nickName}</a>&nbsp;&nbsp;
                         최근 수정일: ${post.updatedAt}
                     </div>
                 </c:otherwise>

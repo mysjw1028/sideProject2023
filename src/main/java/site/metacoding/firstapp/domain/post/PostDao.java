@@ -17,6 +17,8 @@ public interface PostDao {
 
         public List<PostListDto> findAll(@Param("startNum") int startNum, @Param("userId") Integer userId);
 
+        public List<Post> findAllMain();
+
         public PostPagingDto paging(@Param("page") Integer page, @Param("userId") Integer userId,
                         @Param("keyword") String keyword);
 

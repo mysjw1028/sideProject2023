@@ -24,4 +24,5 @@ public class PostDatailDto {
     private Integer loveCount;
     private boolean isLoved;
     private Timestamp createdAt;
+    private Timestamp updatedAt;
 }

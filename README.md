@@ -11,30 +11,30 @@ USE blogdb;
 
 
 create table user(
-    user_id int primary KEY auto_increment,
-    username VARCHAR(20) NOT NULL UNIQUE,
+     user_id int primary KEY auto_increment,
+     username VARCHAR(20) NOT NULL UNIQUE,
 	 password varchar(20) NOT NULL,
-    nick_name varchar(20) NOT NULL,
-    email VARCHAR(50) NOT NULL UNIQUE,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+     nick_name varchar(20) NOT NULL,
+     email VARCHAR(50) NOT NULL UNIQUE,
+     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 create table category(
 	 category_id INT primary KEY auto_increment,
-    category_title VARCHAR(50) NOT NULL, 
+     category_title VARCHAR(50) NOT NULL, 
 	 user_id INT NOT null,
-    created_at TIMESTAMP NOT NULL DEFAULT current_timestamp
+     created_at TIMESTAMP NOT NULL DEFAULT current_timestamp
 );
 
 create table post(
 	 post_id INT primary KEY auto_increment,
 	 post_title varchar(20) NOT null,
-    post_content longtext NOT null,
-    post_thumnail longtext,
-    category_id INT NOT NULL, 
+     post_content longtext NOT null,
+     post_thumnail longtext,
+     category_id INT NOT NULL, 
 	 user_id INT NOT null,
 	 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE current_timestamp,
-    created_at TIMESTAMP NOT NULL DEFAULT current_timestamp
+     created_at TIMESTAMP NOT NULL DEFAULT current_timestamp
 );
 
  create table love(
@@ -42,7 +42,7 @@ create table post(
 	 post_id INT NOT null,
 	 user_id INT NOT null,
 	 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE current_timestamp,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
      UNIQUE uk_loves (user_id,post_id)
 );
 

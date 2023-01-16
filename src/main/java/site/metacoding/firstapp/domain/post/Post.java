@@ -10,12 +10,11 @@ import site.metacoding.firstapp.domain.img.ImgDto;
 @Setter
 public class Post {
     private Integer postId;
+    private Integer userId;
     private Integer categoryId;
     private String postTitle;
-    private String nickName;
     private String postContent;
     private String postThumnail;
-    private Integer userId;
     private Timestamp updatedAt;
     private Timestamp createdAt;
 
@@ -24,6 +23,7 @@ public class Post {
     private String postCount;
     private Integer loveId;
     private String categoryTitle;
+    private String nickName;
 
     // 페이징
     private Integer startNum;
