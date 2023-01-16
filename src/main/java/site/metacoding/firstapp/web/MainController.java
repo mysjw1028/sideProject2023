@@ -17,14 +17,26 @@ public class MainController {
     private final PostDao postDao;
 
     @GetMapping({ "/", "/mainForm" }) // 화면 출력되는지 확인 완료
-    public String 메인페이지(Model model) {
+    public String 메인페이지(Model model, String keyword) {
+        System.out.println("디버그 : keyword : " + keyword);
 
-        List<Post> postList = postDao.findAllMain();
+        if (keyword == null || keyword.isEmpty()) {
+            List<Post> postListsearch = postDao.findSearchMain(null);
 
-        model.addAttribute("post", postList);
-        model.addAttribute("postList", postList);
-        model.addAttribute("nickName", postList);
-        model.addAttribute("postThumnail", postList);
-        return "mainForm";
+            model.addAttribute("post", postListsearch);
+            model.addAttribute("postList", postListsearch);
+            model.addAttribute("nickName", postListsearch);
+            model.addAttribute("postThumnail", postListsearch);
+            return "mainForm";
+        } else {
+            System.out.println("디버그 : keyword : " + keyword);
+            List<Post> postListsearch = postDao.findSearchMain(keyword);
+
+            model.addAttribute("post", postListsearch);
+            model.addAttribute("postList", postListsearch);
+            model.addAttribute("nickName", postListsearch);
+            model.addAttribute("postThumnail", postListsearch);
+            return "mainForm";
+        }
     }
 }
