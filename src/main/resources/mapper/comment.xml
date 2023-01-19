@@ -3,13 +3,13 @@
 <mapper namespace="site.metacoding.firstapp.domain.comment.CommentDao">
 
     <select id="commentOnly" resultType="site.metacoding.firstapp.web.dto.comment.CommentReadDto">
-        SELECT p.post_id, p.post_title,
-        p.post_content,p.post_thumnail,p.user_id,p.category_id,c.category_id,c.category_title,
-        c.user_id,co.comment_id,co.comment_content,co.user_id,co.created_at, u.user_id,u.nick_name
-        FROM post p JOIN category c ON c.category_id = p.category_id INNER join comment co ON
-        p.post_id = co.post_id INNER JOIN user u ON u.user_id = co.user_id WHERE p.post_id =#{postId} </select>
+        SELECT p.post_id, p.post_title, p.post_content,p.post_thumnail,p.user_id,p.category_id,
+        c.category_id,c.category_title,c.user_id,co.comment_id,co.comment_content,co.user_id,
+        co.created_at, u.user_id,u.nick_name FROM post p JOIN category c ON c.category_id =
+        p.category_id INNER join comment co ON p.post_id = co.post_id INNER JOIN user u ON u.user_id
+        = co.user_id WHERE p.post_id =#{postId} </select>
 
     <insert id="insert"> INSERT INTO comment(user_id, post_id,comment_content,created_at)
-        VALUES(#{user_id},#{post_id}, #{comment_content},NOW())</insert>
+        VALUES(#{userId},#{postId}, #{commentContent},NOW()) </insert>
 
 </mapper>

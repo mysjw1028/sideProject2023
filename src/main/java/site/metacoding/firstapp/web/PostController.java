@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.firstapp.domain.comment.Comment;
 import site.metacoding.firstapp.domain.comment.CommentDao;
 import site.metacoding.firstapp.domain.img.ImgDto;
 import site.metacoding.firstapp.domain.love.Love;
@@ -91,6 +92,14 @@ public class PostController {
         post.setPostThumnail(imgDto.getPostThumnail());
         postDao.insert(imgDto);
         return "post/listForm";
+    }
+
+    @PostMapping("/post/comment/write/{postId}/{userId}")
+    public String replylnsert(Comment comment, @PathVariable Integer postId, @PathVariable Integer userId) {
+        System.out.println("디버그 + insert ");
+        commentDao.insert(comment);
+        System.out.println("디버그 insert 끝");
+        return "redirect:/";
     }
 
     @GetMapping("/post/detailForm/{postId}/{userId}")

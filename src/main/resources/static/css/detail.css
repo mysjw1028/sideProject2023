@@ -8,9 +8,17 @@
     cursor: pointer;
 }
 
+.detailcontainer {
+    margin: 0 auto 20%;
+    width: 70%;
+}
+
+
+
 .my_post_info {
     border: 1px solid rgb(185, 185, 185);
     padding: 5px 15px;
+
     border-radius: 15px;
 }
 
@@ -22,10 +30,6 @@
     overflow: hidden;
 }
 
-.love_text {
-
-}
-
 .my_post_detail_content img {
-    width: 80%;
+    width: 30%;
 }
