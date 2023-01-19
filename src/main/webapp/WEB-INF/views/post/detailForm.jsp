@@ -80,7 +80,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
         <hr>
 
-        <form action="/" method="post">
+        <form action="/post/comment/write/{principal.userId}" method="post">
             <div style=" height: 300px;" style="border: 1px solid; font-size: 20
             px; line-height: 30px;">
                 <div>

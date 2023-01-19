@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.firstapp.domain.comment.Comment;
+import site.metacoding.firstapp.domain.comment.CommentDao;
 import site.metacoding.firstapp.domain.img.ImgDto;
 import site.metacoding.firstapp.domain.love.Love;
 import site.metacoding.firstapp.domain.post.Post;
@@ -34,6 +36,7 @@ public class PostController {
     private final HttpSession session;
     private final PostDao postDao;
     private final UserDao userDao;
+    private final CommentDao commentDao;
     private final PostService postService;
 
     // 1번째 ?page=0&keyword=스프링 -> 프라이머리키가 아니라서 @PathVariable를 걸음
@@ -90,9 +93,17 @@ public class PostController {
         return "post/listForm";
     }
 
+    // 댓글쓰기 업로드
+    @PostMapping("/post/comment/write/{userId}")
+    public String replylnsert(Comment comment, Integer userId) {
+        commentDao.insert(comment);
+        return "post/detailForm";
+    }
+
     @GetMapping("/post/detailForm/{postId}/{userId}")
     public String 블로그상세보기(@PathVariable Integer postId, @PathVariable Integer userId, Model model) {
         PostDatailDto postDatailDtos = postDao.detailOnly(postId);// 얘를 올려서
+        Comment commenttList = commentDao.replyDetail(userId);// 테스트
 
         model.addAttribute("user", userDao.findById(userId));
 
@@ -102,6 +113,7 @@ public class PostController {
         model.addAttribute("post", postDao.findById(postId));
         model.addAttribute("love", postDao.findByDetail(postId, userId));
         model.addAttribute("postThumnail", postDatailDtos);
+        model.addAttribute("commenttList", commenttList); // 테스트
         return "post/detailForm";
     }
 
