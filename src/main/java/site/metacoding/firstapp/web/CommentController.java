@@ -18,9 +18,15 @@ public class CommentController {
     // // 댓글달기 -> comment
     // @GetMapping("/post/writeForm/{userId}")
     // public String 댓글쓰기(@PathVariable Integer userId, Model model) {
-    //     Comment commenttList = commentDao.replyDetail(userId);
-    //     model.addAttribute("commenttList", commenttList);
-    //     return "post/writeForm";
-   //  } -> 테스트
+    // Comment commenttList = commentDao.replyDetail(userId);
+    // model.addAttribute("commenttList", commenttList);
+    // return "post/writeForm";
+    // } -> 테스트
+    // 댓글쓰기 업로드
+    @PostMapping("/post/comment/write/{userId}")
+    public String replylnsert(Comment comment, Integer userId) {
+        commentDao.insert(comment);
+        return "post/detailForm";
+    }
 
 }

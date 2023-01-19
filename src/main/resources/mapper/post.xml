@@ -41,7 +41,7 @@
 
     <select id="detailOnly" resultType="site.metacoding.firstapp.web.dto.post.PostDatailDto"> SELECT
         p.*, c.* FROM post p INNER JOIN category c ON c.category_id = p.category_id WHERE post_id =
-        #{postId} </select>
+        #{postId}</select>
 
 
     <select id="paging"
@@ -58,9 +58,8 @@
         ONLY </select>
 
     <select id="findSearchMain" resultType="site.metacoding.firstapp.web.dto.post.PostListDto">
-        SELECT * FROM category c INNER JOIN post p 
-        ON c.category_id =p.category_id INNER JOIN 
-        user u ON p.user_id = u.user_id AND p.post_title LIKE '%${keyword}%'</select>
+        SELECT * FROM category c INNER JOIN post p ON c.category_id =p.category_id INNER JOIN user u
+        ON p.user_id = u.user_id AND p.post_title LIKE '%${keyword}%'</select>
 
 
 </mapper>

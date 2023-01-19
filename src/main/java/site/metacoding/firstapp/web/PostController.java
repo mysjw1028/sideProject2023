@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
-import site.metacoding.firstapp.domain.comment.Comment;
 import site.metacoding.firstapp.domain.comment.CommentDao;
 import site.metacoding.firstapp.domain.img.ImgDto;
 import site.metacoding.firstapp.domain.love.Love;
@@ -23,6 +22,7 @@ import site.metacoding.firstapp.domain.user.User;
 import site.metacoding.firstapp.domain.user.UserDao;
 import site.metacoding.firstapp.service.PostService;
 import site.metacoding.firstapp.web.dto.CMRespDto;
+import site.metacoding.firstapp.web.dto.comment.CommentReadDto;
 import site.metacoding.firstapp.web.dto.post.PostDatailDto;
 import site.metacoding.firstapp.web.dto.post.PostListDto;
 import site.metacoding.firstapp.web.dto.post.PostPagingDto;
@@ -93,27 +93,21 @@ public class PostController {
         return "post/listForm";
     }
 
-    // 댓글쓰기 업로드
-    @PostMapping("/post/comment/write/{userId}")
-    public String replylnsert(Comment comment, Integer userId) {
-        commentDao.insert(comment);
-        return "post/detailForm";
-    }
-
     @GetMapping("/post/detailForm/{postId}/{userId}")
     public String 블로그상세보기(@PathVariable Integer postId, @PathVariable Integer userId, Model model) {
         PostDatailDto postDatailDtos = postDao.detailOnly(postId);// 얘를 올려서
-        Comment commenttList = commentDao.replyDetail(userId);// 테스트
+        List<CommentReadDto> commentList = commentDao.commentOnly(postId);
 
+        System.out.println("디버그~~~!" + postDatailDtos.getCategoryTitle());
         model.addAttribute("user", userDao.findById(userId));
 
         model.addAttribute("PostDatailDto", postService.게시글상세보기(postId, userId));
 
-        model.addAttribute("categoryTitle", postDatailDtos);// 모델에 띄우는거
+        model.addAttribute("categoryTitle", postDatailDtos);
         model.addAttribute("post", postDao.findById(postId));
         model.addAttribute("love", postDao.findByDetail(postId, userId));
-        model.addAttribute("postThumnail", postDatailDtos);
-        model.addAttribute("commenttList", commenttList); // 테스트
+        model.addAttribute("comment", commentList);
+        // 모델에 띄우는거 categoryTitle -> 키값 postDatailDtos-> 꺼내오는 위치
         return "post/detailForm";
     }
 

@@ -5,9 +5,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
     <form action="/update/${postId}/delete" method="post">
         <input id="postId" type="hidden" value="${post.postId}" />
         <input id="userId" type="hidden" value="${post.userId}" />
-
         <input id="categoryId" type="hidden" value="${category.categoryId}" />
-
         <input id="loveId" type="hidden" value="${love.loveId}" name="loveId" />
 
         <input id="loveuserId" type="hidden" value="${love.userId}" />
@@ -81,26 +79,34 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
         <hr>
 
         <form action="/post/comment/write/{principal.userId}" method="post">
-            <div style=" height: 300px;" style="border: 1px solid; font-size: 20
+            <c:forEach var="comment" items="${comment}">
+                <div style=" height: 300px;" style="border: 1px solid; font-size: 20
             px; line-height: 30px;">
-                <div>
-                    댓글 단 사람 닉네임
-                    <div style="float: right;"> 여기에 값 불러와서 넣어야함!
-                        댓글단 시간 넣기&nbsp;&nbsp;
+                    <div style="font-size: 18px;">
+                        작성자 : ${comment.nickName}
+                        <div style="float: right; font-size: 15px;">
+                            작성된 시간 : ${comment.createdAt}&nbsp;&nbsp;
+                        </div>
+                        <div style="font-size: 15px;">
+                            &nbsp;&nbsp; ${comment.commentContent}
+                        </div>
                     </div>
-                </div>
-                <br>
-                <input id="postTitle" name="postTitle" type="text" placeholder="댓글 작성하는 공간" style="height: 50px;"
-                    class="form-control" />
-                <br>
-                <div style="float: right;">
-                    <button type="submit" class="my_active_btn" id="btnReply">
-                        댓글 등록
-                    </button>
-                </div>
-            </div><!--댓글-->
-        </form>
-        <br>
+                    <hr>
+            </c:forEach>
+            <input id="postTitle" name="postTitle" type="text" placeholder="댓글 작성하는 공간" style="height: 50px;"
+                class="form-control" />
+            <br>
+
+
+            <div style="float: right;">
+                <button type="submit" class="my_active_btn" id="btnReply">
+                    댓글 등록
+                </button>
+            </div>
+</div><!--댓글-->
+
+</form>
+<br>
 </div><!-- 컨테이너-->
 
 </form>

@@ -17,7 +17,6 @@ public interface PostDao {
 
         public List<PostListDto> findAll(@Param("startNum") int startNum, @Param("userId") Integer userId);
 
-
         public List<Post> findSearchMain(
                         String keyword);
 
