@@ -95,7 +95,8 @@ public class ImgController {
         return new CMRespDto<>(1, "업로드 성공", imgName);
     }
 
-    @PostMapping(value = "/post/update", consumes = { MediaType.APPLICATION_JSON_VALUE,
+    @PostMapping(value = "/post/update", 
+    consumes = { MediaType.APPLICATION_JSON_VALUE,
             MediaType.MULTIPART_FORM_DATA_VALUE })
     public @ResponseBody CMRespDto<?> create(@RequestPart("file") MultipartFile file,
             @RequestPart("imgDto") ImgDto imgDto, Post post, PostReadDto postReadDto, PostUpdateReqDto postUpdateReqDto)

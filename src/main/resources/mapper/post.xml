@@ -18,13 +18,6 @@
         c.* FROM category c JOIN post p ON p.category_id =c.category_id WHERE p.user_id =#{userId}
         OFFSET #{startNum} ROWS FETCH NEXT 3 ROWS ONLY</select>
 
-    <select id="findAllMainPage" resultType="site.metacoding.firstapp.web.dto.post.PostListMainDto">SELECT
-        p.*, c.* FROM category c JOIN post p ON p.category_id =c.category_id</select>
-
-
-    <select id="findAllMain" resultType="site.metacoding.firstapp.domain.post.Post">SELECT * FROM
-        category c INNER JOIN post p ON c.category_id =p.category_id INNER JOIN user u ON p.user_id
-        = u.user_id</select>
 
     <select id="findAllcategory" resultType="site.metacoding.firstapp.domain.post.Post"> SELECT
         c.category_id, c.category_title, p.post_id,p.user_id, p.category_id FROM category c INNER
@@ -65,8 +58,9 @@
         ONLY </select>
 
     <select id="findSearchMain" resultType="site.metacoding.firstapp.web.dto.post.PostListDto">
-        SELECT * FROM category c INNER JOIN post p ON c.category_id =p.category_id INNER JOIN user u
-        ON p.user_id = u.user_id aND p.post_title LIKE '%${keyword}%'</select>
+        SELECT * FROM category c INNER JOIN post p 
+        ON c.category_id =p.category_id INNER JOIN 
+        user u ON p.user_id = u.user_id AND p.post_title LIKE '%${keyword}%'</select>
 
 
 </mapper>

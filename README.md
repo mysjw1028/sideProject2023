@@ -45,8 +45,17 @@ create table post(
      created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
      UNIQUE uk_loves (user_id,post_id)
 );
-
-create table img(
+create table comment(
+		comment_id int primary KEY,
+		user_id int NOT NULL,
+		post_id INT NOT NULL,
+		comment_content longtext NOT null,
+		updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE current_timestamp,
+		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	
+--테스트 코드--
+create table img( 
 	 id INT primary KEY AUTO_INCREMENT,
 	 title VARCHAR(100) NOT null,
 	 imgName longtext NOT null,

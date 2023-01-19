@@ -12,7 +12,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
         <input id="loveuserId" type="hidden" value="${love.userId}" />
 
-      
+
         <div class="my_post_detail_title">
             <div style="color: gray; font-size: 18;">
                 ${categoryTitle.categoryTitle}
@@ -52,7 +52,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
                 </c:otherwise>
 
             </c:choose>
-            
+
 
 
         </div>
@@ -63,23 +63,56 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
             <img id="profileImg" src="/img/${post.postThumnail}" style="width: 90%;height:80%;  margin: auto;
         display: block; padding-top:15px;">
         </c:if>
-</div>
-<div class=" my_post_info_box d-flex" style="margin-top: 30px;">
-    <div class="d-flex justify-content-between">
+        <br>
+        <div class=" my_post_info_box d-flex" style="margin-top: 30px;">
+            <div class="d-flex justify-content-between">
 
-        <div class="love_text">
-            좋아요수 : <span id="countLove">${PostDatailDto.loveCount}</span> <i id="iconLove"
-                class='${PostDatailDto.loved ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
+                <div class="love_text">
+                    좋아요수 : <span id="countLove">${PostDatailDto.loveCount}</span> <i id="iconLove"
+                        class='${PostDatailDto.loved ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<br />
+        <br>
+        <br>
+        <br>
+        <div> 댓글</div>
+
+        <hr>
+
+        <form action="/" method="post">
+            <div style=" height: 300px;" style="border: 1px solid; font-size: 20
+            px; line-height: 30px;">
+                <div>
+                    댓글 단 사람 닉네임
+                    <div style="float: right;"> 여기에 값 불러와서 넣어야함!
+                        댓글단 시간 넣기&nbsp;&nbsp;
+                    </div>
+                </div>
+                <br>
+                <input id="postTitle" name="postTitle" type="text" placeholder="댓글 작성하는 공간" style="height: 50px;"
+                    class="form-control" />
+                <br>
+                <div style="float: right;">
+                    <button type="submit" class="my_active_btn" id="btnReply">
+                        댓글 등록
+                    </button>
+                </div>
+            </div><!--댓글-->
+        </form>
+        <br>
+</div><!-- 컨테이너-->
+
 </form>
+
+
+
+
 
 <script>
 
     // 하트 아이콘을 클릭했을때의 로직
-    $("#iconLove").click(() => {
+    $(" #iconLove").click(() => {
         let isLovedState = $("#iconLove").hasClass("fa-solid");
         if (isLovedState) {
             deleteLove(isLovedState);
