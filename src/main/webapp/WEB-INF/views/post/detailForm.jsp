@@ -76,22 +76,30 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
         <br>
         <br>
         <br>
-        <div> 댓글쓰기</div>
+        <div> 댓글</div>
+
         <hr>
-        <div style=" background-color: #9999; height: 300px;">
-            <table class="table table-product" id="datatable" style="border: 1px solid #909090;">
-                <thead>
-                    <tr>
-                        <th>댓글 단 사람 닉네임</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>댓글<br>댓글단 시간 넣기</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div><!--댓글-->
+
+        <form action="/" method="post">
+            <div style=" height: 300px;" style="border: 1px solid; font-size: 20
+            px; line-height: 30px;">
+                <div>
+                    댓글 단 사람 닉네임
+                    <div style="float: right;"> 여기에 값 불러와서 넣어야함!
+                        댓글단 시간 넣기&nbsp;&nbsp;
+                    </div>
+                </div>
+                <br>
+                <input id="postTitle" name="postTitle" type="text" placeholder="댓글 작성하는 공간" style="height: 50px;"
+                    class="form-control" />
+                <br>
+                <div style="float: right;">
+                    <button type="submit" class="my_active_btn" id="btnReply">
+                        댓글 등록
+                    </button>
+                </div>
+            </div><!--댓글-->
+        </form>
         <br>
 </div><!-- 컨테이너-->
 
@@ -104,7 +112,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 <script>
 
     // 하트 아이콘을 클릭했을때의 로직
-    $("#iconLove").click(() => {
+    $(" #iconLove").click(() => {
         let isLovedState = $("#iconLove").hasClass("fa-solid");
         if (isLovedState) {
             deleteLove(isLovedState);
