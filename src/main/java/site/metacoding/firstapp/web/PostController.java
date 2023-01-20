@@ -55,7 +55,6 @@ public class PostController {
             paging.makeBlockInfo(keyword, userId);
 
             model.addAttribute("postList", postList);
-
             model.addAttribute("paging", paging);
 
             return "post/listForm";

@@ -96,21 +96,20 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
 
                             </div>
                             <div style="display: flex;">
-                                <form>
-                                    <c:if test="${comment.nickName == principal.nickName}">
-                                        <a class="btn btn-outline-warning"
-                                            href="/post/comment/update/${comment.commentId}/${comment.postId}/${principal.userId}"
-                                            style="height:38px;width: 58px;">수정</a>&nbsp;&nbsp;
 
+                                <c:if test="${comment.nickName == principal.nickName}">
+                                    <a class="btn btn-outline-warning"
+                                        href="/post/comment/update/${comment.commentId}/${comment.postId}/${principal.userId}"
+                                        style="height:38px;width: 58px;">수정</a>&nbsp;&nbsp;
 
+                                    <form action="" method="post">
                                         <button id="btndelete" type="submit" onclick="removeCheck()"
                                             class="btn btn-outline-danger" style="font-size: 15px; margin-right: 15px;">
                                             댓글 삭제
                                         </button>
+                                    </form>
+                                </c:if>
 
-
-                                    </c:if>
-                                </form>
                             </div>
                         </div>
                         <hr>

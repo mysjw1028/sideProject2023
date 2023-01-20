@@ -14,4 +14,11 @@ public class Comment {
     private String commentContent;
     private Timestamp updatedAt;
     private Timestamp createdAt;
+
+    // 가짜데이터
+    private String nickName;
+
+    public void update(Comment comment) {
+        this.commentContent = getCommentContent();
+    }
 }

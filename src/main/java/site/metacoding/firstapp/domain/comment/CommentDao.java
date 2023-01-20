@@ -15,7 +15,8 @@ public interface CommentDao {
 
         public Comment findById(Integer commentId);
 
-        public void update();
+        public void update(Comment comment);
 
         public void deleteById();
+
 }
