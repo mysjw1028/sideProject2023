@@ -33,6 +33,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 </head>
 
 <input id="userId" type="hidden" value="${user.userId}" />
+<input id="postuserId" type="hidden" value="${post.userId}" />
 <input id="postId" type="hidden" value="${post.postId}" />
 
 <body class="drawer drawer--left" style="height:  72px;">
@@ -69,7 +70,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             <div class="my_navbar_title">
                 <a href="/" style="color: black " style>
                     ${user.nickName} 의 블로그</a>
-            </div>
+            </div><!--나중에 이부분 물어보기-->
             <input type="hidden" id="userId" value="${principal.nickName}" name="userId" />
 
             <c:choose>

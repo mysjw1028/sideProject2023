@@ -13,6 +13,11 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
         <!-- 카테고리 목록 -->
         <div class="form-group">
 
+            <input type="hidden" id="userId" value="${principal.userId}" name="userId" />
+            <input type="hidden" id="postId" value="${post.postId}" name="postId" />
+            <input type="hidden" id="categoryId" value="${post.categoryId}" name="categoryId" />
+
+
             <select class="form-control" name="categoryId">
 
                 <c:forEach var="category" items="${categoryList}">
@@ -22,10 +27,6 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/main-header.jsp"%>
                 </c:forEach>
             </select>
 
-
-            <input type="hidden" id="userId" value="${principal.userId}" name="userId" />
-            <input type="hidden" id="postId" value="${post.postId}" name="postId" />
-            <input type="hidden" id="categoryId" value="${post.categoryId}" name="categoryId" />
         </div>
 
         <input type="text" id="postTitle" name="postTitle" value="${post.postTitle}" class="form-control">

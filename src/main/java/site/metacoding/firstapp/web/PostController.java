@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
-import site.metacoding.firstapp.domain.comment.Comment;
 import site.metacoding.firstapp.domain.comment.CommentDao;
 import site.metacoding.firstapp.domain.img.ImgDto;
 import site.metacoding.firstapp.domain.love.Love;
@@ -44,7 +43,6 @@ public class PostController {
     @GetMapping("/post/listForm/{userId}")
     public String 내블로그(Model model, Integer page, @PathVariable Integer userId, String keyword) { // 0 -> 0, 1->10,
         // 2->20
-
         if (page == null)
             page = 0;
         int startNum = page * 3; // 1. 수정함 -> 3개씩 보임
@@ -57,6 +55,7 @@ public class PostController {
             paging.makeBlockInfo(keyword, userId);
 
             model.addAttribute("postList", postList);
+
             model.addAttribute("paging", paging);
 
             return "post/listForm";
@@ -94,18 +93,10 @@ public class PostController {
         return "post/listForm";
     }
 
-    @PostMapping("/post/comment/write/{postId}/{userId}")
-    public String replylnsert(Comment comment, @PathVariable Integer postId, @PathVariable Integer userId) {
-        System.out.println("디버그 + insert ");
-        commentDao.insert(comment);
-        System.out.println("디버그 insert 끝");
-        return "redirect:/";
-    }
-
     @GetMapping("/post/detailForm/{postId}/{userId}")
     public String 블로그상세보기(@PathVariable Integer postId, @PathVariable Integer userId, Model model) {
         PostDatailDto postDatailDtos = postDao.detailOnly(postId);// 얘를 올려서
-        List<CommentReadDto> commentList = commentDao.commentOnly(postId);
+        List<CommentReadDto> commentList = commentDao.commentOnly(userId, postId);
 
         System.out.println("디버그~~~!" + postDatailDtos.getCategoryTitle());
         model.addAttribute("user", userDao.findById(userId));
@@ -116,7 +107,20 @@ public class PostController {
         model.addAttribute("post", postDao.findById(postId));
         model.addAttribute("love", postDao.findByDetail(postId, userId));
         model.addAttribute("comment", commentList);
-        // 모델에 띄우는거 categoryTitle -> 키값 postDatailDtos-> 꺼내오는 위치
+        // model.addAttribute("nickName", commentList);
+
+        for (CommentReadDto commentReadDto : commentList) {
+            Integer s = commentReadDto.getUserId();
+            Integer a = commentReadDto.getPostId();
+            String b = commentReadDto.getNickName();
+            String c = commentReadDto.getCommentContent();
+            System.out.println("디버그  getUserId       : " + s);
+            System.out.println("디버그  getPostId       :" + a);
+            System.out.println("디버그  getCommentContent     : " + c);
+            System.out.println("디버그  getNickName     : " + b);
+            System.out.println("디버그: =============================================");
+        }
+
         return "post/detailForm";
     }
 
