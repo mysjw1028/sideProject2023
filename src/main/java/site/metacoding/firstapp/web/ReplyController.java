@@ -35,15 +35,16 @@ public class ReplyController {
     public String replyupdate(@PathVariable Integer commentId,
             Comment comment, CommentRespUpdateDto commentRespUpdateDto) {
         System.out.println("디버그 맨 위 " + comment.getCommentContent());// jsp에서 값 넘어오는지 확인 가능
-        System.out.println("디버그 00000" + comment);
         Comment commentPS = commentDao.findById(commentId); // 영속화
-        System.out.println("디버그 1111111" + commentDao.findById(commentId));
         commentPS.update(commentRespUpdateDto); // 변경
-        System.out.println("디버그 22222" + commentPS.getCommentContent());
-        System.out.println("디버그 중간 " + comment.getCommentContent());
         commentDao.update(commentRespUpdateDto);// 수행
-        System.out.println("디버그 333333 " + commentPS.getCommentContent());
-        System.out.println("디버그 마지막 " + comment.getCommentContent());
+        return "redirect:/";
+    }
+
+    @PostMapping("/post/comment/delete/{commentId}/{userId}") // 5번 deleteById -> 삭제하기 -> post로 값 삭제
+    public String deletecomment(@PathVariable Integer commentId) {
+        Comment commentPS = commentDao.findById(commentId);
+        commentDao.deleteById(commentId);
         return "redirect:/";
     }
 

@@ -18,6 +18,6 @@ public interface CommentDao {
 
         public void update(CommentRespUpdateDto commentRespUpdateDto);
 
-        public void deleteById();
+        public void deleteById(Integer commentId);
 
 }

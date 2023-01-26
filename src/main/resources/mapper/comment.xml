@@ -20,4 +20,7 @@
     <select id="findById" resultType="site.metacoding.firstapp.domain.comment.Comment"> select *
         from comment where comment_id = #{comment_id} </select>
 
+    <delete id="deleteById"> DELETE FROM comment WHERE comment_id = #{comment_id} </delete>
+
+
 </mapper>

@@ -102,7 +102,8 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/post-header.jsp"%>
                                         href="/post/comment/update/${comment.commentId}/${comment.postId}/${principal.userId}"
                                         style="height:38px;width: 58px;">수정</a>&nbsp;&nbsp;
 
-                                    <form action="" method="post">
+                                    <form action="/post/comment/delete/${comment.commentId}/${comment.userId}"
+                                        method="post">  
                                         <button id="btndelete" type="submit" onclick="removeCheck()"
                                             class="btn btn-outline-danger" style="font-size: 15px; margin-right: 15px;">
                                             댓글 삭제
