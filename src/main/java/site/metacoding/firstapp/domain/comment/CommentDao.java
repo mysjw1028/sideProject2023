@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import site.metacoding.firstapp.web.dto.comment.CommentReadDto;
+import site.metacoding.firstapp.web.dto.comment.CommentRespUpdateDto;
 
 public interface CommentDao {
         public void insert(Comment comment);
@@ -15,7 +16,7 @@ public interface CommentDao {
 
         public Comment findById(Integer commentId);
 
-        public void update(Comment comment);
+        public void update(CommentRespUpdateDto commentRespUpdateDto);
 
         public void deleteById();
 

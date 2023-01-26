@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.domain.comment.Comment;
 import site.metacoding.firstapp.domain.comment.CommentDao;
+import site.metacoding.firstapp.web.dto.comment.CommentRespUpdateDto;
 
 @RequiredArgsConstructor
 @Controller
@@ -30,13 +31,19 @@ public class ReplyController {
         return "post/replyupdate";
     }
 
-    @PostMapping("/post/comment/update/{commentId}/{postId}/{nickName}")
-    public String replyupdate(@PathVariable Integer commentId, @PathVariable String nickName,
-            @PathVariable Integer postId,
-            Comment comment) {
-        Comment commentPS = commentDao.findById(commentId);
-        commentPS.update(comment);
-        commentDao.update(commentPS);
+    @PostMapping("/post/comment/update/{commentId}/{userId}")
+    public String replyupdate(@PathVariable Integer commentId,
+            Comment comment, CommentRespUpdateDto commentRespUpdateDto) {
+        System.out.println("디버그 맨 위 " + comment.getCommentContent());// jsp에서 값 넘어오는지 확인 가능
+        System.out.println("디버그 00000" + comment);
+        Comment commentPS = commentDao.findById(commentId); // 영속화
+        System.out.println("디버그 1111111" + commentDao.findById(commentId));
+        commentPS.update(commentRespUpdateDto); // 변경
+        System.out.println("디버그 22222" + commentPS.getCommentContent());
+        System.out.println("디버그 중간 " + comment.getCommentContent());
+        commentDao.update(commentRespUpdateDto);// 수행
+        System.out.println("디버그 333333 " + commentPS.getCommentContent());
+        System.out.println("디버그 마지막 " + comment.getCommentContent());
         return "redirect:/";
     }
 

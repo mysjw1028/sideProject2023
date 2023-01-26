@@ -48,7 +48,6 @@ public class PostController {
         int startNum = page * 3; // 1. 수정함 -> 3개씩 보임
 
         if (keyword == null || keyword.isEmpty()) {
-            System.out.println("디버그 : ================");
             List<PostListDto> postList = postDao.findAll(startNum, userId);
 
             PostPagingDto paging = postDao.paging(page, userId, null);// 페이지 호출
@@ -62,7 +61,6 @@ public class PostController {
         } else {
             // null이 아닐경우 //값에 안담김
 
-            System.out.println("디버그 : userId : " + userId);
             List<PostListDto> postList = postDao.findSearch(userId, keyword, startNum);
             PostPagingDto paging = postDao.paging(page, userId, keyword);// 페이지 호출
             paging.makeBlockInfo(keyword, userId);
@@ -70,7 +68,6 @@ public class PostController {
             model.addAttribute("postList", postList);
             model.addAttribute("paging", paging);
 
-            System.out.println("디버그  postListkeyword " + postList);
         }
 
         return "post/listForm";
@@ -107,18 +104,6 @@ public class PostController {
         model.addAttribute("love", postDao.findByDetail(postId, userId));
         model.addAttribute("comment", commentList);
         // model.addAttribute("nickName", commentList);
-
-        for (CommentReadDto commentReadDto : commentList) {
-            Integer s = commentReadDto.getUserId();
-            Integer a = commentReadDto.getPostId();
-            String b = commentReadDto.getNickName();
-            String c = commentReadDto.getCommentContent();
-            System.out.println("디버그  getUserId       : " + s);
-            System.out.println("디버그  getPostId       :" + a);
-            System.out.println("디버그  getCommentContent     : " + c);
-            System.out.println("디버그  getNickName     : " + b);
-            System.out.println("디버그: =============================================");
-        }
 
         return "post/detailForm";
     }

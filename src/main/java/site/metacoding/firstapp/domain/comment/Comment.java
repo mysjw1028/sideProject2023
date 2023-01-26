@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
+import site.metacoding.firstapp.web.dto.comment.CommentRespUpdateDto;
 
 @Getter
 @Setter
@@ -18,7 +19,7 @@ public class Comment {
     // 가짜데이터
     private String nickName;
 
-    public void update(Comment comment) {
-        this.commentContent = getCommentContent();
+    public void update(CommentRespUpdateDto commentRespUpdateDto) {
+        this.commentContent = commentRespUpdateDto.getCommentContent();
     }
 }
