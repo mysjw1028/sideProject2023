@@ -1,69 +1,29 @@
 # READ ME
 
 ### 메모
-로그인 하고 들어가면 당연히 principal 값이 있으니까 굳이 Integer userId는 적지 말것
-img는 사진업로드 테스트 코드!!
-.
+member -> 사용자 테이블
+
 ## 4. 테이블 생성
-
 ```sql
-USE blogdb;
+  USE sideProject2023;
 
-
-create table user(
-     user_id int primary KEY auto_increment,
-     username VARCHAR(20) NOT NULL UNIQUE,
-	 password varchar(20) NOT NULL,
-     nick_name varchar(20) NOT NULL,
-     email VARCHAR(50) NOT NULL UNIQUE,
-     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+create table member(
+	member_id int primary KEY auto_increment,
+	member_password varchar(20),
+	member_tel VARCHAR(15),
+	member_jumin VARCHAR(20),
+	mamber_gender char(2),-- M(남자) --W(여자)
+	member_nick_name VARCHAR(20),
+	member_post_code VARCHAR(10),
+	member_adress1 VARCHAR(50),
+	member_adress2 VARCHAR(50),
+	membet_state CHAR(2), -- Y(회원) N(탈퇴회원)
+	create_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	update_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	delete_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
-create table category(
-	 category_id INT primary KEY auto_increment,
-     category_title VARCHAR(50) NOT NULL, 
-	 user_id INT NOT null,
-     created_at TIMESTAMP NOT NULL DEFAULT current_timestamp
-);
-
-create table post(
-	 post_id INT primary KEY auto_increment,
-	 post_title varchar(20) NOT null,
-     post_content longtext NOT null,
-     post_thumnail longtext,
-     category_id INT NOT NULL, 
-	 user_id INT NOT null,
-	 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE current_timestamp,
-     created_at TIMESTAMP NOT NULL DEFAULT current_timestamp
-);
-
- create table love(
-	 love_id INT primary KEY auto_increment,
-	 post_id INT NOT null,
-	 user_id INT NOT null,
-	 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE current_timestamp,
-     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-     UNIQUE uk_loves (user_id,post_id)
-);
-create table comment(
-		comment_id int primary KEY,
-		user_id int NOT NULL,
-		post_id INT NOT NULL,
-		comment_content longtext NOT null,
-		updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE current_timestamp,
-		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-	);
-	
---테스트 코드--
-create table img( 
-	 id INT primary KEY AUTO_INCREMENT,
-	 title VARCHAR(100) NOT null,
-	 imgName longtext NOT null,
-	 content longtext NOT null,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
-
+SELECT * FROM member;
+COMMIT;
 
 
 ```
@@ -74,20 +34,9 @@ create table img(
 </br>
 
 ```sql
-INSERT INTO user(username, password,email,nick_name,created_at) 
-VALUES('ssar','1234','ssar@nate.com','ssar',NOW());
-INSERT INTO user(username, password,email,nick_name,created_at) 
-VALUES('cos','1234','cos@nate.com','cos',NOW());
-INSERT INTO user(username, password,email,nick_name,created_at) 
-VALUES('hong','1234','hong@nate.com','hong',NOW());
-
-INSERT INTO category(category_title, user_id, created_at) 
-VALUES('1번 타이틀 더미 데이터',1,NOW());
-INSERT INTO category(category_title, user_id, created_at) 
-VALUES('2번 타이틀 더미 데이터',1,NOW());
-INSERT INTO category(category_title, user_id, created_at) 
-VALUES('3번 타이틀 더미 데이터',1,NOW());
-
+INSERT INTO member( member_password, member_tel, member_jumin, mamber_gender, member_nick_name,
+member_post_code, member_adress1, member_adress2, membet_state, CREATE_Date)
+VALUE('1234', '010457845780', '0012451245785', 'W', 'test', '45850', '부산광역시 해운대구', '상세주소','N',NOW());
 
 ```
 .
