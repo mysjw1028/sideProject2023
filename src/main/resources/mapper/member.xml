@@ -4,14 +4,41 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="memberId"> 
         INSERT INTO
-        member(member_password, member_tel, member_jumin, mamber_gender, member_nick_name,member_post_code, member_adress1, member_adress2, member_state, create_date)
+        member(member_password, member_tel, member_jumin, member_gender, member_nick_name,member_post_code, member_adress1, member_adress2, member_state, create_date)
         VALUES(#{memberPassword}, #{memberTel}, #{memberJumin}, #{memberGender}, #{memberNickName},
         #{memberPostCode}, #{memberAdress1}, #{memberAdress2}, #{memberState}, NOW())
     </insert>
+
+    <update  id="update">
+        UPDATE member SET 
+        member_password =#{memberPassword},
+        member_tel = #{memberTel},
+        member_jumin = #{memberJumin},
+        mamber_gender = #{memberGender},
+        member_nick_name = #{memberNickName},
+        member_post_code = #{memberPostCode},
+        member_adress1 =  #{memberAdress1},
+        member_adress2 = #{memberAdress2},
+        member_state = #{memberState},
+        update_Date = NOW()
+        WHERE member_id = #{memberId}
+    </update>
 
     <select id="findById" resultType="site.ruise.firstapp.domain.member.member"> 
         SELECT * FROM
         member WHERE member_id = #{memberId} 
     </select>
+
+    <select id="findAllList" resultType="site.ruise.firstapp.domain.member.member"> 
+        SELECT * FROM member  
+    </select>
+    
+    <update  id="delete">
+        UPDATE member SET 
+        member_state = #{memberState},
+        delete_Date = NOW()
+        WHERE member_id = #{memberId}
+    </update>
+
 </mapper>
     
