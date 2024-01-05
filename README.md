@@ -22,7 +22,31 @@ create table member(
 	update_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 수정일
 	delete_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP -- 삭제일
 );
-SELECT * FROM member;
+create table question(
+	question_id int primary KEY auto_increment,
+	member_number INT, -- pk null 가능
+	photo_member_number INT, -- pk null 가능
+	question_state VARCHAR(20),-- Y(등록), N(삭제) E(답변완료)
+	create_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	update_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	delete_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+create table photo_member(
+	photo_member_id int primary KEY AUTO_INCREMENT COMMENT '사업자 아이디',
+	photo_member_password varchar(20) COMMENT '사업자 비밀번호',
+	photo_member_tel VARCHAR(15) COMMENT '사업자 전화번호',
+	photo_member_jumin VARCHAR(20) COMMENT '사업자 번호',
+	photo_member_post_code VARCHAR(10) COMMENT '사업자 우편번호',
+	photo_member_adress1 VARCHAR(50) COMMENT '사업자 주소',
+	photo_member_adress2 VARCHAR(50) COMMENT '사업자 상세주소',
+	photo_membet_state CHAR(2) COMMENT '사업자 상태', -- Y(회원) N(탈퇴회원) E(신규회원)
+	create_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '등록일',
+	update_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일',
+	delete_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '삭제일'
+) COMMENT='사업자테이블';
+
+
 COMMIT;
 
 

@@ -6,10 +6,9 @@ import lombok.Getter;
 
 import lombok.Setter;
 
-
 @Getter
 @Setter
-public class member {
+public class Member {
     private Integer memberId; // 사용자 id (번호)
     private String memberPassword; // 사용자 비밀번호
     private String memberTel;// 사용자 전화번호
@@ -24,9 +23,7 @@ public class member {
     private Timestamp updateDate;// 수정일
     private Timestamp deleteDate;// 삭제일
 
-    private member() {
+    private Member() {
     } // MyBatis에게 필요한 것
 
 }
-
-
