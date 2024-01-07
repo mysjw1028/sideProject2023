@@ -8,7 +8,8 @@ member -> 사용자 테이블
   USE sideProject2023;
 
 create table member(
-	member_id int primary KEY auto_increment, -- 회원아이디 / 고유번호
+	member_number int primary KEY auto_increment, -- 회원 고유번호
+	member_id varchar(15) unique, -- 회원 아이디
 	member_password varchar(20), -- 비밀번호
 	member_tel VARCHAR(15), --전화번호
 	member_jumin VARCHAR(20), -- 주민 앞자리 ex) 991010
@@ -17,7 +18,7 @@ create table member(
 	member_post_code VARCHAR(10), -- 우편번호
 	member_adress1 VARCHAR(50), --주소
 	member_adress2 VARCHAR(50), --상세주소
-	membet_state CHAR(2), -- Y(회원) N(탈퇴회원) E(신규회원)
+	membet_state CHAR(2), -- Y(회원) N(탈퇴회원)
 	create_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, --등록일
 	update_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 수정일
 	delete_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP -- 삭제일

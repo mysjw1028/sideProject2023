@@ -1,8 +1,6 @@
 package site.ruise.firstapp.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -31,15 +29,15 @@ public class MemberService {
     public void memberInsert(MemberReqDto memberReqDto) {
         memberDao.insert(memberReqDto);
     }
-    public void memberUpdate(Integer memberId, Member member) {
+    public void memberUpdate(Integer memberNumber, Member member) {
         memberDao.update(member);
     }
-    public void memberDelete(Integer memberId, Member member) {
+    public void memberDelete(Integer memberNumber, Member member) {
         memberDao.delete(member);
     }
 
-    public Member memberFindById(Integer memberId) {
-        return memberDao.findById(memberId);
+    public Member memberFindById(Integer memberNumber) {
+        return memberDao.findById(memberNumber);
     }
     public RespDto<?> memberFindByAll(Model model) {
         List<Member> memberList = memberDao.findAllList();

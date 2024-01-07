@@ -8,7 +8,8 @@ import lombok.Setter;
 @Setter
 @Getter
 public class MemberReqDto {
-    private Integer memberId; // 사용자 id (번호)
+    private Integer memberNumber; // 회원 고유번호
+    private String memberId; // 회원 아이디
     private String memberPassword; // 사용자 비밀번호
     private String memberTel;// 사용자 전화번호
     private String memberJumin;// 사용자 주민번호

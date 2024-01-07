@@ -9,7 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Member {
-    private Integer memberId; // 사용자 id (번호)
+    private Integer memberNumber; // 사용자 id (번호)
+    private String memberId; // 사용자 id (번호)
     private String memberPassword; // 사용자 비밀번호
     private String memberTel;// 사용자 전화번호
     private String memberJumin;// 사용자 주민번호
